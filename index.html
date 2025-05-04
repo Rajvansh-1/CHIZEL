@@ -5,50 +5,12 @@
     <title>Chizel | Smart Learning for Curious Kids</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Chizel transforms learning into an epic adventure! Interactive games, daily rewards & personalized avatars make education fun for kids & insightful for parents.">
-    
+    <link rel="stylesheet" href="style.css">
     <!-- Preload assets -->
-    <link rel="preload" href="https://cdn.tailwindcss.com" as="script">
+    <link rel="preload" href="https://unpkg.com/aos@2.3.1/dist/aos.css" as="style">
     
     <!-- Favicon -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧠</text></svg>">
-    
-    <!-- Tailwind with professional yet playful config -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        chizel: {
-                            primary: '#6366F1',  // Professional indigo
-                            secondary: '#EC4899', // Playful pink
-                            accent: '#10B981'    // Trustworthy emerald
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['"Inter"', 'sans-serif'],
-                        display: ['"Fredoka One"', 'display']
-                    },
-                    animation: {
-                        'bounce': 'bounce 2s infinite',
-                        'float': 'float 6s ease-in-out infinite',
-                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                        'tilt': 'tilt 10s infinite linear'
-                    },
-                    keyframes: {
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-15px)' }
-                        },
-                        tilt: {
-                            '0%, 100%': { transform: 'rotate(-2deg)' },
-                            '50%': { transform: 'rotate(2deg)' }
-                        }
-                    }
-                }
-            }
-        }
-    </script>
     
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Fredoka+One&display=swap" rel="stylesheet">
@@ -56,189 +18,112 @@
     <!-- Lottie for animations -->
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
     
-    <style>
-        :root {
-            --color-primary: 99, 102, 241;
-            --color-secondary: 236, 72, 153;
-        }
-        
-        .hero-gradient {
-            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
-        }
-        
-        .floating-card {
-            transition: all 0.3s ease;
-            transform-style: preserve-3d;
-        }
-        
-        .floating-card:hover {
-            transform: translateY(-10px) rotateY(5deg);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
-        }
-        
-        .avatar-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
-            gap: 1rem;
-        }
-        
-        .avatar-option {
-            transition: all 0.2s ease;
-            border: 3px solid transparent;
-        }
-        
-        .avatar-option:hover {
-            transform: scale(1.1);
-            border-color: #6366F1;
-        }
-        
-        .avatar-option.selected {
-            border-color: #10B981;
-            transform: scale(1.05);
-            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.3);
-        }
-        
-        /* 3D Scene Container */
-        #world-scene {
-            width: 100%;
-            height: 400px;
-            background: linear-gradient(180deg, #E0F2FE 0%, #C7D2FE 100%);
-            border-radius: 20px;
-            overflow: hidden;
-            position: relative;
-        }
-        
-        .reward-badge {
-            animation: pulse-slow 2s infinite;
-        }
-        
-        @keyframes float-bubble {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(5deg); }
-        }
-        
-        .speech-bubble {
-            position: relative;
-            background: white;
-            border-radius: 20px;
-            padding: 12px 16px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            max-width: 80%;
-            margin: 0 auto;
-        }
-        
-        .speech-bubble:after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            border-width: 10px 10px 0;
-            border-style: solid;
-            border-color: white transparent;
-            transform: translateX(-50%);
-        }
-    </style>
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 
-<body class="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50 font-sans antialiased text-gray-800">
-
+<body class="body">
     <!-- Navigation (Professional + Playful) -->
-    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md shadow-sm">
-        <div class="max-w-7xl mx-auto px-6 py-3 flex justify-between items-center">
-            <div class="flex items-center space-x-2">
-                <div class="w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center text-indigo-600 text-xl">🧠</div>
-                <span class="text-2xl font-display text-chizel-primary">Chizel</span>
+    <nav class="nav">
+        <div class="nav-container">
+            <div class="logo-container">
+                <div class="logo-icon"><img src="" alt=""></div>
+                <span class="logo-text">Chizel</span>
             </div>
-            <div class="hidden md:flex space-x-8 items-center">
-                <a href="#features" class="font-medium hover:text-chizel-primary transition">Features</a>
-                <a href="#demo" class="font-medium hover:text-chizel-primary transition">Demos</a>
-                <a href="#rewards" class="font-medium hover:text-chizel-primary transition">Rewards</a>
-                <a href="#parents" class="font-medium hover:text-chizel-primary transition">For Parents</a>
+            <div class="nav-links">
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#demo" class="nav-link">Demos</a>
+                <a href="#rewards" class="nav-link">Rewards</a>
+                <a href="#parents" class="nav-link">For Parents</a>
             </div>
-            <a href="#cta" class="bg-chizel-primary text-white px-6 py-2 rounded-full font-medium hover:bg-chizel-secondary transition shadow-lg hover:shadow-xl transform hover:scale-105">
+            <a href="#cta" class="btn-primary">
                 Try Free
             </a>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="relative pt-32 pb-16 px-6">
-        <div class="max-w-7xl mx-auto">
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div data-aos="fade-right">
-                    <h1 class="text-5xl md:text-6xl font-display mb-6 leading-tight">
-                        Learning Feels Like <span class="text-transparent bg-clip-text bg-gradient-to-r from-chizel-primary to-chizel-secondary">Playtime!</span>
-                    </h1>
-                    <p class="text-xl mb-8 text-gray-600">
-                        Chizel combines <strong>game-based learning</strong> with <strong>real cognitive development</strong> in an adventure kids love and parents trust.
-                    </p>
-                    <div class="flex flex-col sm:flex-row gap-4 mb-12">
-                        <a href="#cta" class="bg-chizel-primary text-white px-8 py-4 rounded-full font-medium shadow-lg hover:bg-chizel-secondary transition transform hover:scale-105 flex items-center justify-center">
-                            <span class="mr-2">🎮</span> Start Free Trial
-                        </a>
-                        <a href="#demo" class="border-2 border-chizel-primary text-chizel-primary px-8 py-4 rounded-full font-medium hover:bg-chizel-primary hover:text-white transition flex items-center justify-center">
-                            <span class="mr-2">▶️</span> See Demos
-                        </a>
-                    </div>
-                    
-                    <div class="flex items-center space-x-4">
-                        <div class="flex -space-x-2">
-                            <div class="w-10 h-10 rounded-full border-2 border-white bg-purple-100 flex items-center justify-center">👧</div>
-                            <div class="w-10 h-10 rounded-full border-2 border-white bg-blue-100 flex items-center justify-center">👦</div>
-                            <div class="w-10 h-10 rounded-full border-2 border-white bg-pink-100 flex items-center justify-center">👩</div>
-                        </div>
-                        <div class="text-sm text-gray-600">
-                            <div class="flex items-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
-                                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                                </svg>
-                                <span class="ml-1">4.9/5 (2,000+ reviews)</span>
-                            </div>
-                            <p>Trusted by 500,000+ families worldwide</p>
-                        </div>
-                    </div>
+    <section class="hero-section">
+        <div class="hero-bubbles">
+            <div class="bubble bubble-1"></div>
+            <div class="bubble bubble-2"></div>
+            <div class="bubble bubble-3"></div>
+        </div>
+        
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    Learning Feels Like <span class="hero-highlight">Playtime!</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Chizel combines <strong>game-based learning</strong> with <strong>real cognitive development</strong> in an adventure kids love and parents trust.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#cta" class="btn-primary btn-primary-main">
+                        <span class="btn-emoji">🎮</span> Start Free Trial
+                    </a>
+                    <a href="#demo" class="btn-primary btn-primary-secondary">
+                        <span class="btn-emoji">▶️</span> See Demos
+                    </a>
                 </div>
                 
-                <!-- Hero Image Placeholder -->
-                <div data-aos="fade-left" class="relative">
-                    <div class="w-full h-96 bg-gradient-to-br from-indigo-100 to-purple-100 rounded-2xl shadow-xl border-4 border-white flex items-center justify-center">
-                        <lottie-player src="https://assets1.lottiefiles.com/packages/lf20_isdnju3v.json" background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></lottie-player>
+                <div class="hero-testimonial">
+                    <div class="user-avatars">
+                        <div class="user-avatar">👧</div>
+                        <div class="user-avatar">👦</div>
+                        <div class="user-avatar">👩</div>
                     </div>
-                    <div class="absolute -bottom-6 -right-6 w-24 h-24">
-                        <lottie-player src="https://assets1.lottiefiles.com/packages/lf20_1a8xu7pi.json" background="transparent" speed="1" style="width: 100%; height: 100%;" loop autoplay></lottie-player>
+                    <div class="testimonial-text">
+                        <div class="rating">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="star-icon" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                            <span>4.9/5 (2,000+ reviews)</span>
+                        </div>
+                        <p>Trusted by 500,000+ families worldwide</p>
                     </div>
+                </div>
+            </div>
+            
+            <!-- Hero Image Placeholder -->
+            <div class="hero-image" data-aos="fade-left" data-aos-delay="200">
+                <div class="hero-animation-container">
+                    <lottie-player src="https://assets1.lottiefiles.com/packages/lf20_isdnju3v.json" background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></lottie-player>
+                </div>
+                <div class="hero-animation-extra">
+                    <lottie-player src="https://assets1.lottiefiles.com/packages/lf20_1a8xu7pi.json" background="transparent" speed="1" style="width: 100%; height: 100%;" loop autoplay></lottie-player>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Key Features Section -->
-    <section id="features" class="py-16 px-6 bg-white">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="text-4xl font-display mb-4">Smart <span class="text-transparent bg-clip-text bg-gradient-to-r from-chizel-primary to-chizel-secondary">Learning Adventures</span></h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Designed by educators, loved by kids, trusted by parents</p>
+    <section id="features" class="features-section">
+        <div class="section-container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Smart <span class="section-highlight">Learning Adventures</span></h2>
+                <p class="section-subtitle">Designed by educators, loved by kids, trusted by parents</p>
             </div>
             
-            <div class="grid md:grid-cols-3 gap-8">
+            <div class="features-grid">
                 <!-- Feature 1 -->
-                <div class="floating-card bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-8 border border-gray-100" data-aos="fade-up" data-aos-delay="100">
-                    <div class="w-20 h-20 bg-blue-100 rounded-2xl mb-6 flex items-center justify-center mx-auto">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <div class="feature-card feature-card-1" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-icon-container">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="feature-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
                         </svg>
                     </div>
-                    <h3 class="text-2xl font-bold mb-4 text-center">Personalized Learning</h3>
-                    <p class="text-gray-600 mb-6">Our AI adapts to your child's skill level, ensuring they're always challenged but never frustrated.</p>
-                    <ul class="space-y-3">
-                        <li class="flex items-start">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+                    <h3 class="feature-title">Personalized Learning</h3>
+                    <p class="feature-description">Our AI adapts to your child's skill level, ensuring they're always challenged but never frustrated.</p>
+                    <ul class="feature-list">
+                        <li class="feature-list-item" data-aos="fade-right" data-aos-delay="150">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="list-icon" viewBox="0 0 20 20" fill="currentColor">
                                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
                             </svg>
                             <span>Adaptive difficulty scaling</span>
                         </li>
-                        <li class="flex items-start">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+                        <li class="feature-list-item" data-aos="fade-right" data-aos-delay="200">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="list-icon" viewBox="0 0 20 20" fill="currentColor">
                                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
                             </svg>
                             <span>Skill-based recommendations</span>
@@ -247,23 +132,23 @@
                 </div>
                 
                 <!-- Feature 2 -->
-                <div class="floating-card bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-8 border border-gray-100" data-aos="fade-up" data-aos-delay="200">
-                    <div class="w-20 h-20 bg-purple-100 rounded-2xl mb-6 flex items-center justify-center mx-auto">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <div class="feature-card feature-card-2" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-icon-container">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="feature-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                     </div>
-                    <h3 class="text-2xl font-bold mb-4 text-center">Daily Rewards</h3>
-                    <p class="text-gray-600 mb-6">Motivating streaks and collectibles keep kids coming back to learn every day.</p>
-                    <ul class="space-y-3">
-                        <li class="flex items-start">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+                    <h3 class="feature-title">Daily Rewards</h3>
+                    <p class="feature-description">Motivating streaks and collectibles keep kids coming back to learn every day.</p>
+                    <ul class="feature-list">
+                        <li class="feature-list-item" data-aos="fade-right" data-aos-delay="250">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="list-icon" viewBox="0 0 20 20" fill="currentColor">
                                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
                             </svg>
                             <span>7-day login streaks</span>
                         </li>
-                        <li class="flex items-start">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+                        <li class="feature-list-item" data-aos="fade-right" data-aos-delay="300">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="list-icon" viewBox="0 0 20 20" fill="currentColor">
                                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
                             </svg>
                             <span>Collectible achievement badges</span>
@@ -272,23 +157,23 @@
                 </div>
                 
                 <!-- Feature 3 -->
-                <div class="floating-card bg-gradient-to-br from-green-50 to-blue-50 rounded-2xl p-8 border border-gray-100" data-aos="fade-up" data-aos-delay="300">
-                    <div class="w-20 h-20 bg-green-100 rounded-2xl mb-6 flex items-center justify-center mx-auto">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <div class="feature-card feature-card-3" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-icon-container">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="feature-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                         </svg>
                     </div>
-                    <h3 class="text-2xl font-bold mb-4 text-center">Avatar Customization</h3>
-                    <p class="text-gray-600 mb-6">Kids express themselves while earning customization options through learning.</p>
-                    <ul class="space-y-3">
-                        <li class="flex items-start">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+                    <h3 class="feature-title">Avatar Customization</h3>
+                    <p class="feature-description">Kids express themselves while earning customization options through learning.</p>
+                    <ul class="feature-list">
+                        <li class="feature-list-item" data-aos="fade-right" data-aos-delay="350">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="list-icon" viewBox="0 0 20 20" fill="currentColor">
                                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
                             </svg>
                             <span>100+ customization items</span>
                         </li>
-                        <li class="flex items-start">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+                        <li class="feature-list-item" data-aos="fade-right" data-aos-delay="400">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="list-icon" viewBox="0 0 20 20" fill="currentColor">
                                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
                             </svg>
                             <span>Earnable through achievements</span>
@@ -300,101 +185,97 @@
     </section>
 
     <!-- Interactive Demo Section -->
-    <section id="demo" class="py-16 px-6 bg-gradient-to-br from-blue-50 to-indigo-50">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="text-4xl font-display mb-4">Try Our <span class="text-transparent bg-clip-text bg-gradient-to-r from-chizel-primary to-chizel-secondary">Interactive Demos</span></h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Experience how Chizel makes learning engaging</p>
+    <section id="demo" class="demo-section">
+        <div class="section-container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Try Our <span class="section-highlight">Interactive Demos</span></h2>
+                <p class="section-subtitle">Experience how Chizel makes learning engaging</p>
             </div>
             
-            <div class="grid md:grid-cols-2 gap-12 items-center mb-16">
-                <div data-aos="fade-right">
-                    <div class="bg-white p-8 rounded-2xl shadow-xl border-4 border-chizel-primary">
-                        <h3 class="text-2xl font-bold mb-4">Math Puzzle Challenge</h3>
-                        <p class="text-gray-600 mb-6">Solve these fun puzzles to help rebuild the ancient math temple!</p>
+            <div class="demo-grid">
+                <div class="demo-content" data-aos="fade-right">
+                    <div class="demo-card demo-card-math">
+                        <h3 class="demo-card-title">Math Puzzle Challenge</h3>
+                        <p class="demo-card-description">Solve these fun puzzles to help rebuild the ancient math temple!</p>
                         
                         <!-- Simple Math Game Demo -->
-                        <div class="bg-gray-100 p-6 rounded-xl mb-6">
-                            <div class="text-center mb-4">
-                                <p class="text-lg font-medium">Can you solve this?</p>
-                                <p class="text-3xl font-bold my-4" id="math-question">3 + 5 = ?</p>
+                        <div class="demo-game-container">
+                            <div class="demo-game-question">
+                                <p class="game-instruction">Can you solve this?</p>
+                                <p class="game-question" id="math-question">3 + 5 = ?</p>
                             </div>
-                            <div class="grid grid-cols-3 gap-3">
-                                <button class="math-option bg-white hover:bg-blue-100 border-2 border-blue-200 rounded-xl p-4 font-bold text-xl" data-answer="6">6</button>
-                                <button class="math-option bg-white hover:bg-blue-100 border-2 border-blue-200 rounded-xl p-4 font-bold text-xl" data-answer="7">7</button>
-                                <button class="math-option bg-white hover:bg-blue-100 border-2 border-blue-200 rounded-xl p-4 font-bold text-xl" data-answer="8">8</button>
-                                <button class="math-option bg-white hover:bg-blue-100 border-2 border-blue-200 rounded-xl p-4 font-bold text-xl" data-answer="9">9</button>
-                                <button class="math-option bg-white hover:bg-blue-100 border-2 border-blue-200 rounded-xl p-4 font-bold text-xl" data-answer="10">10</button>
-                                <button class="math-option bg-white hover:bg-blue-100 border-2 border-blue-200 rounded-xl p-4 font-bold text-xl" data-answer="11">11</button>
+                            <div class="math-options-grid">
+                                <button class="math-option" data-answer="6">6</button>
+                                <button class="math-option" data-answer="7">7</button>
+                                <button class="math-option" data-answer="8">8</button>
+                                <button class="math-option" data-answer="9">9</button>
+                                <button class="math-option" data-answer="10">10</button>
+                                <button class="math-option" data-answer="11">11</button>
                             </div>
                         </div>
                         
-                        <div id="math-feedback" class="hidden">
-                            <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4" role="alert">
-                                <strong class="font-bold">Correct! </strong>
-                                <span class="block sm:inline">You earned 5 stars!</span>
+                        <div id="math-feedback" class="feedback-message hidden">
+                            <div class="feedback-content feedback-success">
+                                <strong class="feedback-title">Correct! </strong>
+                                <span class="feedback-text">You earned 5 stars!</span>
                             </div>
-                            <button id="next-math" class="bg-chizel-primary text-white px-4 py-2 rounded-full text-sm font-medium">Next Challenge →</button>
+                            <button id="next-math" class="feedback-button">Next Challenge →</button>
                         </div>
                     </div>
                 </div>
                 
-                <div data-aos="fade-left">
-                    <div class="relative">
-                        <div class="w-full h-64 bg-gradient-to-br from-blue-100 to-indigo-100 rounded-2xl shadow-xl border-4 border-white flex items-center justify-center">
-                            <lottie-player src="https://assets1.lottiefiles.com/packages/lf20_ck6l0vqk.json" background="transparent" speed="1" style="width: 200px; height: 200px;" loop autoplay></lottie-player>
-                        </div>
-                        <div class="absolute -bottom-6 -right-6 w-24 h-24">
-                            <lottie-player src="https://assets1.lottiefiles.com/packages/lf20_obhph3sh.json" background="transparent" speed="1" style="width: 100%; height: 100%;" loop autoplay></lottie-player>
-                        </div>
+                <div class="demo-animation" data-aos="fade-left">
+                    <div class="animation-container">
+                        <lottie-player src="https://assets1.lottiefiles.com/packages/lf20_ck6l0vqk.json" background="transparent" speed="1" style="width: 200px; height: 200px;" loop autoplay></lottie-player>
+                    </div>
+                    <div class="animation-extra">
+                        <lottie-player src="https://assets1.lottiefiles.com/packages/lf20_obhph3sh.json" background="transparent" speed="1" style="width: 100%; height: 100%;" loop autoplay></lottie-player>
                     </div>
                 </div>
             </div>
             
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div data-aos="fade-right">
-                    <div class="relative">
-                        <div class="w-full h-64 bg-gradient-to-br from-purple-100 to-pink-100 rounded-2xl shadow-xl border-4 border-white flex items-center justify-center">
-                            <lottie-player src="https://assets1.lottiefiles.com/packages/lf20_isdnju3v.json" background="transparent" speed="1" style="width: 200px; height: 200px;" loop autoplay></lottie-player>
-                        </div>
-                        <div class="absolute -top-6 -left-6 w-24 h-24">
-                            <lottie-player src="https://assets1.lottiefiles.com/packages/lf20_5tkzkblw.json" background="transparent" speed="1" style="width: 100%; height: 100%;" loop autoplay></lottie-player>
-                        </div>
+            <div class="demo-grid demo-grid-reverse">
+                <div class="demo-animation" data-aos="fade-right">
+                    <div class="animation-container">
+                        <lottie-player src="https://assets1.lottiefiles.com/packages/lf20_isdnju3v.json" background="transparent" speed="1" style="width: 200px; height: 200px;" loop autoplay></lottie-player>
+                    </div>
+                    <div class="animation-extra">
+                        <lottie-player src="https://assets1.lottiefiles.com/packages/lf20_5tkzkblw.json" background="transparent" speed="1" style="width: 100%; height: 100%;" loop autoplay></lottie-player>
                     </div>
                 </div>
                 
-                <div data-aos="fade-left">
-                    <div class="bg-white p-8 rounded-2xl shadow-xl border-4 border-chizel-secondary">
-                        <h3 class="text-2xl font-bold mb-4">Word Builder Challenge</h3>
-                        <p class="text-gray-600 mb-6">Combine these letters to form a word that unlocks the treasure!</p>
+                <div class="demo-content" data-aos="fade-left">
+                    <div class="demo-card demo-card-word">
+                        <h3 class="demo-card-title">Word Builder Challenge</h3>
+                        <p class="demo-card-description">Combine these letters to form a word that unlocks the treasure!</p>
                         
                         <!-- Simple Word Game Demo -->
-                        <div class="bg-gray-100 p-6 rounded-xl mb-6">
-                            <div class="text-center mb-4">
-                                <p class="text-lg font-medium">Use these letters:</p>
-                                <div class="flex justify-center space-x-3 my-4">
-                                    <span class="letter-tile bg-white border-2 border-blue-300 rounded-lg w-12 h-12 flex items-center justify-center text-2xl font-bold cursor-pointer hover:bg-blue-100">C</span>
-                                    <span class="letter-tile bg-white border-2 border-blue-300 rounded-lg w-12 h-12 flex items-center justify-center text-2xl font-bold cursor-pointer hover:bg-blue-100">A</span>
-                                    <span class="letter-tile bg-white border-2 border-blue-300 rounded-lg w-12 h-12 flex items-center justify-center text-2xl font-bold cursor-pointer hover:bg-blue-100">T</span>
+                        <div class="demo-game-container">
+                            <div class="demo-game-question">
+                                <p class="game-instruction">Use these letters:</p>
+                                <div class="letter-tiles-container">
+                                    <span class="letter-tile">C</span>
+                                    <span class="letter-tile">A</span>
+                                    <span class="letter-tile">T</span>
                                 </div>
                             </div>
-                            <div class="text-center">
-                                <p class="text-lg font-medium mb-2">Your word:</p>
-                                <div id="word-slots" class="flex justify-center space-x-3 mb-4">
-                                    <div class="bg-white border-2 border-gray-300 rounded-lg w-12 h-12 flex items-center justify-center text-2xl font-bold"></div>
-                                    <div class="bg-white border-2 border-gray-300 rounded-lg w-12 h-12 flex items-center justify-center text-2xl font-bold"></div>
-                                    <div class="bg-white border-2 border-gray-300 rounded-lg w-12 h-12 flex items-center justify-center text-2xl font-bold"></div>
+                            <div class="word-game-controls">
+                                <p class="game-instruction">Your word:</p>
+                                <div id="word-slots" class="word-slots">
+                                    <div class="word-slot"></div>
+                                    <div class="word-slot"></div>
+                                    <div class="word-slot"></div>
                                 </div>
-                                <button id="check-word" class="bg-chizel-secondary text-white px-4 py-2 rounded-full text-sm font-medium">Check Word</button>
+                                <button id="check-word" class="game-button">Check Word</button>
                             </div>
                         </div>
                         
-                        <div id="word-feedback" class="hidden">
-                            <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4" role="alert">
-                                <strong class="font-bold">Great job! </strong>
-                                <span class="block sm:inline">"CAT" is correct! You found the treasure!</span>
+                        <div id="word-feedback" class="feedback-message hidden">
+                            <div class="feedback-content feedback-success">
+                                <strong class="feedback-title">Great job! </strong>
+                                <span class="feedback-text">"CAT" is correct! You found the treasure!</span>
                             </div>
-                            <button id="next-word" class="bg-chizel-secondary text-white px-4 py-2 rounded-full text-sm font-medium">Next Challenge →</button>
+                            <button id="next-word" class="feedback-button">Next Challenge →</button>
                         </div>
                     </div>
                 </div>
@@ -403,184 +284,176 @@
     </section>
 
     <!-- Rewards & Avatar Section -->
-    <section id="rewards" class="py-16 px-6 bg-white">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="text-4xl font-display mb-4">Earn <span class="text-transparent bg-clip-text bg-gradient-to-r from-chizel-primary to-chizel-secondary">Rewards</span> & Customize</h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Daily challenges unlock awesome prizes and avatar items</p>
+    <section id="rewards" class="rewards-section">
+        <div class="section-container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Earn <span class="section-highlight">Rewards</span> & Customize</h2>
+                <p class="section-subtitle">Daily challenges unlock awesome prizes and avatar items</p>
             </div>
             
-            <div class="grid md:grid-cols-2 gap-12 items-center mb-16">
-                <div data-aos="fade-right">
-                    <div class="bg-gradient-to-br from-purple-50 to-pink-50 p-8 rounded-2xl shadow-lg border-4 border-purple-200">
-                        <h3 class="text-2xl font-bold mb-4">Daily Reward System</h3>
-                        <p class="text-gray-600 mb-6">Kids earn stars for daily learning, unlocking special rewards:</p>
+            <div class="rewards-grid">
+                <div class="rewards-card" data-aos="fade-right">
+                    <div class="rewards-card-inner rewards-card-1">
+                        <h3 class="rewards-card-title">Daily Reward System</h3>
+                        <p class="rewards-card-description">Kids earn stars for daily learning, unlocking special rewards:</p>
                         
-                        <div class="grid grid-cols-7 gap-2 mb-6">
-                            <div class="bg-white p-2 rounded-lg border-2 border-yellow-300 text-center">
-                                <div class="text-xs font-medium mb-1">Day 1</div>
-                                <div class="w-8 h-8 mx-auto bg-yellow-200 rounded-full flex items-center justify-center text-yellow-800 font-bold">★</div>
+                        <div class="rewards-calendar">
+                            <div class="reward-day">
+                                <div class="day-label">Day 1</div>
+                                <div class="day-reward">★</div>
                             </div>
-                            <div class="bg-white p-2 rounded-lg border-2 border-gray-200 text-center">
-                                <div class="text-xs font-medium mb-1">Day 2</div>
-                                <div class="w-8 h-8 mx-auto bg-blue-100 rounded-full flex items-center justify-center text-blue-800 font-bold">5★</div>
+                            <div class="reward-day">
+                                <div class="day-label">Day 2</div>
+                                <div class="day-reward">5★</div>
                             </div>
-                            <div class="bg-white p-2 rounded-lg border-2 border-gray-200 text-center">
-                                <div class="text-xs font-medium mb-1">Day 3</div>
-                                <div class="w-8 h-8 mx-auto bg-purple-100 rounded-full flex items-center justify-center text-purple-800 font-bold">10★</div>
+                            <div class="reward-day">
+                                <div class="day-label">Day 3</div>
+                                <div class="day-reward">10★</div>
                             </div>
-                            <div class="bg-white p-2 rounded-lg border-2 border-gray-200 text-center">
-                                <div class="text-xs font-medium mb-1">Day 4</div>
-                                <div class="w-8 h-8 mx-auto bg-green-100 rounded-full flex items-center justify-center text-green-800 font-bold">15★</div>
+                            <div class="reward-day">
+                                <div class="day-label">Day 4</div>
+                                <div class="day-reward">15★</div>
                             </div>
-                            <div class="bg-white p-2 rounded-lg border-2 border-gray-200 text-center">
-                                <div class="text-xs font-medium mb-1">Day 5</div>
-                                <div class="w-8 h-8 mx-auto bg-red-100 rounded-full flex items-center justify-center text-red-800 font-bold">20★</div>
+                            <div class="reward-day">
+                                <div class="day-label">Day 5</div>
+                                <div class="day-reward">20★</div>
                             </div>
-                            <div class="bg-white p-2 rounded-lg border-2 border-gray-200 text-center">
-                                <div class="text-xs font-medium mb-1">Day 6</div>
-                                <div class="w-8 h-8 mx-auto bg-indigo-100 rounded-full flex items-center justify-center text-indigo-800 font-bold">25★</div>
+                            <div class="reward-day">
+                                <div class="day-label">Day 6</div>
+                                <div class="day-reward">25★</div>
                             </div>
-                            <div class="bg-white p-2 rounded-lg border-2 border-yellow-300 text-center reward-badge">
-                                <div class="text-xs font-medium mb-1">Day 7</div>
-                                <div class="w-8 h-8 mx-auto bg-yellow-200 rounded-full flex items-center justify-center text-yellow-800 font-bold">🎁</div>
+                            <div class="reward-day reward-day-special">
+                                <div class="day-label">Day 7</div>
+                                <div class="day-reward">🎁</div>
                             </div>
                         </div>
                         
-                        <div class="flex items-center space-x-3">
-                            <div class="flex-shrink-0">
-                                <div class="w-12 h-12 rounded-full bg-yellow-100 flex items-center justify-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                    </svg>
-                                </div>
+                        <div class="rewards-feature">
+                            <div class="feature-icon-container">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="feature-icon-small" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
                             </div>
                             <div>
-                                <h4 class="font-bold">Daily Streak</h4>
-                                <p class="text-sm text-gray-600">Login daily to keep your streak alive!</p>
+                                <h4 class="feature-title-small">Daily Streak</h4>
+                                <p class="feature-description-small">Login daily to keep your streak alive!</p>
                             </div>
                         </div>
                     </div>
                 </div>
                 
-                <div data-aos="fade-left">
-                    <div class="bg-gradient-to-br from-blue-50 to-indigo-50 p-8 rounded-2xl shadow-lg border-4 border-blue-200">
-                        <h3 class="text-2xl font-bold mb-4">Avatar Customization</h3>
-                        <p class="text-gray-600 mb-6">Personalize your avatar with items earned through learning:</p>
+                <div class="rewards-card" data-aos="fade-left">
+                    <div class="rewards-card-inner rewards-card-2">
+                        <h3 class="rewards-card-title">Avatar Customization</h3>
+                        <p class="rewards-card-description">Personalize your avatar with items earned through learning:</p>
                         
-                        <div class="flex mb-6">
-                            <div class="flex-shrink-0 mr-6">
-                                <div class="w-24 h-24 bg-white rounded-full border-4 border-chizel-primary flex items-center justify-center overflow-hidden text-4xl">
+                        <div class="avatar-showcase">
+                            <div class="avatar-preview-container">
+                                <div class="avatar-preview">
                                     👧
                                 </div>
                             </div>
-                            <div class="flex-grow">
-                                <h4 class="font-bold mb-2">Your Avatar</h4>
-                                <div class="flex flex-wrap gap-2">
-                                    <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs">Explorer Hat</span>
-                                    <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded-full text-xs">Math Wizard Robe</span>
-                                    <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">Star Glasses</span>
+                            <div class="avatar-details">
+                                <h4 class="avatar-title">Your Avatar</h4>
+                                <div class="avatar-badges">
+                                    <span class="avatar-badge">Explorer Hat</span>
+                                    <span class="avatar-badge">Math Wizard Robe</span>
+                                    <span class="avatar-badge">Star Glasses</span>
                                 </div>
                             </div>
                         </div>
                         
-                        <div>
-                            <h4 class="font-bold mb-2">Unlock New Items</h4>
+                        <div class="avatar-customization">
+                            <h4 class="avatar-title">Unlock New Items</h4>
                             <div class="avatar-grid">
-                                <div class="avatar-option flex items-center justify-center text-2xl">🎩</div>
-                                <div class="avatar-option flex items-center justify-center text-2xl">🧢</div>
-                                <div class="avatar-option selected flex items-center justify-center text-2xl">👑</div>
-                                <div class="avatar-option flex items-center justify-center text-2xl">👓</div>
-                                <div class="avatar-option flex items-center justify-center text-2xl">🕶️</div>
-                                <div class="avatar-option flex items-center justify-center text-2xl">🥽</div>
+                                <div class="avatar-option">🎩</div>
+                                <div class="avatar-option">🧢</div>
+                                <div class="avatar-option selected">👑</div>
+                                <div class="avatar-option">👓</div>
+                                <div class="avatar-option">🕶️</div>
+                                <div class="avatar-option">🥽</div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             
-            <div class="text-center" data-aos="fade-up">
-                <a href="#cta" class="inline-flex items-center bg-chizel-primary text-white px-8 py-4 rounded-full font-medium hover:bg-chizel-secondary transition shadow-lg hover:shadow-xl transform hover:scale-105">
-                    <span class="mr-2">🎁</span> Start Earning Rewards Today!
+            <div class="section-cta" data-aos="fade-up">
+                <a href="#cta" class="btn-primary btn-primary-rewards">
+                    <span class="btn-emoji">🎁</span> Start Earning Rewards Today!
                 </a>
             </div>
         </div>
     </section>
 
     <!-- Parent Dashboard Section -->
-    <section id="parents" class="py-16 px-6 bg-gradient-to-br from-blue-50 to-indigo-50">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="text-4xl font-display mb-4">For <span class="text-transparent bg-clip-text bg-gradient-to-r from-chizel-primary to-chizel-accent">Parents</span></h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Powerful insights into your child's learning journey</p>
+    <section id="parents" class="parents-section">
+        <div class="section-container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>For <span class="section-highlight">Parents</span></h2>
+                <p class="section-subtitle">Powerful insights into your child's learning journey</p>
             </div>
             
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div data-aos="fade-right">
-                    <div class="bg-white p-8 rounded-2xl shadow-xl border-4 border-chizel-accent">
-                        <h3 class="text-2xl font-bold mb-4">Learning Progress Dashboard</h3>
-                        <p class="text-gray-600 mb-6">See exactly how your child is developing key skills:</p>
+            <div class="parents-grid">
+                <div class="parents-content" data-aos="fade-right">
+                    <div class="parents-card">
+                        <h3 class="parents-card-title">Learning Progress Dashboard</h3>
+                        <p class="parents-card-description">See exactly how your child is developing key skills:</p>
                         
-                        <div class="space-y-6">
-                            <div>
-                                <div class="flex justify-between mb-1">
-                                    <span class="font-medium">Math Skills</span>
-                                    <span class="text-chizel-accent font-bold">85%</span>
+                        <div class="progress-container">
+                            <div class="progress-item">
+                                <div class="progress-header">
+                                    <span class="progress-label">Math Skills</span>
+                                    <span class="progress-value">85%</span>
                                 </div>
-                                <div class="w-full bg-gray-200 rounded-full h-2.5">
-                                    <div class="bg-chizel-accent h-2.5 rounded-full" style="width: 85%"></div>
-                                </div>
-                            </div>
-                            
-                            <div>
-                                <div class="flex justify-between mb-1">
-                                    <span class="font-medium">Reading</span>
-                                    <span class="text-chizel-accent font-bold">72%</span>
-                                </div>
-                                <div class="w-full bg-gray-200 rounded-full h-2.5">
-                                    <div class="bg-chizel-accent h-2.5 rounded-full" style="width: 72%"></div>
+                                <div class="progress-bar-container">
+                                    <div class="progress-bar" style="width: 85%"></div>
                                 </div>
                             </div>
                             
-                            <div>
-                                <div class="flex justify-between mb-1">
-                                    <span class="font-medium">Problem Solving</span>
-                                    <span class="text-chizel-accent font-bold">91%</span>
+                            <div class="progress-item">
+                                <div class="progress-header">
+                                    <span class="progress-label">Reading</span>
+                                    <span class="progress-value">72%</span>
                                 </div>
-                                <div class="w-full bg-gray-200 rounded-full h-2.5">
-                                    <div class="bg-chizel-accent h-2.5 rounded-full" style="width: 91%"></div>
+                                <div class="progress-bar-container">
+                                    <div class="progress-bar" style="width: 72%"></div>
                                 </div>
                             </div>
                             
-                            <div class="pt-4">
-                                <div class="flex items-center space-x-3">
-                                    <div class="flex-shrink-0">
-                                        <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500" viewBox="0 0 20 20" fill="currentColor">
-                                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                                            </svg>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <h4 class="font-bold">Weekly Report Ready</h4>
-                                        <p class="text-sm text-gray-600">Your child completed 12 activities this week!</p>
-                                    </div>
+                            <div class="progress-item">
+                                <div class="progress-header">
+                                    <span class="progress-label">Problem Solving</span>
+                                    <span class="progress-value">91%</span>
+                                </div>
+                                <div class="progress-bar-container">
+                                    <div class="progress-bar" style="width: 91%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="progress-notification">
+                                <div class="notification-icon-container">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="notification-icon" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="notification-title">Weekly Report Ready</h4>
+                                    <p class="notification-text">Your child completed 12 activities this week!</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 
-                <div data-aos="fade-left">
-                    <div class="relative">
-                        <div class="w-full h-64 bg-gradient-to-br from-white to-gray-50 rounded-2xl shadow-xl border-4 border-white flex items-center justify-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-32 w-32 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                            </svg>
-                        </div>
-                        <div class="absolute -bottom-6 -right-6 w-24 h-24">
-                            <lottie-player src="https://assets1.lottiefiles.com/packages/lf20_5mkgxr7t.json" background="transparent" speed="1" style="width: 100%; height: 100%;" loop autoplay></lottie-player>
-                        </div>
+                <div class="parents-animation" data-aos="fade-left">
+                    <div class="parents-animation-container">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="parents-placeholder-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
+                    </div>
+                    <div class="parents-animation-extra">
+                        <lottie-player src="https://assets1.lottiefiles.com/packages/lf20_5mkgxr7t.json" background="transparent" speed="1" style="width: 100%; height: 100%;" loop autoplay></lottie-player>
                     </div>
                 </div>
             </div>
@@ -588,221 +461,105 @@
     </section>
 
     <!-- Final CTA -->
-    <section id="cta" class="py-20 px-6 bg-gradient-to-br from-chizel-primary to-chizel-secondary text-white text-center relative overflow-hidden">
-        <div class="absolute inset-0 overflow-hidden pointer-events-none">
-            <div class="absolute top-0 left-0 w-full h-full opacity-10">
-                <lottie-player src="https://assets1.lottiefiles.com/packages/lf20_obhph3sh.json" background="transparent" speed="0.5" style="width: 100%; height: 100%;" loop autoplay></lottie-player>
-            </div>
+    <section id="cta" class="cta-section">
+        <div class="cta-background-animation">
+            <lottie-player src="https://assets1.lottiefiles.com/packages/lf20_obhph3sh.json" background="transparent" speed="0.5" style="width: 100%; height: 100%;" loop autoplay></lottie-player>
         </div>
         
-        <div class="max-w-4xl mx-auto relative z-10">
-            <h2 class="text-4xl font-display mb-6" data-aos="fade-up">Start Your Learning Adventure Today!</h2>
-            <p class="text-xl mb-10" data-aos="fade-up" data-aos-delay="100">7-day free trial • No credit card required</p>
+        <div class="cta-container">
+            <h2 class="cta-title" data-aos="fade-up">Start Your Learning Adventure Today!</h2>
+            <p class="cta-subtitle" data-aos="fade-up" data-aos-delay="100">7-day free trial • No credit card required</p>
             
-            <div class="grid sm:grid-cols-2 gap-6 max-w-md mx-auto" data-aos="fade-up" data-aos-delay="200">
-                <a href="#" class="bg-white text-chizel-primary py-4 px-6 rounded-xl font-medium hover:bg-gray-100 transition flex items-center justify-center space-x-2">
-                    <span class="text-xl">📱</span>
+            <div class="cta-buttons" data-aos="fade-up" data-aos-delay="200">
+                <a href="#" class="cta-button">
+                    <span class="cta-button-emoji">📱</span>
                     <span>App Store</span>
                 </a>
-                <a href="#" class="bg-white text-chizel-primary py-4 px-6 rounded-xl font-medium hover:bg-gray-100 transition flex items-center justify-center space-x-2">
-                    <span class="text-xl">🤖</span>
+                <a href="#" class="cta-button">
+                    <span class="cta-button-emoji">🤖</span>
                     <span>Google Play</span>
                 </a>
             </div>
             
-            <div class="mt-10" data-aos="fade-up" data-aos-delay="300">
-                <div class="inline-flex items-center bg-white/20 px-6 py-3 rounded-full backdrop-blur-sm">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+            <div class="cta-security" data-aos="fade-up" data-aos-delay="300">
+                <div class="security-badge">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="security-icon" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
                     </svg>
-                    <span class="text-sm">Safe & secure • Privacy protected</span>
+                    <span class="security-text">Safe & secure • Privacy protected</span>
                 </div>
             </div>
         </div>
+        
+        <!-- Confetti elements -->
+        <div id="confetti-container" class="confetti-container"></div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-12 px-6">
-        <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-8">
-            <div>
-                <div class="flex items-center space-x-2 mb-6">
-                    <div class="w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center text-indigo-600 text-xl">🧠</div>
-                    <span class="text-2xl font-display">Chizel</span>
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-column">
+                <div class="footer-logo-container">
+                    <div class="footer-logo-icon">🧠</div>
+                    <span class="footer-logo-text">Chizel</span>
                 </div>
-                <p class="text-gray-400 mb-6">Making learning magical for kids everywhere.</p>
-                <div class="flex space-x-4">
-                    <a href="#" class="text-gray-400 hover:text-white transition">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                <p class="footer-description">Making learning magical for kids everywhere.</p>
+                <div class="footer-social">
+                    <a href="#" class="social-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="social-icon" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
                         </svg>
                     </a>
-                    <a href="#" class="text-gray-400 hover:text-white transition">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                    <a href="#" class="social-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="social-icon" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-4.847-.2-6.78-2.618-6.98-6.98-.059-1.281-.073-1.689-.073-4.948 0-3.259.014-3.668.072-4.948.2-4.354 2.618-6.78 6.979-6.98 1.281-.059 1.69-.073 4.949-.073zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.196 4.354 2.618 6.78 6.979 6.98 1.281.059 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.196 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
                         </svg>
                     </a>
-                    <a href="#" class="text-gray-400 hover:text-white transition">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                    <a href="#" class="social-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="social-icon" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                         </svg>
                     </a>
                 </div>
             </div>
             
-            <div>
-                <h3 class="text-lg font-bold mb-4">Product</h3>
-                <ul class="space-y-2">
-                    <li><a href="#" class="text-gray-400 hover:text-white transition">Features</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-white transition">Games</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-white transition">Rewards</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-white transition">Pricing</a></li>
+            <div class="footer-column">
+                <h3 class="footer-column-title">Product</h3>
+                <ul class="footer-links">
+                    <li><a href="#" class="footer-link">Features</a></li>
+                    <li><a href="#" class="footer-link">Games</a></li>
+                    <li><a href="#" class="footer-link">Rewards</a></li>
+                    <li><a href="#" class="footer-link">Pricing</a></li>
                 </ul>
             </div>
             
-            <div>
-                <h3 class="text-lg font-bold mb-4">For Parents</h3>
-                <ul class="space-y-2">
-                    <li><a href="#" class="text-gray-400 hover:text-white transition">Dashboard</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-white transition">Progress Reports</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-white transition">Safety</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-white transition">FAQ</a></li>
+            <div class="footer-column">
+                <h3 class="footer-column-title">For Parents</h3>
+                <ul class="footer-links">
+                    <li><a href="#" class="footer-link">Dashboard</a></li>
+                    <li><a href="#" class="footer-link">Progress Reports</a></li>
+                    <li><a href="#" class="footer-link">Safety</a></li>
+                    <li><a href="#" class="footer-link">FAQ</a></li>
                 </ul>
             </div>
             
-            <div>
-                <h3 class="text-lg font-bold mb-4">Company</h3>
-                <ul class="space-y-2">
-                    <li><a href="#" class="text-gray-400 hover:text-white transition">About Us</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-white transition">Careers</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-white transition">Privacy</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-white transition">Terms</a></li>
+            <div class="footer-column">
+                <h3 class="footer-column-title">Company</h3>
+                <ul class="footer-links">
+                    <li><a href="#" class="footer-link">About Us</a></li>
+                    <li><a href="#" class="footer-link">Careers</a></li>
+                    <li><a href="#" class="footer-link">Privacy</a></li>
+                    <li><a href="#" class="footer-link">Terms</a></li>
                 </ul>
             </div>
         </div>
         
-        <div class="pt-8 mt-8 border-t border-gray-800 text-center text-gray-400 text-sm">
+        <div class="footer-bottom">
             <p>&copy; 2025 Chizel. All rights reserved.</p>
         </div>
     </footer>
 
-    <!-- AOS Animation Library -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        // Initialize AOS animation library
-        AOS.init({
-            duration: 800,
-            easing: 'ease-in-out',
-            once: true
-        });
-        
-        // Math Game Demo
-        const mathOptions = document.querySelectorAll('.math-option');
-        const mathFeedback = document.getElementById('math-feedback');
-        const nextMathBtn = document.getElementById('next-math');
-        
-        const mathQuestions = [
-            { question: "3 + 5 = ?", answer: "8" },
-            { question: "7 - 2 = ?", answer: "5" },
-            { question: "4 × 3 = ?", answer: "12" }
-        ];
-        
-        let currentMathQuestion = 0;
-        
-        mathOptions.forEach(option => {
-            option.addEventListener('click', function() {
-                const userAnswer = this.getAttribute('data-answer');
-                const correctAnswer = mathQuestions[currentMathQuestion].answer;
-                
-                if (userAnswer === correctAnswer) {
-                    mathFeedback.querySelector('strong').textContent = 'Correct! ';
-                    mathFeedback.querySelector('span').textContent = 'You earned 5 stars!';
-                    mathFeedback.className = 'bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4';
-                } else {
-                    mathFeedback.querySelector('strong').textContent = 'Oops! ';
-                    mathFeedback.querySelector('span').textContent = `The correct answer is ${correctAnswer}. Try again!`;
-                    mathFeedback.className = 'bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4';
-                }
-                
-                mathFeedback.classList.remove('hidden');
-            });
-        });
-        
-        nextMathBtn.addEventListener('click', function() {
-            currentMathQuestion = (currentMathQuestion + 1) % mathQuestions.length;
-            document.getElementById('math-question').textContent = mathQuestions[currentMathQuestion].question;
-            mathFeedback.classList.add('hidden');
-        });
-        
-        // Word Game Demo
-        const letterTiles = document.querySelectorAll('.letter-tile');
-        const wordSlots = document.querySelectorAll('#word-slots div');
-        const checkWordBtn = document.getElementById('check-word');
-        const wordFeedback = document.getElementById('word-feedback');
-        const nextWordBtn = document.getElementById('next-word');
-        
-        let selectedLetters = [];
-        
-        letterTiles.forEach(tile => {
-            tile.addEventListener('click', function() {
-                if (selectedLetters.length < 3) {
-                    const letter = this.textContent;
-                    selectedLetters.push(letter);
-                    wordSlots[selectedLetters.length - 1].textContent = letter;
-                    this.style.visibility = 'hidden';
-                }
-            });
-        });
-        
-        checkWordBtn.addEventListener('click', function() {
-            const word = selectedLetters.join('');
-            
-            if (word === 'CAT') {
-                wordFeedback.querySelector('strong').textContent = 'Great job! ';
-                wordFeedback.querySelector('span').textContent = '"CAT" is correct! You found the treasure!';
-                wordFeedback.className = 'bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4';
-            } else {
-                wordFeedback.querySelector('strong').textContent = 'Not quite! ';
-                wordFeedback.querySelector('span').textContent = 'Try rearranging the letters to form an animal word.';
-                wordFeedback.className = 'bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4';
-            }
-            
-            wordFeedback.classList.remove('hidden');
-        });
-        
-        nextWordBtn.addEventListener('click', function() {
-            selectedLetters = [];
-            wordSlots.forEach(slot => slot.textContent = '');
-            letterTiles.forEach(tile => tile.style.visibility = 'visible');
-            wordFeedback.classList.add('hidden');
-        });
-        
-        // Avatar Selection
-        const avatarOptions = document.querySelectorAll('.avatar-option');
-        
-        avatarOptions.forEach(option => {
-            option.addEventListener('click', function() {
-                avatarOptions.forEach(opt => opt.classList.remove('selected'));
-                this.classList.add('selected');
-            });
-        });
-        
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
