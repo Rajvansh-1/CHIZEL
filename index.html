@@ -87,11 +87,8 @@
             
             <!-- Hero Image Placeholder -->
             <div class="hero-image" data-aos="fade-left" data-aos-delay="200">
-                <div class="hero-animation-container">
-                    <lottie-player src="https://assets1.lottiefiles.com/packages/lf20_isdnju3v.json" background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></lottie-player>
-                </div>
-                <div class="hero-animation-extra">
-                    <lottie-player src="https://assets1.lottiefiles.com/packages/lf20_1a8xu7pi.json" background="transparent" speed="1" style="width: 100%; height: 100%;" loop autoplay></lottie-player>
+                <div class="logo-rotator">
+                    <img src="assets/logo.png" alt="Chizel Logo" class="rotating-logo">
                 </div>
             </div>
         </div>
@@ -184,104 +181,240 @@
         </div>
     </section>
 
-    <!-- Interactive Demo Section -->
-    <section id="demo" class="demo-section">
-        <div class="section-container">
-            <div class="section-header" data-aos="fade-up">
-                <h2>Try Our <span class="section-highlight">Interactive Demos</span></h2>
-                <p class="section-subtitle">Experience how Chizel makes learning engaging</p>
-            </div>
-            
-            <div class="demo-grid">
-                <div class="demo-content" data-aos="fade-right">
-                    <div class="demo-card demo-card-math">
-                        <h3 class="demo-card-title">Math Puzzle Challenge</h3>
-                        <p class="demo-card-description">Solve these fun puzzles to help rebuild the ancient math temple!</p>
-                        
-                        <!-- Simple Math Game Demo -->
-                        <div class="demo-game-container">
-                            <div class="demo-game-question">
-                                <p class="game-instruction">Can you solve this?</p>
-                                <p class="game-question" id="math-question">3 + 5 = ?</p>
+<!-- Interactive Demo Section -->
+<section id="demo" class="demo-section">
+    <div class="section-container">
+        <div class="section-header" data-aos="fade-up">
+            <h2>Try Our <span class="section-highlight">Interactive Demos</span></h2>
+            <p class="section-subtitle">Experience how Chizel makes learning engaging</p>
+        </div>
+        
+        <!-- Game 1: Math Adventure -->
+        <div class="demo-grid">
+            <div class="demo-content" data-aos="fade-right">
+                <div class="demo-card demo-card-math">
+                    <h3 class="demo-card-title">Math Adventure</h3>
+                    <p class="demo-card-description">Help the astronaut collect stars by solving math problems!</p>
+                    
+                    <div class="demo-game-container">
+                        <div class="game-character">
+                            <div class="character-avatar">👨‍🚀</div>
+                            <div class="character-progress">
+                                <div class="progress-stars">
+                                    <span class="star">⭐</span>
+                                    <span class="star">⭐</span>
+                                    <span class="star">⭐</span>
+                                </div>
+                                <div class="progress-bar-game" id="math-progress"></div>
                             </div>
-                            <div class="math-options-grid">
-                                <button class="math-option" data-answer="6">6</button>
-                                <button class="math-option" data-answer="7">7</button>
-                                <button class="math-option" data-answer="8">8</button>
-                                <button class="math-option" data-answer="9">9</button>
-                                <button class="math-option" data-answer="10">10</button>
-                                <button class="math-option" data-answer="11">11</button>
+                        </div>
+                        
+                        <div class="game-question-container">
+                            <p class="game-instruction">Solve this to collect a star:</p>
+                            <p class="game-question" id="math-question">Loading...</p>
+                            <div class="game-input-container">
+                                <input type="number" id="math-answer" class="game-input" placeholder="Your answer">
+                                <button id="math-submit" class="game-button">Submit</button>
                             </div>
                         </div>
                         
                         <div id="math-feedback" class="feedback-message hidden">
-                            <div class="feedback-content feedback-success">
-                                <strong class="feedback-title">Correct! </strong>
-                                <span class="feedback-text">You earned 5 stars!</span>
+                            <div class="feedback-content">
+                                <strong class="feedback-title"></strong>
+                                <span class="feedback-text"></span>
                             </div>
                             <button id="next-math" class="feedback-button">Next Challenge →</button>
                         </div>
                     </div>
                 </div>
-                
-                <div class="demo-animation" data-aos="fade-left">
-                    <div class="animation-container">
-                        <lottie-player src="https://assets1.lottiefiles.com/packages/lf20_ck6l0vqk.json" background="transparent" speed="1" style="width: 200px; height: 200px;" loop autoplay></lottie-player>
-                    </div>
-                    <div class="animation-extra">
-                        <lottie-player src="https://assets1.lottiefiles.com/packages/lf20_obhph3sh.json" background="transparent" speed="1" style="width: 100%; height: 100%;" loop autoplay></lottie-player>
-                    </div>
+            </div>
+            
+            <div class="demo-animation" data-aos="fade-left">
+                <div class="animation-container">
+                    <lottie-player src="https://assets1.lottiefiles.com/packages/lf20_5tkzkblw.json" background="transparent" speed="1" style="width: 100%; height: 100%;" loop autoplay></lottie-player>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Game 2: Word Explorer -->
+        <div class="demo-grid demo-grid-reverse">
+            <div class="demo-animation" data-aos="fade-right">
+                <div class="animation-container">
+                    <lottie-player src="https://assets1.lottiefiles.com/packages/lf20_q5qeoo3q.json" background="transparent" speed="1" style="width: 100%; height: 100%;" loop autoplay></lottie-player>
                 </div>
             </div>
             
-            <div class="demo-grid demo-grid-reverse">
-                <div class="demo-animation" data-aos="fade-right">
-                    <div class="animation-container">
-                        <lottie-player src="https://assets1.lottiefiles.com/packages/lf20_isdnju3v.json" background="transparent" speed="1" style="width: 200px; height: 200px;" loop autoplay></lottie-player>
-                    </div>
-                    <div class="animation-extra">
-                        <lottie-player src="https://assets1.lottiefiles.com/packages/lf20_5tkzkblw.json" background="transparent" speed="1" style="width: 100%; height: 100%;" loop autoplay></lottie-player>
-                    </div>
-                </div>
-                
-                <div class="demo-content" data-aos="fade-left">
-                    <div class="demo-card demo-card-word">
-                        <h3 class="demo-card-title">Word Builder Challenge</h3>
-                        <p class="demo-card-description">Combine these letters to form a word that unlocks the treasure!</p>
-                        
-                        <!-- Simple Word Game Demo -->
-                        <div class="demo-game-container">
-                            <div class="demo-game-question">
-                                <p class="game-instruction">Use these letters:</p>
-                                <div class="letter-tiles-container">
-                                    <span class="letter-tile">C</span>
-                                    <span class="letter-tile">A</span>
-                                    <span class="letter-tile">T</span>
-                                </div>
+            <div class="demo-content" data-aos="fade-left">
+                <div class="demo-card demo-card-word">
+                    <h3 class="demo-card-title">Word Explorer</h3>
+                    <p class="demo-card-description">Build words from letter tiles to unlock treasures!</p>
+                    
+                    <div class="demo-game-container">
+                        <div class="word-game-header">
+                            <div class="word-score">
+                                <span class="score-icon">🏆</span>
+                                <span id="word-score">0</span> points
                             </div>
-                            <div class="word-game-controls">
-                                <p class="game-instruction">Your word:</p>
-                                <div id="word-slots" class="word-slots">
-                                    <div class="word-slot"></div>
-                                    <div class="word-slot"></div>
-                                    <div class="word-slot"></div>
-                                </div>
-                                <button id="check-word" class="game-button">Check Word</button>
+                            <div class="word-target">
+                                Target: <span id="word-target">5</span> letters
                             </div>
                         </div>
                         
-                        <div id="word-feedback" class="feedback-message hidden">
-                            <div class="feedback-content feedback-success">
-                                <strong class="feedback-title">Great job! </strong>
-                                <span class="feedback-text">"CAT" is correct! You found the treasure!</span>
+                        <div class="word-game-board">
+                            <div class="letter-tiles-container" id="letter-tiles">
+                                <!-- Letters will be added by JS -->
                             </div>
-                            <button id="next-word" class="feedback-button">Next Challenge →</button>
+                            <div class="word-display" id="word-display">
+                                <!-- Built word will appear here -->
+                            </div>
+                        </div>
+                        
+                        <div class="word-game-controls">
+                            <button id="shuffle-letters" class="game-button">
+                                <span class="btn-emoji">🔀</span> Shuffle
+                            </button>
+                            <button id="submit-word" class="game-button">
+                                <span class="btn-emoji">✅</span> Submit
+                            </button>
+                        </div>
+                        
+                        <div id="word-feedback" class="feedback-message hidden">
+                            <div class="feedback-content">
+                                <strong class="feedback-title"></strong>
+                                <span class="feedback-text"></span>
+                            </div>
+                            <button id="next-word" class="feedback-button">Next Round →</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+        
+        <!-- Game 3: Memory Match -->
+        <div class="demo-grid">
+            <div class="demo-content" data-aos="fade-right">
+                <div class="demo-card demo-card-memory">
+                    <h3 class="demo-card-title">Memory Match</h3>
+                    <p class="demo-card-description">Find matching pairs to train your memory!</p>
+                    
+                    <div class="demo-game-container">
+                        <div class="memory-game-header">
+                            <div class="memory-stats">
+                                <span class="stat">Moves: <span id="memory-moves">0</span></span>
+                                <span class="stat">Pairs: <span id="memory-pairs">0</span>/6</span>
+                            </div>
+                            <button id="memory-restart" class="game-button small">
+                                <span class="btn-emoji">🔄</span> Restart
+                            </button>
+                        </div>
+                        
+                        <div class="memory-game-board" id="memory-board">
+                            <!-- Cards will be added by JS -->
+                        </div>
+                        
+                        <div id="memory-feedback" class="feedback-message hidden">
+                            <div class="feedback-content">
+                                <strong class="feedback-title"></strong>
+                                <span class="feedback-text"></span>
+                            </div>
+                            <button id="play-again" class="feedback-button">Play Again →</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="demo-animation" data-aos="fade-left">
+                <div class="animation-container">
+                    <lottie-player src="https://assets1.lottiefiles.com/packages/lf20_isdnju3v.json" background="transparent" speed="1" style="width: 100%; height: 100%;" loop autoplay></lottie-player>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Game 4: Puzzle Challenge -->
+        <div class="demo-grid demo-grid-reverse">
+            <div class="demo-animation" data-aos="fade-right">
+                <div class="animation-container">
+                    <lottie-player src="https://assets1.lottiefiles.com/packages/lf20_obhph3sh.json" background="transparent" speed="1" style="width: 100%; height: 100%;" loop autoplay></lottie-player>
+                </div>
+            </div>
+            
+            <div class="demo-content" data-aos="fade-left">
+                <div class="demo-card demo-card-puzzle">
+                    <h3 class="demo-card-title">Puzzle Challenge</h3>
+                    <p class="demo-card-description">Slide the tiles to complete the picture!</p>
+                    
+                    <div class="demo-game-container">
+                        <div class="puzzle-game-header">
+                            <div class="puzzle-moves">
+                                Moves: <span id="puzzle-move-count">0</span>
+                            </div>
+                            <button id="puzzle-shuffle" class="game-button small">
+                                <span class="btn-emoji">🔀</span> Shuffle
+                            </button>
+                        </div>
+                        
+                        <div class="puzzle-game-board" id="puzzle-board">
+                            <!-- Puzzle tiles will be added by JS -->
+                        </div>
+                        
+                        <div id="puzzle-feedback" class="feedback-message hidden">
+                            <div class="feedback-content">
+                                <strong class="feedback-title"></strong>
+                                <span class="feedback-text"></span>
+                            </div>
+                            <button id="next-puzzle" class="feedback-button">New Puzzle →</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Game 5: Coding Adventure -->
+        <div class="demo-grid">
+            <div class="demo-content" data-aos="fade-right">
+                <div class="demo-card demo-card-coding">
+                    <h3 class="demo-card-title">Coding Adventure</h3>
+                    <p class="demo-card-description">Guide the robot to the treasure using commands!</p>
+                    
+                    <div class="demo-game-container">
+                        <div class="coding-game-area">
+                            <div class="coding-board" id="coding-board">
+                                <!-- Game board will be added by JS -->
+                            </div>
+                            <div class="coding-controls">
+                                <div class="coding-commands" id="coding-commands">
+                                    <!-- Command buttons will be added by JS -->
+                                </div>
+                                <div class="coding-actions">
+                                    <button id="run-code" class="game-button">
+                                        <span class="btn-emoji">▶️</span> Run
+                                    </button>
+                                    <button id="reset-code" class="game-button secondary">
+                                        <span class="btn-emoji">🔄</span> Reset
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="coding-feedback" class="feedback-message hidden">
+                            <div class="feedback-content">
+                                <strong class="feedback-title"></strong>
+                                <span class="feedback-text"></span>
+                            </div>
+                            <button id="next-level" class="feedback-button">Next Level →</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="demo-animation" data-aos="fade-left">
+                <div class="animation-container">
+                    <lottie-player src="https://assets1.lottiefiles.com/packages/lf20_5mkgxr7t.json" background="transparent" speed="1" style="width: 100%; height: 100%;" loop autoplay></lottie-player>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
     <!-- Rewards & Avatar Section -->
     <section id="rewards" class="rewards-section">
