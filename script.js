@@ -265,269 +265,362 @@ function flipCard() {
 memoryRestartBtn.addEventListener('click', setupMemoryGame);
 playAgainBtn.addEventListener('click', setupMemoryGame);
 
-// Game 4: Puzzle Challenge
-const puzzleImages = [
-  '1.png', '2.png', '3.png', '4.png', '5.png', '6.png', '7.png', '8.png', '9.png'
-];
-let puzzleBoard = [0, 1, 2, 3, 4, 5, 6, 7, 8];
-let emptyIndex = 8;
-let puzzleMoves = 0;
 
-const puzzleBoardEl = document.getElementById('puzzle-board');
-const puzzleMoveCountEl = document.getElementById('puzzle-move-count');
-const puzzleShuffleBtn = document.getElementById('puzzle-shuffle');
-const puzzleFeedbackEl = document.getElementById('puzzle-feedback');
-const nextPuzzleBtn = document.getElementById('next-puzzle');
 
-function setupPuzzleGame() {
-  // Reset game state
-  puzzleMoves = 0;
-  puzzleMoveCountEl.textContent = puzzleMoves;
-  puzzleBoard = [0, 1, 2, 3, 4, 5, 6, 7, 8];
-  emptyIndex = 8;
 
-  // Create puzzle tiles
-  puzzleBoardEl.innerHTML = '';
-  puzzleBoard.forEach((tile, index) => {
-    const tileEl = document.createElement('div');
-    tileEl.className = 'puzzle-tile';
-    tileEl.dataset.index = index;
+// Game 4: Color Mix Lab
+let targetColor = { r: 0, g: 0, b: 0 };
+let currentLevel = 1; // Declare it once globally
+let colorScore = 0;
 
-    if (index === emptyIndex) {
-      tileEl.classList.add('empty');
+const redSlider = document.getElementById('red-slider');
+const greenSlider = document.getElementById('green-slider');
+const blueSlider = document.getElementById('blue-slider');
+const targetSwatch = document.querySelector('.target-swatch');
+const resultSwatch = document.querySelector('.result-swatch');
+const checkColorBtn = document.getElementById('check-color');
+const newColorBtn = document.getElementById('new-color');
+const colorFeedbackEl = document.getElementById('color-feedback');
+const nextColorBtn = document.getElementById('next-color');
+
+function setupColorGame() {
+  // Generate random target color based on level difficulty
+  const difficulty = Math.min(Math.floor(currentLevel / 3) + 1, 3);
+  targetColor = generateTargetColor(difficulty);
+
+  // Reset sliders
+  redSlider.value = 0;
+  greenSlider.value = 0;
+  blueSlider.value = 0;
+
+  // Update UI
+  updateColorDisplays();
+  colorFeedbackEl.classList.add('hidden');
+
+  // Add event listeners to sliders
+  redSlider.addEventListener('input', updateColorDisplays);
+  greenSlider.addEventListener('input', updateColorDisplays);
+  blueSlider.addEventListener('input', updateColorDisplays);
+}
+
+function generateTargetColor(difficulty) {
+  // Difficulty levels:
+  // 1: Primary colors (easy)
+  // 2: Secondary colors (medium)
+  // 3: Complex colors (hard)
+
+  if (difficulty === 1) {
+    // Primary colors or simple mixes
+    const options = [
+      { r: 255, g: 0, b: 0 },    // Red
+      { r: 0, g: 255, b: 0 },    // Green
+      { r: 0, g: 0, b: 255 },    // Blue
+      { r: 255, g: 255, b: 0 },  // Yellow
+      { r: 255, g: 0, b: 255 },  // Magenta
+      { r: 0, g: 255, b: 255 }   // Cyan
+    ];
+    return options[Math.floor(Math.random() * options.length)];
+  } else if (difficulty === 2) {
+    // More complex mixes
+    return {
+      r: Math.floor(Math.random() * 256),
+      g: Math.floor(Math.random() * 256),
+      b: Math.floor(Math.random() * 256)
+    };
+  } else {
+    // Very specific shades
+    const baseColor = Math.floor(Math.random() * 3);
+    if (baseColor === 0) {
+      return { // Reds
+        r: 150 + Math.floor(Math.random() * 106),
+        g: Math.floor(Math.random() * 100),
+        b: Math.floor(Math.random() * 100)
+      };
+    } else if (baseColor === 1) {
+      return { // Greens
+        r: Math.floor(Math.random() * 100),
+        g: 150 + Math.floor(Math.random() * 106),
+        b: Math.floor(Math.random() * 100)
+      };
     } else {
-      tileEl.innerHTML = `<img src="assets/puzzle/${puzzleImages[tile]}" alt="Puzzle piece ${tile + 1}">`;
-      tileEl.addEventListener('click', moveTile);
-    }
-
-    puzzleBoardEl.appendChild(tileEl);
-  });
-
-  puzzleFeedbackEl.classList.add('hidden');
-}
-
-function moveTile() {
-  const tileIndex = parseInt(this.dataset.index);
-  const emptyRow = Math.floor(emptyIndex / 3);
-  const emptyCol = emptyIndex % 3;
-  const tileRow = Math.floor(tileIndex / 3);
-  const tileCol = tileIndex % 3;
-
-  // Check if tile is adjacent to empty space
-  if ((Math.abs(emptyRow - tileRow) === 1 && emptyCol === tileCol) ||
-    (Math.abs(emptyCol - tileCol) === 1 && emptyRow === tileRow)) {
-    // Move the tile
-    puzzleBoard[emptyIndex] = puzzleBoard[tileIndex];
-    puzzleBoard[tileIndex] = 8; // Empty
-
-    // Update UI
-    this.dataset.index = emptyIndex;
-    puzzleBoardEl.children[emptyIndex].innerHTML = this.innerHTML;
-    puzzleBoardEl.children[emptyIndex].className = this.className;
-    puzzleBoardEl.children[emptyIndex].addEventListener('click', moveTile);
-
-    this.innerHTML = '';
-    this.className = 'puzzle-tile empty';
-    this.removeEventListener('click', moveTile);
-
-    emptyIndex = tileIndex;
-    puzzleMoves++;
-    puzzleMoveCountEl.textContent = puzzleMoves;
-
-    // Check if puzzle is solved
-    if (isPuzzleSolved()) {
-      puzzleFeedbackEl.querySelector('.feedback-content').className = 'feedback-content feedback-success';
-      puzzleFeedbackEl.querySelector('.feedback-title').textContent = 'Puzzle Complete! ';
-      puzzleFeedbackEl.querySelector('.feedback-text').textContent = `You solved the puzzle in ${puzzleMoves} moves!`;
-      puzzleFeedbackEl.classList.remove('hidden');
-      createConfetti();
+      return { // Blues
+        r: Math.floor(Math.random() * 100),
+        g: Math.floor(Math.random() * 100),
+        b: 150 + Math.floor(Math.random() * 106)
+      };
     }
   }
 }
 
-function isPuzzleSolved() {
-  for (let i = 0; i < puzzleBoard.length - 1; i++) {
-    if (puzzleBoard[i] !== i) {
-      return false;
-    }
-  }
-  return true;
+function updateColorDisplays() {
+  // Update target color display
+  targetSwatch.style.backgroundColor = `rgb(${targetColor.r}, ${targetColor.g}, ${targetColor.b})`;
+
+  // Update result color display
+  const currentColor = {
+    r: parseInt(redSlider.value),
+    g: parseInt(greenSlider.value),
+    b: parseInt(blueSlider.value)
+  };
+  resultSwatch.style.backgroundColor = `rgb(${currentColor.r}, ${currentColor.g}, ${currentColor.b})`;
 }
 
-puzzleShuffleBtn.addEventListener('click', function () {
-  // Simple shuffle - just make 100 random moves
-  for (let i = 0; i < 100; i++) {
-    const adjacentTiles = [];
-    const emptyRow = Math.floor(emptyIndex / 3);
-    const emptyCol = emptyIndex % 3;
+function checkColorMatch() {
+  const userColor = {
+    r: parseInt(redSlider.value),
+    g: parseInt(greenSlider.value),
+    b: parseInt(blueSlider.value)
+  };
 
-    // Find all adjacent tiles
-    if (emptyRow > 0) adjacentTiles.push(emptyIndex - 3);
-    if (emptyRow < 2) adjacentTiles.push(emptyIndex + 3);
-    if (emptyCol > 0) adjacentTiles.push(emptyIndex - 1);
-    if (emptyCol < 2) adjacentTiles.push(emptyIndex + 1);
+  // Calculate color difference (simple Euclidean distance)
+  const diff = Math.sqrt(
+    Math.pow(targetColor.r - userColor.r, 2) +
+    Math.pow(targetColor.g - userColor.g, 2) +
+    Math.pow(targetColor.b - userColor.b, 2)
+  );
 
-    // Pick a random adjacent tile and simulate click
-    const randomTile = adjacentTiles[Math.floor(Math.random() * adjacentTiles.length)];
-    const tileEl = puzzleBoardEl.children[randomTile];
-    if (tileEl) {
-      const event = new MouseEvent('click');
-      tileEl.dispatchEvent(event);
+  // Max possible difference is ~441 (black to white)
+  const matchPercentage = Math.max(0, 100 - Math.floor((diff / 441) * 100));
+
+  if (matchPercentage >= 90) {
+    colorScore += currentLevel * 10;
+    colorFeedbackEl.querySelector('.feedback-content').className = 'feedback-content feedback-success';
+    colorFeedbackEl.querySelector('.feedback-title').textContent = 'Perfect Match! ';
+    colorFeedbackEl.querySelector('.feedback-text').textContent = `You got ${matchPercentage}% match! +${currentLevel * 10} points`;
+
+    // Level up every 3 perfect matches
+    if (colorScore >= currentLevel * 30) {
+      currentLevel++;
+      colorFeedbackEl.querySelector('.feedback-text').textContent += ` Level up!`;
     }
+
+    createConfetti();
+  } else if (matchPercentage >= 70) {
+    colorScore += currentLevel * 5;
+    colorFeedbackEl.querySelector('.feedback-content').className = 'feedback-content feedback-success';
+    colorFeedbackEl.querySelector('.feedback-title').textContent = 'Good Job! ';
+    colorFeedbackEl.querySelector('.feedback-text').textContent = `You got ${matchPercentage}% match! +${currentLevel * 5} points`;
+  } else {
+    colorFeedbackEl.querySelector('.feedback-content').className = 'feedback-content feedback-error';
+    colorFeedbackEl.querySelector('.feedback-title').textContent = 'Keep Trying! ';
+    colorFeedbackEl.querySelector('.feedback-text').textContent = `You got ${matchPercentage}% match. Adjust the sliders carefully!`;
   }
 
-  puzzleMoves = 0;
-  puzzleMoveCountEl.textContent = puzzleMoves;
+  colorFeedbackEl.classList.remove('hidden');
+}
+
+checkColorBtn.addEventListener('click', checkColorMatch);
+newColorBtn.addEventListener('click', setupColorGame);
+nextColorBtn.addEventListener('click', setupColorGame);
+
+// Initialize the game when page loads
+document.addEventListener('DOMContentLoaded', function () {
+  setupColorGame();
 });
 
-nextPuzzleBtn.addEventListener('click', setupPuzzleGame);
-
-// Game 5: Coding Adventure
-const codingLevels = [
-  {
-    board: [
-      ['R', ' ', ' ', ' ', 'T'],
-      [' ', '#', '#', ' ', ' '],
-      [' ', ' ', ' ', '#', ' '],
-      [' ', '#', ' ', ' ', ' '],
-      [' ', ' ', ' ', '#', ' ']
-    ],
-    solution: ['right', 'right', 'right', 'down', 'down', 'right', 'down']
-  },
-  {
-    board: [
-      ['R', ' ', '#', ' ', ' '],
-      [' ', '#', ' ', ' ', ' '],
-      [' ', ' ', ' ', '#', ' '],
-      [' ', '#', ' ', '#', ' '],
-      [' ', ' ', ' ', ' ', 'T']
-    ],
-    solution: ['down', 'down', 'right', 'right', 'down', 'down', 'right', 'right']
-  }
+// Game 5: Pattern Match
+const patternItems = ['🔴', '🔵', '🟡', '🟢', '⭐', '❤️', '▲', '●', '■'];
+const patternTypes = [
+  'simple-repeat',
+  'alternating',
+  'growing',
+  'pyramid',
+  'random-with-rule'
 ];
 
-let currentLevel = 0;
-let commandSequence = [];
+let currentLeve = 1;
+let patternScore = 0;
+let currentPattern = [];
+let correctOptionIndex = 0;
 
-const codingBoardEl = document.getElementById('coding-board');
-const codingCommandsEl = document.getElementById('coding-commands');
-const runCodeBtn = document.getElementById('run-code');
-const resetCodeBtn = document.getElementById('reset-code');
-const codingFeedbackEl = document.getElementById('coding-feedback');
-const nextLevelBtn = document.getElementById('next-level');
+const patternTargetEl = document.getElementById('pattern-target');
+const patternOptionsEl = document.getElementById('pattern-options');
+const patternLevelEl = document.getElementById('pattern-level');
+const patternScoreEl = document.getElementById('pattern-score');
+const newPatternBtn = document.getElementById('new-pattern');
+const patternFeedbackEl = document.getElementById('pattern-feedback');
+const nextPatternBtn = document.getElementById('next-pattern');
 
-function setupCodingGame() {
-  const level = codingLevels[currentLevel];
-  commandSequence = [];
+function setupPatternGame() {
+  // Clear previous selections
+  patternTargetEl.innerHTML = '';
+  patternOptionsEl.innerHTML = '';
+  patternFeedbackEl.classList.add('hidden');
 
-  // Create board
-  codingBoardEl.innerHTML = '';
-  for (let row = 0; row < level.board.length; row++) {
-    for (let col = 0; col < level.board[row].length; col++) {
-      const cell = document.createElement('div');
-      cell.className = 'coding-cell';
-      cell.style.left = `${col * 60}px`;
-      cell.style.top = `${row * 60}px`;
+  // Generate target pattern
+  generatePattern();
 
-      if (level.board[row][col] === 'R') {
-        cell.classList.add('robot');
-        cell.textContent = '🤖';
-        cell.dataset.row = row;
-        cell.dataset.col = col;
-      } else if (level.board[row][col] === 'T') {
-        cell.classList.add('treasure');
-        cell.textContent = '💰';
-      } else if (level.board[row][col] === '#') {
-        cell.style.backgroundColor = '#94a3b8';
-      } else {
-        cell.classList.add('path');
+  // Generate options (one correct, others incorrect)
+  generateOptions();
+
+  // Update UI
+  patternLevelEl.textContent = currentLevel;
+  patternScoreEl.textContent = patternScore;
+}
+
+function generatePattern() {
+  const patternLength = Math.min(3 + Math.floor(currentLevel / 2), 6);
+  const patternType = patternTypes[Math.min(Math.floor(currentLevel / 3), patternTypes.length - 1)];
+
+  currentPattern = [];
+
+  switch (patternType) {
+    case 'simple-repeat':
+      // Simple repeating pattern (AABB)
+      const item1 = getRandomItem();
+      const item2 = getRandomItem();
+      for (let i = 0; i < patternLength; i++) {
+        currentPattern.push(i % 2 === 0 ? item1 : item2);
       }
+      break;
 
-      codingBoardEl.appendChild(cell);
-    }
+    case 'alternating':
+      // Alternating between two items (ABAB)
+      const items = [getRandomItem(), getRandomItem()];
+      for (let i = 0; i < patternLength; i++) {
+        currentPattern.push(items[i % 2]);
+      }
+      break;
+
+    case 'growing':
+      // Growing pattern (A, AB, ABC)
+      for (let i = 0; i < patternLength; i++) {
+        currentPattern.push(patternItems[i % patternItems.length]);
+      }
+      break;
+
+    case 'pyramid':
+      // Pyramid pattern (A, BB, CCC)
+      for (let i = 0; i < patternLength; i++) {
+        currentPattern.push(...Array(i + 1).fill(patternItems[i % patternItems.length]));
+      }
+      break;
+
+    case 'random-with-rule':
+      // Random pattern with simple rule (all same color/shape type)
+      const type = Math.random() > 0.5 ? 'color' : 'shape';
+      const matchingItems = patternItems.filter(item =>
+        type === 'color' ? item.match(/[🔴🔵🟡🟢❤️]/) : item.match(/[▲●■⭐]/)
+      );
+      for (let i = 0; i < patternLength; i++) {
+        currentPattern.push(matchingItems[Math.floor(Math.random() * matchingItems.length)]);
+      }
+      break;
   }
 
-  // Create command buttons
-  codingCommandsEl.innerHTML = '';
-  const commands = ['up', 'down', 'left', 'right'];
-  commands.forEach(cmd => {
-    const btn = document.createElement('div');
-    btn.className = 'coding-command';
-    btn.textContent = cmd;
-    btn.dataset.command = cmd;
-    btn.addEventListener('click', addCommand);
-    codingCommandsEl.appendChild(btn);
-  });
-
-  codingFeedbackEl.classList.add('hidden');
-}
-
-function addCommand(e) {
-  const command = e.target.dataset.command;
-  commandSequence.push(command);
-
-  // Show command sequence (simplified for demo)
-  console.log('Command sequence:', commandSequence);
-}
-
-function executeCommands() {
-  const robot = document.querySelector('.robot');
-  let row = parseInt(robot.dataset.row);
-  let col = parseInt(robot.dataset.col);
-  let success = true;
-
-  // Execute each command with delay
-  commandSequence.forEach((cmd, i) => {
-    setTimeout(() => {
-      let newRow = row;
-      let newCol = col;
-
-      switch (cmd) {
-        case 'up': newRow--; break;
-        case 'down': newRow++; break;
-        case 'left': newCol--; break;
-        case 'right': newCol++; break;
-      }
-
-      // Check if move is valid
-      if (newRow >= 0 && newRow < 5 && newCol >= 0 && newCol < 5) {
-        const targetCell = document.querySelector(`.coding-cell[style*="left: ${newCol * 60}px"][style*="top: ${newRow * 60}px"]`);
-
-        if (!targetCell.style.backgroundColor || targetCell.style.backgroundColor === 'rgb(219, 234, 254)') {
-          // Valid move - update robot position
-          robot.dataset.row = newRow;
-          robot.dataset.col = newCol;
-          robot.style.top = `${newRow * 60}px`;
-          robot.style.left = `${newCol * 60}px`;
-
-          row = newRow;
-          col = newCol;
-
-          // Check if reached treasure
-          if (targetCell.classList.contains('treasure')) {
-            codingFeedbackEl.querySelector('.feedback-content').className = 'feedback-content feedback-success';
-            codingFeedbackEl.querySelector('.feedback-title').textContent = 'Success! ';
-            codingFeedbackEl.querySelector('.feedback-text').textContent = 'You guided the robot to the treasure!';
-            codingFeedbackEl.classList.remove('hidden');
-            createConfetti();
-          }
-        } else {
-          success = false;
-        }
-      } else {
-        success = false;
-      }
-
-      // If last command and not successful
-      if (i === commandSequence.length - 1 && !success) {
-        codingFeedbackEl.querySelector('.feedback-content').className = 'feedback-content feedback-error';
-        codingFeedbackEl.querySelector('.feedback-title').textContent = 'Oops! ';
-        codingFeedbackEl.querySelector('.feedback-text').textContent = 'The robot hit an obstacle! Try a different path.';
-        codingFeedbackEl.classList.remove('hidden');
-      }
-    }, i * 500);
+  // Display target pattern
+  currentPattern.forEach(item => {
+    const patternItem = document.createElement('div');
+    patternItem.className = 'pattern-item';
+    patternItem.textContent = item;
+    patternTargetEl.appendChild(patternItem);
   });
 }
+
+function generateOptions() {
+  // Create 4 options (1 correct, 3 incorrect)
+  const options = [];
+  correctOptionIndex = Math.floor(Math.random() * 4);
+
+  // Generate correct option (same pattern type)
+  options[correctOptionIndex] = [...currentPattern];
+
+  // Generate incorrect options
+  for (let i = 0; i < 4; i++) {
+    if (i === correctOptionIndex) continue;
+
+    // Create variations that are similar but wrong
+    const variationType = Math.floor(Math.random() * 3);
+    let wrongPattern;
+
+    switch (variationType) {
+      case 0: // Wrong order
+        wrongPattern = shuffleArray([...currentPattern]);
+        break;
+      case 1: // Wrong items
+        wrongPattern = currentPattern.map(item =>
+          Math.random() > 0.5 ? item : getRandomItem()
+        );
+        break;
+      case 2: // Completely different
+        wrongPattern = Array(currentPattern.length).fill().map(() => getRandomItem());
+        break;
+    }
+
+    // Ensure the wrong pattern isn't accidentally correct
+    if (JSON.stringify(wrongPattern) === JSON.stringify(currentPattern)) {
+      wrongPattern[0] = getRandomItem([wrongPattern[0]]);
+    }
+
+    options[i] = wrongPattern;
+  }
+
+  // Display options
+  options.forEach((pattern, index) => {
+    const option = document.createElement('div');
+    option.className = 'pattern-option';
+    option.dataset.index = index;
+
+    pattern.forEach(item => {
+      const patternItem = document.createElement('div');
+      patternItem.className = 'pattern-item';
+      patternItem.textContent = item;
+      option.appendChild(patternItem);
+    });
+
+    option.addEventListener('click', () => selectPatternOption(index));
+    patternOptionsEl.appendChild(option);
+  });
+}
+
+function selectPatternOption(selectedIndex) {
+  const options = document.querySelectorAll('.pattern-option');
+
+  // Mark selected option
+  options.forEach(option => option.classList.remove('selected'));
+  options[selectedIndex].classList.add('selected');
+
+  // Check if correct
+  if (selectedIndex === correctOptionIndex) {
+    options[selectedIndex].classList.add('correct');
+    patternScore += currentLevel * 5;
+
+    patternFeedbackEl.querySelector('.feedback-content').className = 'feedback-content feedback-success';
+    patternFeedbackEl.querySelector('.feedback-title').textContent = 'Correct! ';
+    patternFeedbackEl.querySelector('.feedback-text').textContent = `Great pattern recognition! +${currentLevel * 5} points`;
+
+    // Level up every 3 correct answers
+    if (patternScore >= currentLevel * 15) {
+      currentLevel++;
+      patternFeedbackEl.querySelector('.feedback-text').textContent += ` Level up!`;
+    }
+
+    createConfetti();
+  } else {
+    options[selectedIndex].classList.add('incorrect');
+    options[correctOptionIndex].classList.add('correct');
+
+    patternFeedbackEl.querySelector('.feedback-content').className = 'feedback-content feedback-error';
+    patternFeedbackEl.querySelector('.feedback-title').textContent = 'Oops! ';
+    patternFeedbackEl.querySelector('.feedback-text').textContent = 'Look carefully at the pattern rules';
+  }
+
+  patternFeedbackEl.classList.remove('hidden');
+  patternScoreEl.textContent = patternScore;
+}
+
+function getRandomItem(exclude = []) {
+  const availableItems = patternItems.filter(item => !exclude.includes(item));
+  return availableItems[Math.floor(Math.random() * availableItems.length)];
+}
+
+newPatternBtn.addEventListener('click', setupPatternGame);
+nextPatternBtn.addEventListener('click', setupPatternGame);
+
+// Initialize the game when page loads
+document.addEventListener('DOMContentLoaded', function () {
+  setupPatternGame();
+});
 
 runCodeBtn.addEventListener('click', executeCommands);
 resetCodeBtn.addEventListener('click', function () {

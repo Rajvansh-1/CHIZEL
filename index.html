@@ -330,89 +330,113 @@
             </div>
         </div>
         
-        <!-- Game 4: Puzzle Challenge -->
-        <div class="demo-grid demo-grid-reverse">
-            <div class="demo-animation" data-aos="fade-right">
-                <div class="animation-container">
-                    <lottie-player src="https://assets1.lottiefiles.com/packages/lf20_obhph3sh.json" background="transparent" speed="1" style="width: 100%; height: 100%;" loop autoplay></lottie-player>
-                </div>
-            </div>
+<!-- Game 4: Color Mix Lab -->
+<div class="demo-grid demo-grid-reverse">
+    <div class="demo-animation" data-aos="fade-right">
+        <div class="animation-container">
+            <lottie-player src="https://assets1.lottiefiles.com/packages/lf20_5tkzkblw.json" background="transparent" speed="1" style="width: 100%; height: 100%;" loop autoplay></lottie-player>
+        </div>
+    </div>
+    
+    <div class="demo-content" data-aos="fade-left">
+        <div class="demo-card demo-card-colors">
+            <h3 class="demo-card-title">Color Mix Lab</h3>
+            <p class="demo-card-description">Mix colors to match the target! Learn how colors combine.</p>
             
-            <div class="demo-content" data-aos="fade-left">
-                <div class="demo-card demo-card-puzzle">
-                    <h3 class="demo-card-title">Puzzle Challenge</h3>
-                    <p class="demo-card-description">Slide the tiles to complete the picture!</p>
+            <div class="demo-game-container">
+                <div class="color-game-area">
+                    <div class="color-target" id="color-target">
+                        <div class="color-swatch target-swatch"></div>
+                        <div class="color-value">Target</div>
+                    </div>
                     
-                    <div class="demo-game-container">
-                        <div class="puzzle-game-header">
-                            <div class="puzzle-moves">
-                                Moves: <span id="puzzle-move-count">0</span>
+                    <div class="color-mixer">
+                        <div class="color-pickers">
+                            <div class="color-picker">
+                                <input type="range" id="red-slider" min="0" max="255" value="0" class="color-slider red">
+                                <label for="red-slider">Red</label>
                             </div>
-                            <button id="puzzle-shuffle" class="game-button small">
-                                <span class="btn-emoji">🔀</span> Shuffle
-                            </button>
+                            <div class="color-picker">
+                                <input type="range" id="green-slider" min="0" max="255" value="0" class="color-slider green">
+                                <label for="green-slider">Green</label>
+                            </div>
+                            <div class="color-picker">
+                                <input type="range" id="blue-slider" min="0" max="255" value="0" class="color-slider blue">
+                                <label for="blue-slider">Blue</label>
+                            </div>
                         </div>
                         
-                        <div class="puzzle-game-board" id="puzzle-board">
-                            <!-- Puzzle tiles will be added by JS -->
-                        </div>
-                        
-                        <div id="puzzle-feedback" class="feedback-message hidden">
-                            <div class="feedback-content">
-                                <strong class="feedback-title"></strong>
-                                <span class="feedback-text"></span>
-                            </div>
-                            <button id="next-puzzle" class="feedback-button">New Puzzle →</button>
+                        <div class="color-result">
+                            <div class="color-swatch result-swatch"></div>
+                            <div class="color-value">Your Mix</div>
                         </div>
                     </div>
+                    
+                    <div class="color-controls">
+                        <button id="check-color" class="game-button">
+                            <span class="btn-emoji">🎨</span> Check Mix
+                        </button>
+                        <button id="new-color" class="game-button secondary">
+                            <span class="btn-emoji">🔄</span> New Color
+                        </button>
+                    </div>
+                </div>
+                
+                <div id="color-feedback" class="feedback-message hidden">
+                    <div class="feedback-content">
+                        <strong class="feedback-title"></strong>
+                        <span class="feedback-text"></span>
+                    </div>
+                    <button id="next-color" class="feedback-button">Next Challenge →</button>
                 </div>
             </div>
         </div>
+    </div>
+</div>
         
-        <!-- Game 5: Coding Adventure -->
-        <div class="demo-grid">
-            <div class="demo-content" data-aos="fade-right">
-                <div class="demo-card demo-card-coding">
-                    <h3 class="demo-card-title">Coding Adventure</h3>
-                    <p class="demo-card-description">Guide the robot to the treasure using commands!</p>
-                    
-                    <div class="demo-game-container">
-                        <div class="coding-game-area">
-                            <div class="coding-board" id="coding-board">
-                                <!-- Game board will be added by JS -->
-                            </div>
-                            <div class="coding-controls">
-                                <div class="coding-commands" id="coding-commands">
-                                    <!-- Command buttons will be added by JS -->
-                                </div>
-                                <div class="coding-actions">
-                                    <button id="run-code" class="game-button">
-                                        <span class="btn-emoji">▶️</span> Run
-                                    </button>
-                                    <button id="reset-code" class="game-button secondary">
-                                        <span class="btn-emoji">🔄</span> Reset
-                                    </button>
-                                </div>
-                            </div>
+ <!-- Game 5: Pattern Match -->
+<div class="demo-grid">
+    <div class="demo-content" data-aos="fade-right">
+        <div class="demo-card demo-card-pattern">
+            <h3 class="demo-card-title">Pattern Match</h3>
+            <p class="demo-card-description">Find the pattern that matches the sequence!</p>
+            
+            <div class="demo-game-container">
+                <div class="pattern-game-area">
+                    <div class="pattern-target" id="pattern-target">
+                        <!-- Target pattern will be added by JS -->
+                    </div>
+                    <div class="pattern-options" id="pattern-options">
+                        <!-- Options will be added by JS -->
+                    </div>
+                    <div class="pattern-controls">
+                        <div class="pattern-stats">
+                            <span class="stat">Level: <span id="pattern-level">1</span></span>
+                            <span class="stat">Score: <span id="pattern-score">0</span></span>
                         </div>
-                        
-                        <div id="coding-feedback" class="feedback-message hidden">
-                            <div class="feedback-content">
-                                <strong class="feedback-title"></strong>
-                                <span class="feedback-text"></span>
-                            </div>
-                            <button id="next-level" class="feedback-button">Next Level →</button>
-                        </div>
+                        <button id="new-pattern" class="game-button small">
+                            <span class="btn-emoji">🔄</span> New Pattern
+                        </button>
                     </div>
                 </div>
-            </div>
-            
-            <div class="demo-animation" data-aos="fade-left">
-                <div class="animation-container">
-                    <lottie-player src="https://assets1.lottiefiles.com/packages/lf20_5mkgxr7t.json" background="transparent" speed="1" style="width: 100%; height: 100%;" loop autoplay></lottie-player>
+                
+                <div id="pattern-feedback" class="feedback-message hidden">
+                    <div class="feedback-content">
+                        <strong class="feedback-title"></strong>
+                        <span class="feedback-text"></span>
+                    </div>
+                    <button id="next-pattern" class="feedback-button">Continue →</button>
                 </div>
             </div>
         </div>
+    </div>
+    
+    <div class="demo-animation" data-aos="fade-left">
+        <div class="animation-container">
+            <lottie-player src="https://assets1.lottiefiles.com/packages/lf20_5tkzkblw.json" background="transparent" speed="1" style="width: 100%; height: 100%;" loop autoplay></lottie-player>
+        </div>
+    </div>
+</div>
     </div>
 </section>
 

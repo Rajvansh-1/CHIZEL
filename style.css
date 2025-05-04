@@ -1882,126 +1882,220 @@ Demo Section .demo-section {
   cursor: default;
 }
 
-/* Puzzle Game Styles */
-.puzzle-game-header {
+/* Color Mix Lab Game Styles */
+.color-game-area {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.color-target,
+.color-result {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.color-swatch {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 3px solid white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+.target-swatch {
+  border: 3px dashed #64748b;
+}
+
+.color-value {
+  font-weight: 500;
+  color: #475569;
+}
+
+.color-mixer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background-color: #f8fafc;
+  padding: 16px;
+  border-radius: 12px;
+}
+
+.color-pickers {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.color-picker {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.color-slider {
+  flex-grow: 1;
+  height: 30px;
+  -webkit-appearance: none;
+  background: transparent;
+}
+
+.color-slider::-webkit-slider-runnable-track {
+  height: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.color-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin-top: -5px;
+  cursor: pointer;
+}
+
+.red::-webkit-slider-runnable-track {
+  background: linear-gradient(to right, #000, #f00);
+}
+
+.red::-webkit-slider-thumb {
+  background: #f00;
+  border: 2px solid #fff;
+}
+
+.green::-webkit-slider-runnable-track {
+  background: linear-gradient(to right, #000, #0f0);
+}
+
+.green::-webkit-slider-thumb {
+  background: #0f0;
+  border: 2px solid #fff;
+}
+
+.blue::-webkit-slider-runnable-track {
+  background: linear-gradient(to right, #000, #00f);
+}
+
+.blue::-webkit-slider-thumb {
+  background: #00f;
+  border: 2px solid #fff;
+}
+
+.color-controls {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.color-match-percentage {
+  text-align: center;
+  font-weight: bold;
+  margin-top: 8px;
+  color: var(--color-primary-rgb);
+}
+
+.color-level {
+  text-align: center;
+  font-weight: 500;
+  color: #475569;
+}
+
+/* Pattern Match Game Styles */
+.pattern-game-area {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.pattern-target {
+  background-color: #f8fafc;
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  min-height: 80px;
+  align-items: center;
+  border: 2px dashed #cbd5e1;
+}
+
+.pattern-options {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.pattern-option {
+  background-color: white;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 12px;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-height: 60px;
+  align-items: center;
+}
+
+.pattern-option:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.pattern-option.selected {
+  border-color: var(--color-primary-rgb);
+  background-color: var(--color-primary-light);
+}
+
+.pattern-option.correct {
+  border-color: #10b981;
+  background-color: rgba(16, 185, 129, 0.1);
+}
+
+.pattern-option.incorrect {
+  border-color: #ef4444;
+  background-color: rgba(239, 68, 68, 0.1);
+}
+
+.pattern-item {
+  font-size: 24px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background-color: #f1f5f9;
+}
+
+.pattern-controls {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 16px;
 }
 
-.puzzle-game-board {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 4px;
-  margin-bottom: 16px;
-  background-color: #f8fafc;
-  border-radius: 8px;
-  padding: 4px;
-  border: 2px solid #cbd5e1;
-}
-
-.puzzle-tile {
-  aspect-ratio: 1;
-  background-color: white;
-  border-radius: 4px;
+.pattern-stats {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 24px;
+  gap: 16px;
+}
+
+.pattern-stats .stat {
+  font-weight: 500;
+  color: #475569;
+}
+
+.pattern-stats .stat span {
   font-weight: bold;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.puzzle-tile.empty {
-  background-color: transparent;
-  cursor: default;
-}
-
-.puzzle-tile img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-/* Coding Game Styles */
-.coding-game-area {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.coding-board {
-  width: 100%;
-  height: 200px;
-  background-color: #f8fafc;
-  border-radius: 8px;
-  border: 2px solid #cbd5e1;
-  position: relative;
-  overflow: hidden;
-}
-
-.coding-cell {
-  position: absolute;
-  width: 60px;
-  height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
-}
-
-.coding-cell.path {
-  background-color: #dbeafe;
-}
-
-.coding-cell.robot {
-  font-size: 32px;
-}
-
-.coding-cell.treasure {
-  font-size: 32px;
-  animation: pulse 1s infinite;
-}
-
-.coding-controls {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.coding-commands {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  justify-content: center;
-}
-
-.coding-command {
-  padding: 8px 16px;
-  background-color: var(--color-primary-rgb);
-  color: white;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  user-select: none;
-}
-
-.coding-command:hover {
-  background-color: var(--color-secondary-rgb);
-  transform: translateY(-2px);
-}
-
-.coding-actions {
-  display: flex;
-  gap: 8px;
-  justify-content: center;
+  color: var(--color-primary-rgb);
 }
 
 /* Feedback Messages */
