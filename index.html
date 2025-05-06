@@ -2,26 +2,69 @@
 <html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
-    <title>Chizel | Smart Learning for Curious Kids</title>
+    <title>Chizel | Educational Games That Make Kids Love Learning</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Chizel transforms learning into an epic adventure! Interactive games, daily rewards & personalized avatars make education fun for kids & insightful for parents.">
-    <link rel="stylesheet" href="style.css">
-    <!-- Preload assets -->
+    <meta name="keywords" content="kids learning app, educational games, math for kids, reading games, STEM for children">
+    <meta property="og:title" content="Chizel | Smart Learning That Kids Actually Love">
+    <meta property="og:description" content="The educational app that makes kids beg to learn. Try our free demos today!">
+    <meta property="og:image" content="https://yourdomain.com/images/social-preview.jpg">
+    
+    <!-- Preload critical resources -->
     <link rel="preload" href="https://unpkg.com/aos@2.3.1/dist/aos.css" as="style">
+    <link rel="preload" href="style.css" as="style">
+    <link rel="preload" href="script.js" as="script">
     
     <!-- Favicon -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧠</text></svg>">
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
     
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Fredoka+One&display=swap" rel="stylesheet">
+    <!-- Google Fonts with font-display: swap -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Fredoka+One&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
     
-    <!-- Lottie for animations -->
-    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <!-- Structured data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "MobileApplication",
+      "name": "Chizel",
+      "operatingSystem": "Android, iOS",
+      "applicationCategory": "EducationalApplication",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "ratingCount": "2000"
+      }
+    }
+    </script>
     
-    <!-- AOS Animation Library -->
+    <!-- CSS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
-
+<script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "MobileApplication",
+      "name": "Chizel",
+      "operatingSystem": "Android, iOS",
+      "applicationCategory": "EducationalApplication",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "ratingCount": "2000"
+      }
+    }
+    </script>
 <body class="body">
     <!-- Navigation (Professional + Playful) -->
 <nav class="nav">
@@ -45,7 +88,7 @@
 </nav>
 
     <!-- Hero Section -->
-    <section class="hero-section">
+    <section class="hero-section" aria-labelledby="main-heading">
         <div class="hero-bubbles">
             <div class="bubble bubble-1"></div>
             <div class="bubble bubble-2"></div>
@@ -54,18 +97,18 @@
         
         <div class="hero-container">
             <div class="hero-content">
-                <h1 class="hero-title">
-                    Learning Feels Like <span class="hero-highlight">Playtime!</span>
+                <h1 id="main-heading" class="hero-title">
+                    Where Learning Becomes an Adventure <span class="hero-highlight">Kids Love It, Parents Trust It</span>
                 </h1>
                 <p class="hero-subtitle">
-                    Chizel combines <strong>game-based learning</strong> with <strong>real cognitive development</strong> in an adventure kids love and parents trust.
+                    Chizel turns screen time into growth time with game-based learning that actually develops <strong>math</strong>, <strong>reading</strong> & <strong>problem-solving</strong> skills
                 </p>
                 <div class="hero-buttons">
                     <a href="#cta" class="btn-primary btn-primary-main">
-                        <span class="btn-emoji">🎮</span> Start Free Trial
+                        <span class="btn-emoji">🎮</span> Start Free Learning Adventure
                     </a>
                     <a href="#demo" class="btn-primary btn-primary-secondary">
-                        <span class="btn-emoji">▶️</span> See Demos
+                        <span class="btn-emoji">▶️</span> See How It Works
                     </a>
                 </div>
                 
@@ -83,14 +126,16 @@
                             <span>4.9/5 (2,000+ reviews)</span>
                         </div>
                         <p>Trusted by 500,000+ families worldwide</p>
+                        <div class="media-logos">
+                            <img src="assets/media-logos.png" alt="As featured in Parent Magazine, Education Today, and Kids Tech" width="200" height="40">
+                        </div>
                     </div>
                 </div>
             </div>
             
-            <!-- Hero Image Placeholder -->
             <div class="hero-image" data-aos="fade-left" data-aos-delay="200">
                 <div class="logo-rotator">
-                    <img src="assets/logo.png" alt="Chizel Logo" class="rotating-logo">
+                    <img src="assets/logo.png" alt="Chizel educational app interface preview" class="rotating-logo" width="300" height="300">
                 </div>
             </div>
         </div>
@@ -724,6 +769,31 @@
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="script.js"></script>
-    
+    // Add this before closing body tag
+<script>
+// Load non-critical JS after page load
+function loadScript(src, callback) {
+    const script = document.createElement('script');
+    script.src = src;
+    script.async = true;
+    script.onload = callback;
+    document.body.appendChild(script);
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Load AOS immediately
+    AOS.init({
+        duration: 800,
+        easing: 'ease-in-out',
+        once: true
+    });
+
+    // Lazy load Lottie and other non-critical scripts
+    loadScript('https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js', function() {
+        // Initialize games after Lottie loads
+        loadScript('script.js');
+    });
+});
+</script>
 </body>
 </html>
