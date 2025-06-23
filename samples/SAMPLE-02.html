@@ -1,0 +1,3038 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chizel | Educational Games That Make Kids Love Learning</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Chizel transforms learning into an epic adventure! Interactive games, daily rewards & personalized avatars make education fun for kids & insightful for parents.">
+    <meta name="keywords" content="kids learning app, educational games, math for kids, reading games, STEM for children">
+    <meta property="og:title" content="Chizel | Smart Learning That Kids Actually Love">
+    <meta property="og:description" content="The educational app that makes kids beg to learn. Try our free demos today!">
+    <meta property="og:image" content="https://yourdomain.com/images/social-preview.jpg">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="https://unpkg.com/aos@2.3.1/dist/aos.css" as="style">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fredoka+One&display=swap" as="font" crossorigin>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+    
+    <!-- Google Fonts with font-display: swap -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fredoka+One&display=swap" rel="stylesheet">
+    
+    <!-- Structured data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "MobileApplication",
+      "name": "Chizel",
+      "operatingSystem": "Android, iOS",
+      "applicationCategory": "EducationalApplication",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "ratingCount": "2000"
+      }
+    }
+    </script>
+    
+    <!-- CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+    :root {
+      --color-primary: 99, 102, 241;
+      --color-secondary: 236, 72, 153;
+      --color-accent: 16, 185, 129;
+      --color-text: 30, 41, 59;
+      --color-text-light: 100, 116, 139;
+      --color-bg: 248, 250, 252;
+      --color-surface: 255, 255, 255;
+      --color-border: 226, 232, 240;
+      
+      --font-sans: 'Inter', sans-serif;
+      --font-display: 'Fredoka One', display;
+      
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      
+      --radius-sm: 0.125rem;
+      --radius: 0.25rem;
+      --radius-md: 0.375rem;
+      --radius-lg: 0.5rem;
+      --radius-xl: 0.75rem;
+      --radius-2xl: 1rem;
+      --radius-full: 9999px;
+    }
+
+    /* Dark mode variables */
+    [data-theme="dark"] {
+      --color-text: 248, 250, 252;
+      --color-text-light: 148, 163, 184;
+      --color-bg: 15, 23, 42;
+      --color-surface: 30, 41, 59;
+      --color-border: 51, 65, 85;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: var(--font-sans);
+      background-color: rgb(var(--color-bg));
+      color: rgb(var(--color-text));
+      line-height: 1.6;
+      overflow-x: hidden;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    /* Utility Classes */
+    .hidden {
+      display: none !important;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    .section {
+      padding: 5rem 0;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      font-family: var(--font-display);
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+
+    .section-subtitle {
+      font-size: 1.25rem;
+      color: rgb(var(--color-text-light));
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .highlight {
+      background: linear-gradient(90deg, rgb(var(--color-primary)), rgb(var(--color-secondary)));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 500;
+      text-decoration: none;
+      border-radius: var(--radius-lg);
+      padding: 0.75rem 1.5rem;
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      cursor: pointer;
+      border: none;
+      gap: 0.5rem;
+    }
+
+    .btn-primary {
+      background-color: rgb(var(--color-primary));
+      color: white;
+      box-shadow: var(--shadow-md);
+    }
+
+    .btn-primary:hover {
+      background-color: rgba(var(--color-primary), 0.9);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .btn-secondary {
+      background-color: rgb(var(--color-surface));
+      color: rgb(var(--color-primary));
+      border: 1px solid rgb(var(--color-border));
+    }
+
+    .btn-secondary:hover {
+      background-color: rgba(var(--color-primary), 0.05);
+      border-color: rgb(var(--color-primary));
+    }
+
+    .btn-ghost {
+      background-color: transparent;
+      color: rgb(var(--color-primary));
+    }
+
+    .btn-ghost:hover {
+      background-color: rgba(var(--color-primary), 0.1);
+    }
+
+    .btn-icon {
+      width: 2.5rem;
+      height: 2.5rem;
+      padding: 0;
+      border-radius: 50%;
+    }
+
+    /* Navigation */
+    .nav {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      z-index: 50;
+      background-color: rgba(var(--color-surface), 0.9);
+      backdrop-filter: blur(12px);
+      box-shadow: var(--shadow-sm);
+      transition: all 0.3s ease;
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 1.5rem;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+    }
+
+    .logo-img {
+      width: 2rem;
+      height: 2rem;
+      object-fit: contain;
+    }
+
+    .logo-text {
+      font-size: 1.25rem;
+      font-family: var(--font-display);
+      font-weight: bold;
+      color: rgb(var(--color-primary));
+    }
+
+    .nav-links {
+      display: none;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .nav-link {
+      position: relative;
+      font-weight: 500;
+      color: rgb(var(--color-text));
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .nav-link:hover {
+      color: rgb(var(--color-primary));
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -4px;
+      left: 0;
+      background-color: rgb(var(--color-primary));
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown-toggle {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      min-width: 200px;
+      background-color: rgb(var(--color-surface));
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-xl);
+      padding: 0.5rem 0;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(10px);
+      transition: all 0.3s ease;
+      z-index: 10;
+    }
+
+    .dropdown:hover .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .dropdown-item {
+      display: block;
+      padding: 0.5rem 1rem;
+      color: rgb(var(--color-text));
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .dropdown-item:hover {
+      background-color: rgba(var(--color-primary), 0.1);
+      color: rgb(var(--color-primary));
+    }
+
+    .mobile-menu-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.5rem;
+      height: 2.5rem;
+      background: none;
+      border: none;
+      color: rgb(var(--color-text));
+      cursor: pointer;
+    }
+
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background-color: rgb(var(--color-surface));
+      z-index: 100;
+      padding: 1.5rem;
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
+      overflow-y: auto;
+    }
+
+    .mobile-menu.active {
+      transform: translateX(0);
+    }
+
+    .mobile-menu-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+
+    .mobile-menu-close {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: rgb(var(--color-text));
+      cursor: pointer;
+    }
+
+    .mobile-nav-links {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .mobile-nav-link {
+      display: block;
+      padding: 0.75rem 0;
+      font-size: 1.125rem;
+      color: rgb(var(--color-text));
+      text-decoration: none;
+      border-bottom: 1px solid rgb(var(--color-border));
+    }
+
+    .mobile-dropdown {
+      margin-bottom: 1rem;
+    }
+
+    .mobile-dropdown-toggle {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem 0;
+      font-size: 1.125rem;
+      color: rgb(var(--color-text));
+      text-decoration: none;
+      border-bottom: 1px solid rgb(var(--color-border));
+      cursor: pointer;
+    }
+
+    .mobile-dropdown-menu {
+      padding-left: 1rem;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+
+    .mobile-dropdown.active .mobile-dropdown-menu {
+      max-height: 500px;
+    }
+
+    .mobile-dropdown-item {
+      display: block;
+      padding: 0.75rem 0;
+      color: rgb(var(--color-text-light));
+      text-decoration: none;
+    }
+
+    .mobile-dropdown-item:hover {
+      color: rgb(var(--color-primary));
+    }
+
+    /* Theme toggle */
+    .theme-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 50%;
+      background-color: rgba(var(--color-primary), 0.1);
+      color: rgb(var(--color-primary));
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .theme-toggle:hover {
+      background-color: rgba(var(--color-primary), 0.2);
+    }
+
+    .theme-toggle i {
+      font-size: 1.25rem;
+    }
+
+    /* Hero Section */
+    .hero {
+      padding-top: 7rem;
+      padding-bottom: 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-container {
+      display: grid;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .hero-title {
+      font-size: 3rem;
+      font-family: var(--font-display);
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-description {
+      font-size: 1.25rem;
+      color: rgb(var(--color-text-light));
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .hero-stats {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .user-avatars {
+      display: flex;
+    }
+
+    .user-avatar {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 50%;
+      border: 2px solid rgb(var(--color-surface));
+      background-color: rgb(var(--color-bg));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+    }
+
+    .user-avatar:not(:first-child) {
+      margin-left: -0.5rem;
+    }
+
+    .rating {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      font-size: 0.875rem;
+    }
+
+    .star-icon {
+      color: #f59e0b;
+    }
+
+    .hero-image {
+      position: relative;
+    }
+
+    .hero-img {
+      width: 100%;
+      height: auto;
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-xl);
+    }
+
+    /* Features Section */
+    .features {
+      background-color: rgb(var(--color-surface));
+    }
+
+    .features-grid {
+      display: grid;
+      gap: 2rem;
+    }
+
+    .feature-card {
+      background-color: rgb(var(--color-surface));
+      border: 1px solid rgb(var(--color-border));
+      border-radius: var(--radius-xl);
+      padding: 2rem;
+      transition: all 0.3s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-0.5rem);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .feature-icon {
+      width: 3rem;
+      height: 3rem;
+      background-color: rgba(var(--color-primary), 0.1);
+      border-radius: var(--radius-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      color: rgb(var(--color-primary));
+    }
+
+    .feature-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .feature-description {
+      color: rgb(var(--color-text-light));
+      margin-bottom: 1.5rem;
+    }
+
+    .feature-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+
+    .feature-item i {
+      color: rgb(var(--color-accent));
+      font-size: 0.875rem;
+      margin-top: 0.25rem;
+    }
+
+    /* Demo Section */
+    .demo {
+      background: linear-gradient(135deg, rgba(var(--color-primary), 0.05) 0%, rgba(var(--color-secondary), 0.05) 100%);
+    }
+
+    .demo-grid {
+      display: grid;
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+
+    .demo-card {
+      background-color: rgb(var(--color-surface));
+      border-radius: var(--radius-xl);
+      padding: 2rem;
+      box-shadow: var(--shadow-md);
+      transition: all 0.3s ease;
+    }
+
+    .demo-card:hover {
+      box-shadow: var(--shadow-xl);
+    }
+
+    .demo-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .demo-description {
+      color: rgb(var(--color-text-light));
+      margin-bottom: 1.5rem;
+    }
+
+    .demo-game {
+      background-color: rgb(var(--color-bg));
+      padding: 1.5rem;
+      border-radius: var(--radius-lg);
+      margin-bottom: 1.5rem;
+    }
+
+    .game-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .game-character {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .character-avatar {
+      font-size: 2rem;
+    }
+
+    .game-progress {
+      flex-grow: 1;
+    }
+
+    .progress-stars {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .star {
+      font-size: 1.25rem;
+      opacity: 0.3;
+    }
+
+    .star.collected {
+      opacity: 1;
+      color: #f59e0b;
+    }
+
+    .progress-bar {
+      height: 0.5rem;
+      background-color: rgba(var(--color-primary), 0.1);
+      border-radius: var(--radius-full);
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, rgb(var(--color-primary)), rgb(var(--color-secondary)));
+      border-radius: var(--radius-full);
+      transition: width 0.5s ease;
+    }
+
+    .game-question {
+      font-size: 1.5rem;
+      font-weight: 600;
+      text-align: center;
+      margin: 1rem 0;
+    }
+
+    .game-input-container {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .game-input {
+      flex-grow: 1;
+      padding: 0.75rem 1rem;
+      border: 1px solid rgb(var(--color-border));
+      border-radius: var(--radius-md);
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .game-input:focus {
+      outline: none;
+      border-color: rgb(var(--color-primary));
+      box-shadow: 0 0 0 3px rgba(var(--color-primary), 0.2);
+    }
+
+    .game-btn {
+      background-color: rgb(var(--color-primary));
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: var(--radius-md);
+      font-weight: 500;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .game-btn:hover {
+      background-color: rgba(var(--color-primary), 0.9);
+      transform: translateY(-2px);
+    }
+
+    .game-btn.secondary {
+      background-color: transparent;
+      color: rgb(var(--color-primary));
+      border: 1px solid rgb(var(--color-primary));
+    }
+
+    .game-btn.secondary:hover {
+      background-color: rgba(var(--color-primary), 0.1);
+    }
+
+    .feedback {
+      margin-top: 1rem;
+      padding: 1rem;
+      border-radius: var(--radius-md);
+      margin-bottom: 1rem;
+      position: relative;
+    }
+
+    .feedback.success {
+      background-color: rgba(var(--color-accent), 0.1);
+      border: 1px solid rgba(var(--color-accent), 0.3);
+      color: rgb(var(--color-accent));
+    }
+
+    .feedback.error {
+      background-color: rgba(239, 68, 68, 0.1);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      color: rgb(239, 68, 68);
+    }
+
+    .feedback-btn {
+      background-color: rgb(var(--color-primary));
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: var(--radius-md);
+      font-weight: 500;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      width: 100%;
+    }
+
+    .feedback-btn:hover {
+      background-color: rgba(var(--color-primary), 0.9);
+    }
+
+    /* Rewards Section */
+    .rewards {
+      background-color: rgb(var(--color-surface));
+    }
+
+    .rewards-grid {
+      display: grid;
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .rewards-card {
+      background-color: rgb(var(--color-surface));
+      border-radius: var(--radius-xl);
+      padding: 2rem;
+      box-shadow: var(--shadow-md);
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+    }
+
+    .rewards-card:hover {
+      transform: translateY(-0.5rem);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .rewards-card-1 {
+      border-color: rgb(var(--color-primary));
+    }
+
+    .rewards-card-2 {
+      border-color: rgb(var(--color-secondary));
+    }
+
+    .rewards-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .rewards-description {
+      color: rgb(var(--color-text-light));
+      margin-bottom: 1.5rem;
+    }
+
+    .calendar {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .calendar-day {
+      background-color: rgb(var(--color-bg));
+      padding: 0.5rem;
+      border-radius: var(--radius-md);
+      text-align: center;
+      transition: all 0.2s ease;
+    }
+
+    .calendar-day:hover {
+      transform: translateY(-0.25rem);
+    }
+
+    .day-label {
+      font-size: 0.75rem;
+      font-weight: 500;
+      margin-bottom: 0.25rem;
+    }
+
+    .day-reward {
+      width: 2rem;
+      height: 2rem;
+      margin: 0 auto;
+      background-color: rgba(var(--color-accent), 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgb(var(--color-accent));
+      font-weight: 600;
+    }
+
+    .day-special {
+      border: 2px solid rgba(var(--color-accent), 0.5);
+      animation: pulse 2s infinite;
+    }
+
+    .avatar-showcase {
+      display: flex;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .avatar-preview {
+      width: 5rem;
+      height: 5rem;
+      background-color: rgb(var(--color-bg));
+      border-radius: 50%;
+      border: 3px solid rgb(var(--color-primary));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      flex-shrink: 0;
+    }
+
+    .avatar-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .avatar-badge {
+      background-color: rgba(var(--color-primary), 0.1);
+      color: rgb(var(--color-primary));
+      padding: 0.25rem 0.5rem;
+      border-radius: var(--radius-full);
+      font-size: 0.75rem;
+    }
+
+    .avatar-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(4rem, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .avatar-item {
+      font-size: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      background-color: rgb(var(--color-bg));
+      border-radius: var(--radius-md);
+      border: 2px solid transparent;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .avatar-item:hover {
+      transform: scale(1.1);
+      border-color: rgb(var(--color-primary));
+    }
+
+    .avatar-item.selected {
+      border-color: rgb(var(--color-accent));
+      box-shadow: 0 0 0 3px rgba(var(--color-accent), 0.2);
+    }
+
+    /* Parents Section */
+    .parents {
+      background: linear-gradient(135deg, rgba(var(--color-primary), 0.05) 0%, rgba(var(--color-secondary), 0.05) 100%);
+    }
+
+    .parents-grid {
+      display: grid;
+      gap: 3rem;
+    }
+
+    .parents-card {
+      background-color: rgb(var(--color-surface));
+      border-radius: var(--radius-xl);
+      padding: 2rem;
+      box-shadow: var(--shadow-md);
+      border: 2px solid rgb(var(--color-accent));
+    }
+
+    .parents-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .parents-description {
+      color: rgb(var(--color-text-light));
+      margin-bottom: 1.5rem;
+    }
+
+    .progress-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .progress-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .progress-header {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .progress-label {
+      font-weight: 500;
+    }
+
+    .progress-value {
+      font-weight: 600;
+      color: rgb(var(--color-accent));
+    }
+
+    .progress-bar-container {
+      width: 100%;
+      height: 0.5rem;
+      background-color: rgba(var(--color-accent), 0.1);
+      border-radius: var(--radius-full);
+      overflow: hidden;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background-color: rgb(var(--color-accent));
+      border-radius: var(--radius-full);
+      transition: width 1.5s ease;
+    }
+
+    .notification {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgb(var(--color-border));
+    }
+
+    .notification-icon {
+      width: 2rem;
+      height: 2rem;
+      background-color: rgba(var(--color-accent), 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgb(var(--color-accent));
+    }
+
+    .notification-title {
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .notification-text {
+      font-size: 0.875rem;
+      color: rgb(var(--color-text-light));
+    }
+
+    /* CTA Section */
+    .cta {
+      padding: 5rem 0;
+      background: linear-gradient(135deg, rgb(var(--color-primary)), rgb(var(--color-secondary)));
+      color: white;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-container {
+      max-width: 800px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 10;
+    }
+
+    .cta-title {
+      font-size: 2.5rem;
+      font-family: var(--font-display);
+      margin-bottom: 1.5rem;
+    }
+
+    .cta-subtitle {
+      font-size: 1.25rem;
+      opacity: 0.9;
+      margin-bottom: 2.5rem;
+    }
+
+    .cta-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .cta-btn {
+      background-color: white;
+      color: rgb(var(--color-primary));
+      padding: 1rem 2rem;
+      border-radius: var(--radius-lg);
+      font-weight: 500;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .cta-btn:hover {
+      background-color: rgba(255, 255, 255, 0.9);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .security-badge {
+      display: inline-flex;
+      align-items: center;
+      background-color: rgba(255, 255, 255, 0.2);
+      padding: 0.75rem 1.5rem;
+      border-radius: var(--radius-full);
+      backdrop-filter: blur(8px);
+      gap: 0.5rem;
+    }
+
+    .security-icon {
+      font-size: 1rem;
+    }
+
+    .security-text {
+      font-size: 0.875rem;
+    }
+
+    /* Login Modal */
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .modal.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-content {
+      background-color: rgb(var(--color-surface));
+      border-radius: var(--radius-xl);
+      width: 100%;
+      max-width: 400px;
+      padding: 2rem;
+      box-shadow: var(--shadow-xl);
+      transform: translateY(20px);
+      transition: all 0.3s ease;
+    }
+
+    .modal.active .modal-content {
+      transform: translateY(0);
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .modal-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+
+    .modal-close {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: rgb(var(--color-text-light));
+      cursor: pointer;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1px solid rgb(var(--color-border));
+      border-radius: var(--radius-md);
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: rgb(var(--color-primary));
+      box-shadow: 0 0 0 3px rgba(var(--color-primary), 0.2);
+    }
+
+    .form-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 2rem;
+    }
+
+    .form-link {
+      color: rgb(var(--color-primary));
+      text-decoration: none;
+      font-size: 0.875rem;
+    }
+
+    .form-link:hover {
+      text-decoration: underline;
+    }
+
+    /* Footer */
+    .footer {
+      background-color: rgb(15, 23, 42);
+      color: white;
+      padding: 3rem 0 0;
+    }
+
+    .footer-container {
+      display: grid;
+      gap: 3rem;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+      margin-bottom: 1rem;
+    }
+
+    .footer-logo-img {
+      width: 2rem;
+      height: 2rem;
+      object-fit: contain;
+    }
+
+    .footer-logo-text {
+      font-size: 1.25rem;
+      font-family: var(--font-display);
+      color: white;
+    }
+
+    .footer-description {
+      color: rgb(148, 163, 184);
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .social-link {
+      color: rgb(148, 163, 184);
+      font-size: 1.25rem;
+      transition: color 0.3s ease;
+    }
+
+    .social-link:hover {
+      color: white;
+    }
+
+    .footer-title {
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .footer-link {
+      color: rgb(148, 163, 184);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer-link:hover {
+      color: white;
+    }
+
+    .footer-bottom {
+      padding: 1.5rem 0;
+      margin-top: 3rem;
+      border-top: 1px solid rgb(30, 41, 59);
+      text-align: center;
+      color: rgb(148, 163, 184);
+      font-size: 0.875rem;
+    }
+
+    /* Animations */
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.5;
+      }
+    }
+
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    @keyframes wiggle {
+      0%, 100% {
+        transform: rotate(-3deg);
+      }
+      50% {
+        transform: rotate(3deg);
+      }
+    }
+
+    @keyframes confetti-fall {
+      0% {
+        transform: translateY(-100px) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background-color: #f00;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* Responsive Styles */
+    @media (min-width: 640px) {
+      .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .rewards-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 768px) {
+      .nav-links {
+        display: flex;
+      }
+      
+      .mobile-menu-btn {
+        display: none;
+      }
+      
+      .hero-container {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .features-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      
+      .parents-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .footer-container {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .hero-title {
+        font-size: 3.75rem;
+      }
+      
+      .footer-container {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    /* Dark mode toggle styles */
+    .dark-mode-toggle {
+      position: relative;
+      width: 3rem;
+      height: 1.5rem;
+      border-radius: var(--radius-full);
+      background-color: rgb(var(--color-text-light));
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .dark-mode-toggle::after {
+      content: '';
+      position: absolute;
+      top: 0.125rem;
+      left: 0.125rem;
+      width: 1.25rem;
+      height: 1.25rem;
+      background-color: rgb(var(--color-surface));
+      border-radius: 50%;
+      transition: transform 0.3s ease;
+    }
+
+    [data-theme="dark"] .dark-mode-toggle {
+      background-color: rgb(var(--color-primary));
+    }
+
+    [data-theme="dark"] .dark-mode-toggle::after {
+      transform: translateX(1.5rem);
+    }
+
+    /* About, Contact, Terms pages */
+    .page-header {
+      padding: 5rem 0 3rem;
+      text-align: center;
+      background-color: rgb(var(--color-surface));
+    }
+
+    .page-title {
+      font-size: 2.5rem;
+      font-family: var(--font-display);
+      margin-bottom: 1rem;
+    }
+
+    .page-content {
+      padding: 3rem 0;
+    }
+
+    .content-block {
+      margin-bottom: 2rem;
+    }
+
+    .content-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .content-text {
+      color: rgb(var(--color-text-light));
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+
+    .team-grid {
+      display: grid;
+      gap: 2rem;
+    }
+
+    .team-card {
+      background-color: rgb(var(--color-surface));
+      border-radius: var(--radius-xl);
+      padding: 2rem;
+      text-align: center;
+      box-shadow: var(--shadow-md);
+    }
+
+    .team-avatar {
+      width: 6rem;
+      height: 6rem;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 0 auto 1rem;
+      border: 3px solid rgb(var(--color-primary));
+    }
+
+    .team-name {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .team-role {
+      color: rgb(var(--color-primary));
+      margin-bottom: 1rem;
+    }
+
+    .contact-form {
+      background-color: rgb(var(--color-surface));
+      border-radius: var(--radius-xl);
+      padding: 2rem;
+      box-shadow: var(--shadow-md);
+    }
+
+    .form-textarea {
+      width: 100%;
+      min-height: 150px;
+      padding: 0.75rem 1rem;
+      border: 1px solid rgb(var(--color-border));
+      border-radius: var(--radius-md);
+      font-size: 1rem;
+      resize: vertical;
+    }
+
+    .form-textarea:focus {
+      outline: none;
+      border-color: rgb(var(--color-primary));
+      box-shadow: 0 0 0 3px rgba(var(--color-primary), 0.2);
+    }
+
+    .form-submit {
+      width: 100%;
+      padding: 0.75rem;
+      background-color: rgb(var(--color-primary));
+      color: white;
+      border: none;
+      border-radius: var(--radius-md);
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .form-submit:hover {
+      background-color: rgba(var(--color-primary), 0.9);
+    }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .contact-icon {
+      width: 2.5rem;
+      height: 2.5rem;
+      background-color: rgba(var(--color-primary), 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgb(var(--color-primary));
+      flex-shrink: 0;
+    }
+
+    .contact-details h3 {
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .contact-details p {
+      color: rgb(var(--color-text-light));
+    }
+
+    .terms-list {
+      list-style-type: decimal;
+      padding-left: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .terms-item {
+      margin-bottom: 1rem;
+    }
+
+    .terms-item h3 {
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    @media (min-width: 768px) {
+      .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .contact-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 3rem;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .team-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <img src="assets/logo.png" alt="Chizel Logo" class="logo-img">
+                <span class="logo-text">Chizel</span>
+            </a>
+            
+            <div class="nav-links">
+                <div class="dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">
+                        Product <i class="fas fa-chevron-down"></i>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="#features" class="dropdown-item">Features</a>
+                        <a href="#demo" class="dropdown-item">Demos</a>
+                        <a href="#rewards" class="dropdown-item">Rewards</a>
+                        <a href="#parents" class="dropdown-item">For Parents</a>
+                    </div>
+                </div>
+                <a href="about.html" class="nav-link">About Us</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+                <a href="pricing.html" class="nav-link">Pricing</a>
+            </div>
+            
+            <div class="nav-actions">
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="btn-icon" id="user-menu-btn" aria-label="User menu">
+                    <i class="fas fa-user"></i>
+                </button>
+                <a href="#cta" class="btn btn-primary">Try Free</a>
+                <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Mobile menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu">
+        <div class="mobile-menu-header">
+            <a href="index.html" class="logo">
+                <img src="assets/logo.png" alt="Chizel Logo" class="logo-img">
+                <span class="logo-text">Chizel</span>
+            </a>
+            <button class="mobile-menu-close" id="mobile-menu-close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div class="mobile-nav-links">
+            <div class="mobile-dropdown" id="product-dropdown">
+                <div class="mobile-dropdown-toggle">
+                    <span>Product</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="mobile-dropdown-menu">
+                    <a href="#features" class="mobile-dropdown-item">Features</a>
+                    <a href="#demo" class="mobile-dropdown-item">Demos</a>
+                    <a href="#rewards" class="mobile-dropdown-item">Rewards</a>
+                    <a href="#parents" class="mobile-dropdown-item">For Parents</a>
+                </div>
+            </div>
+            <a href="about.html" class="mobile-nav-link">About Us</a>
+            <a href="contact.html" class="mobile-nav-link">Contact</a>
+            <a href="pricing.html" class="mobile-nav-link">Pricing</a>
+            <a href="#cta" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Try Free</a>
+        </div>
+    </div>
+    
+    <!-- Login Modal -->
+    <div class="modal" id="login-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Welcome Back!</h2>
+                <button class="modal-close" id="modal-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" id="email" class="form-input" placeholder="your@email.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" id="password" class="form-input" placeholder="••••••••" required>
+                </div>
+                <div class="form-footer">
+                    <a href="#" class="form-link">Forgot password?</a>
+                    <button type="submit" class="btn btn-primary">Sign In</button>
+                </div>
+            </form>
+            <div style="text-align: center; margin-top: 1.5rem;">
+                <p style="color: rgb(var(--color-text-light));">Don't have an account? <a href="#" class="form-link">Sign up</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">Where Learning Becomes an <span class="highlight">Adventure</span></h1>
+                <p class="hero-description">Chizel turns screen time into growth time with game-based learning that actually develops math, reading & problem-solving skills</p>
+                
+                <div class="hero-buttons">
+                    <a href="#cta" class="btn btn-primary">
+                        <i class="fas fa-gamepad"></i> Start Free Learning Adventure
+                    </a>
+                    <a href="#demo" class="btn btn-secondary">
+                        <i class="fas fa-play"></i> See How It Works
+                    </a>
+                </div>
+                
+                <div class="hero-stats">
+                    <div class="user-avatars">
+                        <div class="user-avatar">👧</div>
+                        <div class="user-avatar">👦</div>
+                        <div class="user-avatar">👩</div>
+                    </div>
+                    <div class="rating">
+                        <i class="fas fa-star star-icon"></i>
+                        <span>4.9/5 (2,000+ reviews)</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hero-image" data-aos="fade-left">
+                <img src="assets/hero-image.png" alt="Kids learning with Chizel app" class="hero-img">
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="section features" id="features">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Smart <span class="highlight">Learning Adventures</span></h2>
+                <p class="section-subtitle">Designed by educators, loved by kids, trusted by parents</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card" data-aos="fade-up">
+                    <div class="feature-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3 class="feature-title">Personalized Learning</h3>
+                    <p class="feature-description">Our AI adapts to your child's skill level, ensuring they're always challenged but never frustrated.</p>
+                    <ul class="feature-list">
+                        <li class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Adaptive difficulty scaling</span>
+                        </li>
+                        <li class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Skill-based recommendations</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h3 class="feature-title">Daily Rewards</h3>
+                    <p class="feature-description">Motivating streaks and collectibles keep kids coming back to learn every day.</p>
+                    <ul class="feature-list">
+                        <li class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>7-day login streaks</span>
+                        </li>
+                        <li class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Collectible achievement badges</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-icon">
+                        <i class="fas fa-user-astronaut"></i>
+                    </div>
+                    <h3 class="feature-title">Avatar Customization</h3>
+                    <p class="feature-description">Kids express themselves while earning customization options through learning.</p>
+                    <ul class="feature-list">
+                        <li class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>100+ customization items</span>
+                        </li>
+                        <li class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Earnable through achievements</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Section -->
+    <section class="section demo" id="demo">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Try Our <span class="highlight">Interactive Demos</span></h2>
+                <p class="section-subtitle">Experience how Chizel makes learning engaging</p>
+            </div>
+            
+            <!-- Math Adventure Demo -->
+            <div class="demo-card" data-aos="fade-up">
+                <h3 class="demo-title">Math Adventure</h3>
+                <p class="demo-description">Help the astronaut collect stars by solving math problems!</p>
+                
+                <div class="demo-game">
+                    <div class="game-character">
+                        <div class="character-avatar">👨‍🚀</div>
+                        <div class="game-progress">
+                            <div class="progress-stars">
+                                <span class="star">⭐</span>
+                                <span class="star">⭐</span>
+                                <span class="star">⭐</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="math-progress"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="game-question" id="math-question">Loading...</div>
+                    
+                    <div class="game-input-container">
+                        <input type="number" id="math-answer" class="game-input" placeholder="Your answer">
+                        <button id="math-submit" class="game-btn">Submit</button>
+                    </div>
+                    
+                    <div class="feedback hidden" id="math-feedback">
+                        <div class="feedback-content" id="math-feedback-content">
+                            <strong id="math-feedback-title"></strong>
+                            <span id="math-feedback-text"></span>
+                        </div>
+                        <button id="next-math" class="feedback-btn">Next Challenge →</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Word Explorer Demo -->
+            <div class="demo-card" data-aos="fade-up">
+                <h3 class="demo-title">Word Explorer</h3>
+                <p class="demo-description">Build words from letter tiles to unlock treasures!</p>
+                
+                <div class="demo-game">
+                    <div class="game-header">
+                        <div class="game-score">
+                            <i class="fas fa-trophy"></i>
+                            <span id="word-score">0</span> points
+                        </div>
+                        <div class="game-target">
+                            Target: <span id="word-target">3</span> letters
+                        </div>
+                    </div>
+                    
+                    <div class="letter-tiles-container" id="letter-tiles">
+                        <!-- Letters will be added by JS -->
+                    </div>
+                    
+                    <div class="word-display" id="word-display">
+                        <!-- Built word will appear here -->
+                    </div>
+                    
+                    <div class="game-controls">
+                        <button id="shuffle-letters" class="game-btn secondary">
+                            <i class="fas fa-random"></i> Shuffle
+                        </button>
+                        <button id="submit-word" class="game-btn">
+                            <i class="fas fa-check"></i> Submit
+                        </button>
+                    </div>
+                    
+                    <div class="feedback hidden" id="word-feedback">
+                        <div class="feedback-content" id="word-feedback-content">
+                            <strong id="word-feedback-title"></strong>
+                            <span id="word-feedback-text"></span>
+                        </div>
+                        <button id="next-word" class="feedback-btn">Next Round →</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Memory Match Demo -->
+            <div class="demo-card" data-aos="fade-up">
+                <h3 class="demo-title">Memory Match</h3>
+                <p class="demo-description">Find matching pairs to train your memory!</p>
+                
+                <div class="demo-game">
+                    <div class="game-header">
+                        <div class="game-stats">
+                            <span>Moves: <span id="memory-moves">0</span></span>
+                            <span>Pairs: <span id="memory-pairs">0</span>/6</span>
+                        </div>
+                        <button id="memory-restart" class="game-btn secondary">
+                            <i class="fas fa-redo"></i> Restart
+                        </button>
+                    </div>
+                    
+                    <div class="memory-board" id="memory-board">
+                        <!-- Cards will be added by JS -->
+                    </div>
+                    
+                    <div class="feedback hidden" id="memory-feedback">
+                        <div class="feedback-content" id="memory-feedback-content">
+                            <strong id="memory-feedback-title"></strong>
+                            <span id="memory-feedback-text"></span>
+                        </div>
+                        <button id="play-again" class="feedback-btn">Play Again →</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rewards Section -->
+    <section class="section rewards" id="rewards">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Earn <span class="highlight">Rewards</span> & Customize</h2>
+                <p class="section-subtitle">Daily challenges unlock awesome prizes and avatar items</p>
+            </div>
+            
+            <div class="rewards-grid">
+                <div class="rewards-card rewards-card-1" data-aos="fade-right">
+                    <h3 class="rewards-title">Daily Reward System</h3>
+                    <p class="rewards-description">Kids earn stars for daily learning, unlocking special rewards:</p>
+                    
+                    <div class="calendar">
+                        <div class="calendar-day">
+                            <div class="day-label">Day 1</div>
+                            <div class="day-reward">★</div>
+                        </div>
+                        <div class="calendar-day">
+                            <div class="day-label">Day 2</div>
+                            <div class="day-reward">5★</div>
+                        </div>
+                        <div class="calendar-day">
+                            <div class="day-label">Day 3</div>
+                            <div class="day-reward">10★</div>
+                        </div>
+                        <div class="calendar-day">
+                            <div class="day-label">Day 4</div>
+                            <div class="day-reward">15★</div>
+                        </div>
+                        <div class="calendar-day">
+                            <div class="day-label">Day 5</div>
+                            <div class="day-reward">20★</div>
+                        </div>
+                        <div class="calendar-day">
+                            <div class="day-label">Day 6</div>
+                            <div class="day-reward">25★</div>
+                        </div>
+                        <div class="calendar-day day-special">
+                            <div class="day-label">Day 7</div>
+                            <div class="day-reward">🎁</div>
+                        </div>
+                    </div>
+                    
+                    <div class="notification">
+                        <div class="notification-icon">
+                            <i class="fas fa-fire"></i>
+                        </div>
+                        <div>
+                            <h4 class="notification-title">Daily Streak</h4>
+                            <p class="notification-text">Login daily to keep your streak alive!</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="rewards-card rewards-card-2" data-aos="fade-left">
+                    <h3 class="rewards-title">Avatar Customization</h3>
+                    <p class="rewards-description">Personalize your avatar with items earned through learning:</p>
+                    
+                    <div class="avatar-showcase">
+                        <div class="avatar-preview">
+                            👧
+                        </div>
+                        <div class="avatar-details">
+                            <h4>Your Avatar</h4>
+                            <div class="avatar-badges">
+                                <span class="avatar-badge">Explorer Hat</span>
+                                <span class="avatar-badge">Math Wizard Robe</span>
+                                <span class="avatar-badge">Star Glasses</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="avatar-customization">
+                        <h4>Unlock New Items</h4>
+                        <div class="avatar-grid">
+                            <div class="avatar-item">🎩</div>
+                            <div class="avatar-item">🧢</div>
+                            <div class="avatar-item selected">👑</div>
+                            <div class="avatar-item">👓</div>
+                            <div class="avatar-item">🕶️</div>
+                            <div class="avatar-item">🥽</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Parents Section -->
+    <section class="section parents" id="parents">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">For <span class="highlight">Parents</span></h2>
+                <p class="section-subtitle">Powerful insights into your child's learning journey</p>
+            </div>
+            
+            <div class="parents-grid">
+                <div class="parents-card" data-aos="fade-right">
+                    <h3 class="parents-title">Learning Progress Dashboard</h3>
+                    <p class="parents-description">See exactly how your child is developing key skills:</p>
+                    
+                    <div class="progress-container">
+                        <div class="progress-item">
+                            <div class="progress-header">
+                                <span class="progress-label">Math Skills</span>
+                                <span class="progress-value">85%</span>
+                            </div>
+                            <div class="progress-bar-container">
+                                <div class="progress-bar-fill" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="progress-item">
+                            <div class="progress-header">
+                                <span class="progress-label">Reading</span>
+                                <span class="progress-value">72%</span>
+                            </div>
+                            <div class="progress-bar-container">
+                                <div class="progress-bar-fill" style="width: 72%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="progress-item">
+                            <div class="progress-header">
+                                <span class="progress-label">Problem Solving</span>
+                                <span class="progress-value">91%</span>
+                            </div>
+                            <div class="progress-bar-container">
+                                <div class="progress-bar-fill" style="width: 91%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="notification">
+                            <div class="notification-icon">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div>
+                                <h4 class="notification-title">Weekly Report Ready</h4>
+                                <p class="notification-text">Your child completed 12 activities this week!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="parents-animation" data-aos="fade-left">
+                    <img src="assets/parents-dashboard.png" alt="Parent dashboard preview" style="width: 100%; border-radius: var(--radius-lg);">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta" id="cta">
+        <div class="container cta-container">
+            <h2 class="cta-title" data-aos="fade-up">Start Your Learning Adventure Today!</h2>
+            <p class="cta-subtitle" data-aos="fade-up" data-aos-delay="100">7-day free trial • No credit card required</p>
+            
+            <div class="cta-buttons" data-aos="fade-up" data-aos-delay="200">
+                <a href="#" class="cta-btn">
+                    <i class="fab fa-apple"></i> App Store
+                </a>
+                <a href="#" class="cta-btn">
+                    <i class="fab fa-google-play"></i> Google Play
+                </a>
+            </div>
+            
+            <div class="security-badge" data-aos="fade-up" data-aos-delay="300">
+                <i class="fas fa-lock security-icon"></i>
+                <span class="security-text">Safe & secure • Privacy protected</span>
+            </div>
+        </div>
+        
+        <div id="confetti-container"></div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-column">
+                <a href="index.html" class="footer-logo">
+                    <img src="assets/logo-white.png" alt="Chizel Logo" class="footer-logo-img">
+                    <span class="footer-logo-text">Chizel</span>
+                </a>
+                <p class="footer-description">Making learning magical for kids everywhere.</p>
+                <div class="footer-social">
+                    <a href="#" class="social-link">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h3 class="footer-title">Product</h3>
+                <ul class="footer-links">
+                    <li><a href="#features" class="footer-link">Features</a></li>
+                    <li><a href="#demo" class="footer-link">Games</a></li>
+                    <li><a href="#rewards" class="footer-link">Rewards</a></li>
+                    <li><a href="pricing.html" class="footer-link">Pricing</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3 class="footer-title">For Parents</h3>
+                <ul class="footer-links">
+                    <li><a href="#parents" class="footer-link">Dashboard</a></li>
+                    <li><a href="#" class="footer-link">Progress Reports</a></li>
+                    <li><a href="#" class="footer-link">Safety</a></li>
+                    <li><a href="#" class="footer-link">FAQ</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3 class="footer-title">Company</h3>
+                <ul class="footer-links">
+                    <li><a href="about.html" class="footer-link">About Us</a></li>
+                    <li><a href="#" class="footer-link">Careers</a></li>
+                    <li><a href="privacy.html" class="footer-link">Privacy</a></li>
+                    <li><a href="terms.html" class="footer-link">Terms</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 Chizel. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- About Page (hidden by default) -->
+    <div id="about-page" style="display: none;">
+        <div class="page-header">
+            <div class="container">
+                <h1 class="page-title">About Chizel</h1>
+                <p class="section-subtitle">Our mission to make learning fun and effective for every child</p>
+            </div>
+        </div>
+        
+        <div class="page-content">
+            <div class="container">
+                <div class="content-block">
+                    <h2 class="content-title">Our Story</h2>
+                    <p class="content-text">Founded in 2020 by a team of educators and game developers, Chizel was born out of a simple idea: what if learning could be as engaging as the games kids love to play? We set out to create an educational platform that would harness the power of play to help children develop essential skills while having fun.</p>
+                    <p class="content-text">Today, Chizel is used by over 500,000 families worldwide, helping children build confidence in math, reading, and problem-solving through our unique game-based approach.</p>
+                </div>
+                
+                <div class="content-block">
+                    <h2 class="content-title">Our Team</h2>
+                    <p class="content-text">We're a diverse team of educators, game designers, and child development experts passionate about creating the best learning experiences for children.</p>
+                    
+                    <div class="team-grid">
+                        <div class="team-card">
+                            <img src="assets/team1.jpg" alt="Sarah Johnson" class="team-avatar">
+                            <h3 class="team-name">Sarah Johnson</h3>
+                            <p class="team-role">Founder & CEO</p>
+                            <p>Former elementary teacher with 10+ years of experience in education technology.</p>
+                        </div>
+                        <div class="team-card">
+                            <img src="assets/team2.jpg" alt="Michael Chen" class="team-avatar">
+                            <h3 class="team-name">Michael Chen</h3>
+                            <p class="team-role">CTO</p>
+                            <p>Game development expert with a passion for educational applications.</p>
+                        </div>
+                        <div class="team-card">
+                            <img src="assets/team3.jpg" alt="Dr. Angela Rodriguez" class="team-avatar">
+                            <h3 class="team-name">Dr. Angela Rodriguez</h3>
+                            <p class="team-role">Chief Learning Officer</p>
+                            <p>Child psychologist specializing in game-based learning methodologies.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="content-block">
+                    <h2 class="content-title">Our Approach</h2>
+                    <p class="content-text">At Chizel, we believe that learning should be:</p>
+                    <ul class="feature-list" style="margin-top: 1rem;">
+                        <li class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span><strong>Engaging:</strong> Games that kids want to play, not have to play</span>
+                        </li>
+                        <li class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span><strong>Effective:</strong> Research-backed methods that actually teach</span>
+                        </li>
+                        <li class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span><strong>Empowering:</strong> Builds confidence through gradual challenges</span>
+                        </li>
+                        <li class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span><strong>Transparent:</strong> Clear progress tracking for parents</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Contact Page (hidden by default) -->
+    <div id="contact-page" style="display: none;">
+        <div class="page-header">
+            <div class="container">
+                <h1 class="page-title">Contact Us</h1>
+                <p class="section-subtitle">We'd love to hear from you!</p>
+            </div>
+        </div>
+        
+        <div class="page-content">
+            <div class="container contact-container">
+                <div class="contact-form">
+                    <h2 class="content-title">Send us a message</h2>
+                    <form id="contact-form">
+                        <div class="form-group">
+                            <label for="contact-name" class="form-label">Name</label>
+                            <input type="text" id="contact-name" class="form-input" placeholder="Your name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contact-email" class="form-label">Email</label>
+                            <input type="email" id="contact-email" class="form-input" placeholder="your@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contact-subject" class="form-label">Subject</label>
+                            <input type="text" id="contact-subject" class="form-input" placeholder="What's this about?" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contact-message" class="form-label">Message</label>
+                            <textarea id="contact-message" class="form-textarea" placeholder="Your message here..." required></textarea>
+                        </div>
+                        <button type="submit" class="form-submit">Send Message</button>
+                    </form>
+                </div>
+                
+                <div class="contact-info">
+                    <h2 class="content-title">Contact Information</h2>
+                    <p class="content-text">Have questions or feedback? Reach out to our team through any of these channels.</p>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Our Office</h3>
+                            <p>123 Learning Lane, Suite 456<br>San Francisco, CA 94107</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Email Us</h3>
+                            <p>hello@chizel.com<br>support@chizel.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Call Us</h3>
+                            <p>+1 (800) 123-4567<br>Mon-Fri, 9am-5pm PST</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Terms Page (hidden by default) -->
+    <div id="terms-page" style="display: none;">
+        <div class="page-header">
+            <div class="container">
+                <h1 class="page-title">Terms & Conditions</h1>
+                <p class="section-subtitle">Last updated: January 1, 2025</p>
+            </div>
+        </div>
+        
+        <div class="page-content">
+            <div class="container">
+                <div class="content-block">
+                    <p class="content-text">Please read these Terms and Conditions ("Terms") carefully before using the Chizel website and mobile application (the "Service") operated by Chizel Inc. ("us", "we", or "our").</p>
+                    <p class="content-text">Your access to and use of the Service is conditioned on your acceptance of and compliance with these Terms. These Terms apply to all visitors, users and others who access or use the Service.</p>
+                </div>
+                
+                <div class="content-block">
+                    <h2 class="content-title">1. Accounts</h2>
+                    <p class="content-text">When you create an account with us, you must provide us information that is accurate, complete, and current at all times. Failure to do so constitutes a breach of the Terms, which may result in immediate termination of your account on our Service.</p>
+                </div>
+                
+                <div class="content-block">
+                    <h2 class="content-title">2. Subscriptions</h2>
+                    <p class="content-text">Some parts of the Service are billed on a subscription basis ("Subscription(s)"). You will be billed in advance on a recurring and periodic basis ("Billing Cycle"). Billing cycles are set either on a monthly or annual basis, depending on the type of subscription plan you select when purchasing a Subscription.</p>
+                </div>
+                
+                <div class="content-block">
+                    <h2 class="content-title">3. Free Trial</h2>
+                    <p class="content-text">Chizel may, at its sole discretion, offer a Subscription with a free trial for a limited period of time ("Free Trial"). You may be required to enter your billing information in order to sign up for the Free Trial.</p>
+                </div>
+                
+                <div class="content-block">
+                    <h2 class="content-title">4. Intellectual Property</h2>
+                    <p class="content-text">The Service and its original content, features and functionality are and will remain the exclusive property of Chizel Inc. and its licensors. The Service is protected by copyright, trademark, and other laws of both the United States and foreign countries. Our trademarks and trade dress may not be used in connection with any product or service without the prior written consent of Chizel Inc.</p>
+                </div>
+                
+                <div class="content-block">
+                    <h2 class="content-title">5. Links To Other Web Sites</h2>
+                    <p class="content-text">Our Service may contain links to third-party web sites or services that are not owned or controlled by Chizel Inc. Chizel Inc. has no control over, and assumes no responsibility for, the content, privacy policies, or practices of any third party web sites or services. You further acknowledge and agree that Chizel Inc. shall not be responsible or liable, directly or indirectly, for any damage or loss caused or alleged to be caused by or in connection with use of or reliance on any such content, goods or services available on or through any such web sites or services.</p>
+                </div>
+                
+                <div class="content-block">
+                    <h2 class="content-title">6. Termination</h2>
+                    <p class="content-text">We may terminate or suspend your account immediately, without prior notice or liability, for any reason whatsoever, including without limitation if you breach the Terms. Upon termination, your right to use the Service will immediately cease.</p>
+                </div>
+                
+                <div class="content-block">
+                    <h2 class="content-title">7. Governing Law</h2>
+                    <p class="content-text">These Terms shall be governed and construed in accordance with the laws of California, United States, without regard to its conflict of law provisions.</p>
+                </div>
+                
+                <div class="content-block">
+                    <h2 class="content-title">8. Changes</h2>
+                    <p class="content-text">We reserve the right, at our sole discretion, to modify or replace these Terms at any time. If a revision is material we will try to provide at least 30 days notice prior to any new terms taking effect. What constitutes a material change will be determined at our sole discretion.</p>
+                </div>
+                
+                <div class="content-block">
+                    <h2 class="content-title">Contact Us</h2>
+                    <p class="content-text">If you have any questions about these Terms, please contact us at legal@chizel.com.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Privacy Page (hidden by default) -->
+    <div id="privacy-page" style="display: none;">
+        <div class="page-header">
+            <div class="container">
+                <h1 class="page-title">Privacy Policy</h1>
+                <p class="section-subtitle">Last updated: January 1, 2025</p>
+            </div>
+        </div>
+        
+        <div class="page-content">
+            <div class="container">
+                <div class="content-block">
+                    <p class="content-text">At Chizel, we take your privacy seriously. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website and use our mobile application (the "Service"). Please read this privacy policy carefully.</p>
+                </div>
+                
+                <div class="content-block">
+                    <h2 class="content-title">1. Information We Collect</h2>
+                    <p class="content-text">We may collect information about you in a variety of ways. The information we may collect via the Service includes:</p>
+                    
+                    <ul class="terms-list">
+                        <li class="terms-item">
+                            <h3>Personal Data</h3>
+                            <p>Personally identifiable information, such as your name, email address, and demographic information (such as your child's age and grade level), that you voluntarily give to us when you register with the Service.</p>
+                        </li>
+                        <li class="terms-item">
+                            <h3>Derivative Data</h3>
+                            <p>Information our servers automatically collect when you access the Service, such as your IP address, browser type, operating system, access times, and the pages you have viewed directly before and after accessing the Service.</p>
+                        </li>
+                        <li class="terms-item">
+                            <h3>Progress Data</h3>
+                            <p>Information about your child's learning progress, including completed activities, scores, and areas of strength and weakness.</p>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="content-block">
+                    <h2 class="content-title">2. Use of Your Information</h2>
+                    <p class="content-text">Having accurate information about you permits us to provide you with a smooth, efficient, and customized experience. Specifically, we may use information collected about you via the Service to:</p>
+                    
+                    <ul class="terms-list">
+                        <li class="terms-item">Create and manage your account.</li>
+                        <li class="terms-item">Personalize your child's learning experience.</li>
+                        <li class="terms-item">Provide educational content tailored to your child's needs.</li>
+                        <li class="terms-item">Email you regarding your account or order.</li>
+                        <li class="terms-item">Generate a personal profile about your child to make future visits to the Service more personalized.</li>
+                        <li class="terms-item">Monitor and analyze usage and trends to improve your experience with the Service.</li>
+                    </ul>
+                </div>
+                
+                <div class="content-block">
+                    <h2 class="content-title">3. Disclosure of Your Information</h2>
+                    <p class="content-text">We may share information we have collected about you in certain situations. Your information may be disclosed as follows:</p>
+                    
+                    <ul class="terms-list">
+                        <li class="terms-item">
+                            <h3>By Law or to Protect Rights</h3>
+                            <p>If we believe the release of information about you is necessary to respond to legal process, to investigate or remedy potential violations of our policies, or to protect the rights, property, and safety of others, we may share your information as permitted or required by any applicable law, rule, or regulation.</p>
+                        </li>
+                        <li class="terms-item">
+                            <h3>Third-Party Service Providers</h3>
+                            <p>We may share your information with third parties that perform services for us or on our behalf, including payment processing, data analysis, email delivery, hosting services, customer service, and marketing assistance.</p>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="content-block">
+                    <h2 class="content-title">4. Security of Your Information</h2>
+                    <p class="content-text">We use administrative, technical, and physical security measures to help protect your personal information. While we have taken reasonable steps to secure the personal information you provide to us, please be aware that despite our efforts, no security measures are perfect or impenetrable, and no method of data transmission can be guaranteed against any interception or other type of misuse.</p>
+                </div>
+                
+                <div class="content-block">
+                    <h2 class="content-title">5. Children's Privacy</h2>
+                    <p class="content-text">The Service is designed for children under 13 with parental consent. We comply with the Children's Online Privacy Protection Act (COPPA) and do not knowingly collect personal information from children under 13 without verifiable parental consent.</p>
+                </div>
+                
+                <div class="content-block">
+                    <h2 class="content-title">6. Changes to This Privacy Policy</h2>
+                    <p class="content-text">We may update this Privacy Policy from time to time in order to reflect, for example, changes to our practices or for other operational, legal or regulatory reasons.</p>
+                </div>
+                
+                <div class="content-block">
+                    <h2 class="content-title">Contact Us</h2>
+                    <p class="content-text">If you have questions or comments about this Privacy Policy, please contact us at privacy@chizel.com.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Pricing Page (hidden by default) -->
+    <div id="pricing-page" style="display: none;">
+        <div class="page-header">
+            <div class="container">
+                <h1 class="page-title">Pricing Plans</h1>
+                <p class="section-subtitle">Choose the perfect plan for your family</p>
+            </div>
+        </div>
+        
+        <div class="page-content">
+            <div class="container">
+                <div class="pricing-grid">
+                    <div class="pricing-card">
+                        <div class="pricing-header">
+                            <h3 class="pricing-title">Free</h3>
+                            <div class="pricing-price">
+                                <span class="price-amount">$0</span>
+                                <span class="price-period">/ month</span>
+                            </div>
+                            <p class="pricing-description">Perfect for trying out Chizel</p>
+                        </div>
+                        <ul class="pricing-features">
+                            <li class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>Access to 3 basic games</span>
+                            </li>
+                            <li class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>Daily rewards</span>
+                            </li>
+                            <li class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>Basic avatar customization</span>
+                            </li>
+                            <li class="feature-item disabled">
+                                <i class="fas fa-times"></i>
+                                <span>Progress tracking</span>
+                            </li>
+                            <li class="feature-item disabled">
+                                <i class="fas fa-times"></i>
+                                <span>Advanced games</span>
+                            </li>
+                            <li class="feature-item disabled">
+                                <i class="fas fa-times"></i>
+                                <span>Parent dashboard</span>
+                            </li>
+                        </ul>
+                        <a href="#cta" class="btn btn-secondary" style="width: 100%;">Get Started</a>
+                    </div>
+                    
+                    <div class="pricing-card featured">
+                        <div class="pricing-badge">Most Popular</div>
+                        <div class="pricing-header">
+                            <h3 class="pricing-title">Premium</h3>
+                            <div class="pricing-price">
+                                <span class="price-amount">$9.99</span>
+                                <span class="price-period">/ month</span>
+                            </div>
+                            <p class="pricing-description">Best for regular learners</p>
+                        </div>
+                        <ul class="pricing-features">
+                            <li class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>All Free features</span>
+                            </li>
+                            <li class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>Access to 50+ games</span>
+                            </li>
+                            <li class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>Advanced avatar items</span>
+                            </li>
+                            <li class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>Detailed progress tracking</span>
+                            </li>
+                            <li class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>Parent dashboard</span>
+                            </li>
+                            <li class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>Weekly progress reports</span>
+                            </li>
+                        </ul>
+                        <a href="#cta" class="btn btn-primary" style="width: 100%;">Get Premium</a>
+                    </div>
+                    
+                    <div class="pricing-card">
+                        <div class="pricing-header">
+                            <h3 class="pricing-title">Family</h3>
+                            <div class="pricing-price">
+                                <span class="price-amount">$14.99</span>
+                                <span class="price-period">/ month</span>
+                            </div>
+                            <p class="pricing-description">For families with multiple children</p>
+                        </div>
+                        <ul class="pricing-features">
+                            <li class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>All Premium features</span>
+                            </li>
+                            <li class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>Up to 4 child profiles</span>
+                            </li>
+                            <li class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>Family progress dashboard</span>
+                            </li>
+                            <li class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>Exclusive family games</span>
+                            </li>
+                            <li class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>Priority support</span>
+                            </li>
+                            <li class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>Monthly family challenges</span>
+                            </li>
+                        </ul>
+                        <a href="#cta" class="btn btn-secondary" style="width: 100%;">Get Family Plan</a>
+                    </div>
+                </div>
+                
+                <div class="content-block" style="text-align: center; margin-top: 3rem;">
+                    <h2 class="content-title">Not sure which plan is right for you?</h2>
+                    <p class="content-text">Try our 7-day free trial of Premium with no commitment. Cancel anytime.</p>
+                    <a href="#cta" class="btn btn-primary" style="margin-top: 1rem;">Start Free Trial</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+    // Initialize AOS animation library
+    AOS.init({
+        duration: 800,
+        easing: 'ease-in-out',
+        once: true
+    });
+
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenuClose = document.getElementById('mobile-menu-close');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const productDropdown = document.getElementById('product-dropdown');
+    
+    mobileMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    });
+    
+    mobileMenuClose.addEventListener('click', () => {
+        mobileMenu.classList.remove('active');
+        document.body.style.overflow = '';
+    });
+    
+    productDropdown.addEventListener('click', () => {
+        productDropdown.classList.toggle('active');
+    });
+
+    // Theme toggle
+    const themeToggle = document.getElementById('theme-toggle');
+    const currentTheme = localStorage.getItem('theme') || 'light';
+    
+    document.documentElement.setAttribute('data-theme', currentTheme);
+    
+    if (currentTheme === 'dark') {
+        themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+    } else {
+        themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+    }
+    
+    themeToggle.addEventListener('click', () => {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+        
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        
+        if (newTheme === 'dark') {
+            themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+        } else {
+            themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+        }
+    });
+
+    // Login modal
+    const userMenuBtn = document.getElementById('user-menu-btn');
+    const loginModal = document.getElementById('login-modal');
+    const modalClose = document.getElementById('modal-close');
+    
+    userMenuBtn.addEventListener('click', () => {
+        loginModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    });
+    
+    modalClose.addEventListener('click', () => {
+        loginModal.classList.remove('active');
+        document.body.style.overflow = '';
+    });
+    
+    window.addEventListener('click', (e) => {
+        if (e.target === loginModal) {
+            loginModal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+            
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                // Close mobile menu if open
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = '';
+                
+                targetElement.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+
+    // Handle page navigation for demo purposes
+    document.querySelectorAll('a[href="about.html"]').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            document.getElementById('about-page').style.display = 'block';
+            document.querySelector('main').style.display = 'none';
+            window.scrollTo(0, 0);
+        });
+    });
+    
+    document.querySelectorAll('a[href="contact.html"]').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            document.getElementById('contact-page').style.display = 'block';
+            document.querySelector('main').style.display = 'none';
+            window.scrollTo(0, 0);
+        });
+    });
+    
+    document.querySelectorAll('a[href="terms.html"]').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            document.getElementById('terms-page').style.display = 'block';
+            document.querySelector('main').style.display = 'none';
+            window.scrollTo(0, 0);
+        });
+    });
+    
+    document.querySelectorAll('a[href="privacy.html"]').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            document.getElementById('privacy-page').style.display = 'block';
+            document.querySelector('main').style.display = 'none';
+            window.scrollTo(0, 0);
+        });
+    });
+    
+    document.querySelectorAll('a[href="pricing.html"]').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            document.getElementById('pricing-page').style.display = 'block';
+            document.querySelector('main').style.display = 'none';
+            window.scrollTo(0, 0);
+        });
+    });
+    
+    // Back to home functionality for demo pages
+    document.querySelectorAll('.logo').forEach(logo => {
+        logo.addEventListener('click', (e) => {
+            if (window.location.pathname !== '/') {
+                e.preventDefault();
+                document.getElementById('about-page').style.display = 'none';
+                document.getElementById('contact-page').style.display = 'none';
+                document.getElementById('terms-page').style.display = 'none';
+                document.getElementById('privacy-page').style.display = 'none';
+                document.getElementById('pricing-page').style.display = 'none';
+                document.querySelector('main').style.display = 'block';
+                window.scrollTo(0, 0);
+            }
+        });
+    });
+
+    // Game 1: Math Adventure
+    const mathQuestions = [
+        { question: "5 × 4 = ?", answer: 20 },
+        { question: "12 - 7 = ?", answer: 5 },
+        { question: "8 + 9 = ?", answer: 17 },
+        { question: "15 ÷ 3 = ?", answer: 5 },
+        { question: "7 × 6 = ?", answer: 42 }
+    ];
+
+    let currentMathQuestion = 0;
+    let starsCollected = 0;
+
+    const mathQuestionEl = document.getElementById('math-question');
+    const mathAnswerEl = document.getElementById('math-answer');
+    const mathSubmitBtn = document.getElementById('math-submit');
+    const mathFeedbackEl = document.getElementById('math-feedback');
+    const mathFeedbackContent = document.getElementById('math-feedback-content');
+    const mathFeedbackTitle = document.getElementById('math-feedback-title');
+    const mathFeedbackText = document.getElementById('math-feedback-text');
+    const nextMathBtn = document.getElementById('next-math');
+    const progressStars = document.querySelectorAll('.progress-stars .star');
+    const mathProgressBar = document.getElementById('math-progress');
+
+    function setupMathGame() {
+        mathQuestionEl.textContent = mathQuestions[currentMathQuestion].question;
+        mathAnswerEl.value = '';
+        mathAnswerEl.focus();
+        mathFeedbackEl.classList.add('hidden');
+
+        // Update progress
+        const progress = (currentMathQuestion / mathQuestions.length) * 100;
+        mathProgressBar.style.width = `${progress}%`;
+    }
+
+    mathSubmitBtn.addEventListener('click', checkMathAnswer);
+    mathAnswerEl.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') checkMathAnswer();
+    });
+
+    function checkMathAnswer() {
+        const userAnswer = parseInt(mathAnswerEl.value);
+        const correctAnswer = mathQuestions[currentMathQuestion].answer;
+
+        if (userAnswer === correctAnswer) {
+            starsCollected++;
+            if (starsCollected <= 3) {
+                progressStars[starsCollected - 1].classList.add('collected');
+            }
+
+            mathFeedbackContent.className = 'feedback-content success';
+            mathFeedbackTitle.textContent = 'Correct! ';
+            mathFeedbackText.textContent = `The answer is ${correctAnswer}. You've collected ${starsCollected} stars!`;
+            createConfetti();
+        } else {
+            mathFeedbackContent.className = 'feedback-content error';
+            mathFeedbackTitle.textContent = 'Oops! ';
+            mathFeedbackText.textContent = `The correct answer is ${correctAnswer}. Try again!`;
+        }
+
+        mathFeedbackEl.classList.remove('hidden');
+    }
+
+    nextMathBtn.addEventListener('click', function() {
+        currentMathQuestion = (currentMathQuestion + 1) % mathQuestions.length;
+        setupMathGame();
+    });
+
+    // Game 2: Word Explorer
+    const wordLists = {
+        3: ['cat', 'dog', 'sun', 'hat', 'pen'],
+        4: ['fish', 'bird', 'cake', 'rain', 'book'],
+        5: ['apple', 'tiger', 'house', 'water', 'smile']
+    };
+
+    let currentWordLength = 3;
+    let currentWord = '';
+    let currentLetters = [];
+    let wordScore = 0;
+    let wordRound = 1;
+
+    const letterTilesContainer = document.getElementById('letter-tiles');
+    const wordDisplayEl = document.getElementById('word-display');
+    const wordScoreEl = document.getElementById('word-score');
+    const wordTargetEl = document.getElementById('word-target');
+    const submitWordBtn = document.getElementById('submit-word');
+    const shuffleLettersBtn = document.getElementById('shuffle-letters');
+    const wordFeedbackEl = document.getElementById('word-feedback');
+    const wordFeedbackContent = document.getElementById('word-feedback-content');
+    const wordFeedbackTitle = document.getElementById('word-feedback-title');
+    const wordFeedbackText = document.getElementById('word-feedback-text');
+    const nextWordBtn = document.getElementById('next-word');
+
+    function setupWordGame() {
+        // Select a random word of current length
+        const words = wordLists[currentWordLength];
+        currentWord = words[Math.floor(Math.random() * words.length)];
+
+        // Create letter tiles
+        currentLetters = shuffleArray([...currentWord.toUpperCase()]);
+        renderLetterTiles();
+
+        // Clear word display
+        wordDisplayEl.textContent = '';
+
+        // Update UI
+        wordTargetEl.textContent = currentWordLength;
+        wordFeedbackEl.classList.add('hidden');
+    }
+
+    function renderLetterTiles() {
+        letterTilesContainer.innerHTML = '';
+        currentLetters.forEach(letter => {
+            const tile = document.createElement('div');
+            tile.className = 'letter-tile';
+            tile.textContent = letter;
+            tile.addEventListener('click', selectLetter);
+            letterTilesContainer.appendChild(tile);
+        });
+    }
+
+    function selectLetter(e) {
+        const letter = e.target.textContent;
+        wordDisplayEl.textContent += letter;
+        e.target.classList.add('selected');
+        e.target.removeEventListener('click', selectLetter);
+    }
+
+    function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+    }
+
+    shuffleLettersBtn.addEventListener('click', function() {
+        currentLetters = shuffleArray(currentLetters);
+        renderLetterTiles();
+        wordDisplayEl.textContent = '';
+    });
+
+    submitWordBtn.addEventListener('click', function() {
+        const userWord = wordDisplayEl.textContent.toLowerCase();
+
+        if (userWord === currentWord) {
+            wordScore += currentWordLength * 10;
+            wordScoreEl.textContent = wordScore;
+
+            wordFeedbackContent.className = 'feedback-content success';
+            wordFeedbackTitle.textContent = 'Great job! ';
+            wordFeedbackText.textContent = `"${currentWord}" is correct! You earned ${currentWordLength * 10} points!`;
+            createConfetti();
+
+            // Increase difficulty every 3 rounds
+            wordRound++;
+            if (wordRound % 3 === 0 && currentWordLength < 5) {
+                currentWordLength++;
+                wordFeedbackText.textContent += ` Level up! Now try ${currentWordLength}-letter words!`;
+            }
+        } else {
+            wordFeedbackContent.className = 'feedback-content error';
+            wordFeedbackTitle.textContent = 'Try again! ';
+            wordFeedbackText.textContent = `"${userWord}" is not the correct word. Keep trying!`;
+        }
+
+        wordFeedbackEl.classList.remove('hidden');
+    });
+
+    nextWordBtn.addEventListener('click', function() {
+        setupWordGame();
+    });
+
+    // Game 3: Memory Match
+    const memoryIcons = ['🐶', '🐱', '🐭', '🐹', '🐰', '🦊'];
+    let memoryCards = [];
+    let flippedCards = [];
+    let matchedPairs = 0;
+    let memoryMoves = 0;
+
+    const memoryBoardEl = document.getElementById('memory-board');
+    const memoryMovesEl = document.getElementById('memory-moves');
+    const memoryPairsEl = document.getElementById('memory-pairs');
+    const memoryRestartBtn = document.getElementById('memory-restart');
+    const memoryFeedbackEl = document.getElementById('memory-feedback');
+    const memoryFeedbackContent = document.getElementById('memory-feedback-content');
+    const memoryFeedbackTitle = document.getElementById('memory-feedback-title');
+    const memoryFeedbackText = document.getElementById('memory-feedback-text');
+    const playAgainBtn = document.getElementById('play-again');
+
+    function setupMemoryGame() {
+        // Create pairs of cards
+        memoryCards = [...memoryIcons, ...memoryIcons];
+        memoryCards = shuffleArray(memoryCards);
+
+        // Reset game state
+        flippedCards = [];
+        matchedPairs = 0;
+        memoryMoves = 0;
+        memoryMovesEl.textContent = memoryMoves;
+        memoryPairsEl.textContent = matchedPairs;
+
+        // Create card elements
+        memoryBoardEl.innerHTML = '';
+        memoryCards.forEach((icon, index) => {
+            const card = document.createElement('div');
+            card.className = 'memory-card';
+            card.dataset.index = index;
+            card.innerHTML = `
+                <div class="front">${icon}</div>
+                <div class="back">?</div>
+            `;
+            card.addEventListener('click', flipCard);
+            memoryBoardEl.appendChild(card);
+        });
+
+        memoryFeedbackEl.classList.add('hidden');
+    }
+
+    function flipCard() {
+        // Don't allow flipping if already flipped or matched
+        if (flippedCards.length >= 2 || this.classList.contains('flipped') || this.classList.contains('matched')) {
+            return;
+        }
+
+        // Flip the card
+        this.classList.add('flipped');
+        flippedCards.push(this);
+
+        // Check for match if two cards are flipped
+        if (flippedCards.length === 2) {
+            memoryMoves++;
+            memoryMovesEl.textContent = memoryMoves;
+
+            const card1 = flippedCards[0].querySelector('.front').textContent;
+            const card2 = flippedCards[1].querySelector('.front').textContent;
+
+            if (card1 === card2) {
+                // Match found
+                flippedCards.forEach(card => {
+                    card.classList.add('matched');
+                });
+                flippedCards = [];
+                matchedPairs++;
+                memoryPairsEl.textContent = matchedPairs;
+
+                // Check if game is complete
+                if (matchedPairs === memoryIcons.length) {
+                    setTimeout(() => {
+                        memoryFeedbackContent.className = 'feedback-content success';
+                        memoryFeedbackTitle.textContent = 'Congratulations! ';
+                        memoryFeedbackText.textContent = `You completed the game in ${memoryMoves} moves!`;
+                        memoryFeedbackEl.classList.remove('hidden');
+                        createConfetti();
+                    }, 500);
+                }
+            } else {
+                // No match - flip back after delay
+                setTimeout(() => {
+                    flippedCards.forEach(card => {
+                        card.classList.remove('flipped');
+                    });
+                    flippedCards = [];
+                }, 1000);
+            }
+        }
+    }
+
+    memoryRestartBtn.addEventListener('click', setupMemoryGame);
+    playAgainBtn.addEventListener('click', setupMemoryGame);
+
+    // Confetti effect
+    function createConfetti() {
+        const colors = ['#f44336', '#e91e63', '#9c27b0', '#673ab7', '#3f51b5', '#2196f3', '#03a9f4', '#00bcd4', '#009688', '#4CAF50', '#8BC34A', '#CDDC39', '#FFEB3B', '#FFC107', '#FF9800', '#FF5722'];
+
+        for (let i = 0; i < 50; i++) {
+            const confetti = document.createElement('div');
+            confetti.className = 'confetti';
+            confetti.style.left = Math.random() * 100 + 'vw';
+            confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            confetti.style.width = Math.random() * 10 + 5 + 'px';
+            confetti.style.height = Math.random() * 10 + 5 + 'px';
+            confetti.style.animation = `confetti-fall ${Math.random() * 3 + 2}s linear ${Math.random() * 2}s forwards`;
+            document.getElementById('confetti-container').appendChild(confetti);
+
+            setTimeout(() => {
+                confetti.remove();
+            }, 5000);
+        }
+    }
+
+    // Initialize all games when page loads
+    document.addEventListener('DOMContentLoaded', function() {
+        setupMathGame();
+        setupWordGame();
+        setupMemoryGame();
+    });
+    </script>
+</body>
+</html>
