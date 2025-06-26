@@ -3101,9 +3101,6 @@
 
 
 
-
-
-
                         <div class="section-header">
                 <h2>Rewards & <span class="section-highlight">Achievements</span></h2>
                 <p class="section-subtitle">Motivating progress tracking and collectibles that make learning addictive</p>
@@ -3692,4 +3689,1222 @@
                 <div class="feature-card">
                     <div class="feature-icon-container">
                         <svg xmlns="http://www.w3.org/2000/svg" class="feature-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Science Experiments</h3>
+                    <p class="feature-description">Interactive simulations like virtual chemistry sets and physics puzzles.</p>
+                    
+                    <div class="science-preview">
+                        <div class="science-categories">
+                            <button class="science-category active">
+                                <span class="category-icon">🧪</span> Chemistry
+                            </button>
+                            <button class="science-category">
+                                <span class="category-icon">⚛️</span> Physics
+                            </button>
+                            <button class="science-category">
+                                <span class="category-icon">🌱</span> Biology
+                            </button>
+                        </div>
+                        
+                        <div class="science-experiment">
+                            <p>Mix elements to discover new compounds:</p>
+                            <div class="element-mixer">
+                                <div class="element" data-element="H">H</div>
+                                <span>+</span>
+                                <div class="element" data-element="O">O</div>
+                                <span>=</span>
+                                <div class="compound">H₂O</div>
+                            </div>
+                        </div>
+                        
+                        <button class="game-button small" id="start-experiment">
+                            <span class="btn-emoji">🔬</span> Start Experiment
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Coding Basics -->
+                <div class="feature-card">
+                    <div class="feature-icon-container">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="feature-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Coding Basics</h3>
+                    <p class="feature-description">Simple drag-and-drop programming challenges.</p>
+                    
+                    <div class="coding-preview">
+                        <div class="coding-canvas">
+                            <div class="coding-blocks">
+                                <div class="block move">move forward</div>
+                                <div class="block turn">turn right</div>
+                                <div class="block repeat">
+                                    repeat 3 times
+                                    <div class="block-container"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="coding-output">
+                                <div class="robot">🤖</div>
+                                <div class="grid"></div>
+                            </div>
+                        </div>
+                        
+                        <button class="game-button small" id="run-code">
+                            <span class="btn-emoji">▶️</span> Run Code
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Geography Explorer -->
+            <div class="section-header">
+                <h2>Geography <span class="section-highlight">Explorer</span></h2>
+                <p class="section-subtitle">Interactive maps with country/capital matching games</p>
+            </div>
+            
+            <div class="demo-grid">
+                <div class="demo-content">
+                    <div class="demo-card">
+                        <h3 class="demo-card-title">World Explorer</h3>
+                        <p class="demo-card-description">Learn about countries, capitals, and landmarks through interactive maps.</p>
+                        
+                        <div class="demo-game-container">
+                            <div class="geography-game">
+                                <div class="game-question">
+                                    <p>Match the country to its capital:</p>
+                                    <p class="country-name">France</p>
+                                </div>
+                                
+                                <div class="geography-options">
+                                    <button class="geo-option">Paris</button>
+                                    <button class="geo-option">Berlin</button>
+                                    <button class="geo-option">Madrid</button>
+                                    <button class="geo-option">Rome</button>
+                                </div>
+                                
+                                <div class="map-preview">
+                                    <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExY3BlZzQ1ajIxc2NwNjdzb2wzbDV3d3doZXFodDJlbHZ3cTZuYjRyMiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/9D7dMTEskdstXHUOK2/giphy.gif" alt="World map animation">
+                                </div>
+                            </div>
+                            
+                            <div id="geo-feedback" class="feedback-message hidden">
+                                <div class="feedback-content">
+                                    <strong class="feedback-title"></strong>
+                                    <span class="feedback-text"></span>
+                                </div>
+                                <button id="next-geo" class="feedback-button">Next Challenge →</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="demo-animation">
+                    <div class="animation-container holographic">
+                        <div class="animation-content">
+                            <div class="gif-container">
+                                <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExY3BlZzQ1ajIxc2NwNjdzb2wzbDV3d3doZXFodDJlbHZ3cTZuYjRyMiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/9D7dMTEskdstXHUOK2/giphy.gif" alt="Interactive world map">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Accessibility Section -->
+    <section class="demo-section parallax-section">
+        <div class="section-container">
+            <div class="section-header">
+                <h2>Accessibility <span class="section-highlight">Features</span></h2>
+                <p class="section-subtitle">Ensuring Chizel is enjoyable for all children</p>
+            </div>
+            
+            <div class="features-grid">
+                <!-- Dyslexia-Friendly Font -->
+                <div class="feature-card">
+                    <div class="feature-icon-container">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="feature-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Dyslexia-Friendly Font</h3>
+                    <p class="feature-description">Toggle OpenDyslexic font for easier reading.</p>
+                    
+                    <div class="font-demo">
+                        <div class="font-sample default-font">
+                            <p>The quick brown fox jumps over the lazy dog.</p>
+                            <p>1234567890</p>
+                        </div>
+                        <div class="font-sample dyslexic-font">
+                            <p>The quick brown fox jumps over the lazy dog.</p>
+                            <p>1234567890</p>
+                        </div>
+                    </div>
+                    
+                    <button class="game-button small" id="toggle-font">
+                        <span class="btn-emoji">🔤</span> Toggle Dyslexic Font
+                    </button>
+                </div>
+                
+                <!-- Color Blind Mode -->
+                <div class="feature-card">
+                    <div class="feature-icon-container">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="feature-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Color Blind Mode</h3>
+                    <p class="feature-description">Alternative color schemes for visual games.</p>
+                    
+                    <div class="color-schemes">
+                        <div class="scheme-option">
+                            <div class="scheme-preview default-scheme"></div>
+                            <span>Default</span>
+                        </div>
+                        <div class="scheme-option">
+                            <div class="scheme-preview protanopia-scheme"></div>
+                            <span>Protanopia</span>
+                        </div>
+                        <div class="scheme-option">
+                            <div class="scheme-preview deuteranopia-scheme"></div>
+                            <span>Deuteranopia</span>
+                        </div>
+                        <div class="scheme-option">
+                            <div class="scheme-preview tritanopia-scheme"></div>
+                            <span>Tritanopia</span>
+                        </div>
+                    </div>
+                    
+                    <button class="game-button small" id="toggle-colors">
+                        <span class="btn-emoji">🎨</span> Toggle Color Mode
+                    </button>
+                </div>
+                
+                <!-- Keyboard Navigation -->
+                <div class="feature-card">
+                    <div class="feature-icon-container">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="feature-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Keyboard Navigation</h3>
+                    <p class="feature-description">Full support for children who can't use touch/mouse.</p>
+                    
+                    <div class="keyboard-demo">
+                        <div class="keyboard-instruction">
+                            <p>Try navigating with:</p>
+                            <ul>
+                                <li>Tab / Shift+Tab to move focus</li>
+                                <li>Enter/Space to activate</li>
+                                <li>Arrow keys for menus</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="keyboard-test">
+                            <button class="key-test-btn">Button 1</button>
+                            <button class="key-test-btn">Button 2</button>
+                            <button class="key-test-btn">Button 3</button>
+                        </div>
+                    </div>
+                    
+                    <button class="game-button small" id="keyboard-help">
+                        <span class="btn-emoji">⌨️</span> Show Keyboard Help
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="cta" class="cta-section">
+        <div class="cta-bg">
+            <div class="cta-bg-shape cta-bg-shape-1"></div>
+            <div class="cta-bg-shape cta-bg-shape-2"></div>
+        </div>
+        
+        <div class="cta-container">
+            <h2 class="cta-title">Ready for <span class="hero-highlight">Smarter Screen Time</span>?</h2>
+            <p class="cta-subtitle">Join 500,000+ families who trust Chizel to make learning fun and effective</p>
+            
+            <div class="cta-buttons">
+                <a href="#" class="cta-button">
+                    <span class="cta-button-emoji">👶</span> For Ages 4-8
+                </a>
+                <a href="#" class="cta-button">
+                    <span class="cta-button-emoji">🧒</span> For Ages 9-12
+                </a>
+            </div>
+            
+            <div class="cta-security">
+                <div class="security-badge">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="security-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                    </svg>
+                    <span class="security-text">COPPA Certified & 100% Kid-Safe</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="confetti-container" id="confetti-container"></div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-column">
+                <div class="footer-logo-container">
+                    <div class="footer-logo-icon">
+                        <img src="assets/logo.png" alt="Chizel Logo" class="footer-logo">
+                    </div>
+                    <span class="footer-logo-text">Chizel</span>
+                </div>
+                <p class="footer-description">Making learning an adventure kids love and parents trust.</p>
+                <div class="footer-social">
+                    <a href="#" class="social-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="social-icon" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
+                        </svg>
+                    </a>
+                    <a href="#" class="social-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="social-icon" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                        </svg>
+                    </a>
+                    <a href="#" class="social-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="social-icon" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h3 class="footer-column-title">Features</h3>
+                <ul class="footer-links">
+                    <li><a href="#" class="footer-link">Learning Games</a></li>
+                    <li><a href="#" class="footer-link">Daily Rewards</a></li>
+                    <li><a href="#" class="footer-link">Avatar Customization</a></li>
+                    <li><a href="#" class="footer-link">Progress Tracking</a></li>
+                    <li><a href="#" class="footer-link">Parent Dashboard</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3 class="footer-column-title">Subjects</h3>
+                <ul class="footer-links">
+                    <li><a href="#" class="footer-link">Math</a></li>
+                    <li><a href="#" class="footer-link">Reading</a></li>
+                    <li><a href="#" class="footer-link">Science</a></li>
+                    <li><a href="#" class="footer-link">Coding</a></li>
+                    <li><a href="#" class="footer-link">Geography</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3 class="footer-column-title">Company</h3>
+                <ul class="footer-links">
+                    <li><a href="#" class="footer-link">About Us</a></li>
+                    <li><a href="#" class="footer-link">Privacy Policy</a></li>
+                    <li><a href="#" class="footer-link">Terms of Service</a></li>
+                    <li><a href="#" class="footer-link">COPPA Compliance</a></li>
+                    <li><a href="#" class="footer-link">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2023 Chizel Inc. All rights reserved. | Designed for kids, trusted by parents.</p>
+        </div>
+    </footer>
+
+    <!-- Accessibility Panel -->
+    <div class="accessibility-panel" id="accessibilityPanel">
+        <div class="accessibility-option">
+            <label>
+                <input type="checkbox" id="dyslexiaToggle">
+                Dyslexia-Friendly Font
+            </label>
+        </div>
+        <div class="accessibility-option">
+            <label>
+                <input type="checkbox" id="colorBlindToggle">
+                Color Blind Mode
+            </label>
+        </div>
+        <div class="accessibility-option">
+            <label>
+                <input type="checkbox" id="darkModeToggle">
+                Dark Mode
+            </label>
+        </div>
+        <div class="accessibility-option">
+            <label>
+                <input type="checkbox" id="voiceToggle">
+                Voice Instructions
+            </label>
+        </div>
+    </div>
+    
+    <div class="accessibility-toggle" id="accessibilityToggle">
+        <svg xmlns="http://www.w3.org/2000/svg" class="accessibility-toggle-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+        </svg>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Accessibility Toggle
+        const accessibilityToggle = document.getElementById('accessibilityToggle');
+        const accessibilityPanel = document.getElementById('accessibilityPanel');
+        
+        accessibilityToggle.addEventListener('click', () => {
+            accessibilityPanel.classList.toggle('visible');
+        });
+        
+        // Dyslexia-Friendly Font Toggle
+        const dyslexiaToggle = document.getElementById('dyslexiaToggle');
+        dyslexiaToggle.addEventListener('change', function() {
+            document.body.classList.toggle('dyslexia-friendly', this.checked);
+            localStorage.setItem('dyslexiaMode', this.checked);
+        });
+        
+        // Color Blind Mode Toggle
+        const colorBlindToggle = document.getElementById('colorBlindToggle');
+        colorBlindToggle.addEventListener('change', function() {
+            document.body.classList.toggle('colorblind-mode', this.checked);
+            localStorage.setItem('colorBlindMode', this.checked);
+        });
+        
+        // Dark Mode Toggle
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        darkModeToggle.addEventListener('change', function() {
+            document.body.classList.toggle('dark-mode', this.checked);
+            localStorage.setItem('darkMode', this.checked);
+        });
+        
+        // Voice Instructions Toggle
+        const voiceToggle = document.getElementById('voiceToggle');
+        voiceToggle.addEventListener('change', function() {
+            localStorage.setItem('voiceInstructions', this.checked);
+            if (this.checked && 'speechSynthesis' in window) {
+                // Test voice
+                const utterance = new SpeechSynthesisUtterance("Voice instructions are now enabled");
+                speechSynthesis.speak(utterance);
+            }
+        });
+        
+        // Load saved preferences
+        if (localStorage.getItem('dyslexiaMode') === 'true') {
+            dyslexiaToggle.checked = true;
+            document.body.classList.add('dyslexia-friendly');
+        }
+        
+        if (localStorage.getItem('colorBlindMode') === 'true') {
+            colorBlindToggle.checked = true;
+            document.body.classList.add('colorblind-mode');
+        }
+        
+        if (localStorage.getItem('darkMode') === 'true') {
+            darkModeToggle.checked = true;
+            document.body.classList.add('dark-mode');
+        }
+        
+        if (localStorage.getItem('voiceInstructions') === 'true') {
+            voiceToggle.checked = true;
+        }
+        
+        // Math Game Logic
+        const mathQuestion = document.getElementById('math-question');
+        const mathAnswer = document.getElementById('math-answer');
+        const mathSubmit = document.getElementById('math-submit');
+        const mathFeedback = document.getElementById('math-feedback');
+        const nextMath = document.getElementById('next-math');
+        const mathProgress = document.getElementById('math-progress');
+        
+        let currentMathProblem = generateMathProblem();
+        let mathStarsCollected = 0;
+        
+        function generateMathProblem() {
+            const num1 = Math.floor(Math.random() * 10) + 1;
+            const num2 = Math.floor(Math.random() * 10) + 1;
+            const operators = ['+', '-', '*'];
+            const operator = operators[Math.floor(Math.random() * operators.length)];
+            
+            let question, answer;
+            switch(operator) {
+                case '+':
+                    question = `${num1} + ${num2}`;
+                    answer = num1 + num2;
+                    break;
+                case '-':
+                    question = `${num1} - ${num2}`;
+                    answer = num1 - num2;
+                    break;
+                case '*':
+                    question = `${num1} × ${num2}`;
+                    answer = num1 * num2;
+                    break;
+            }
+            
+            return { question, answer };
+        }
+        
+        function updateMathProblem() {
+            currentMathProblem = generateMathProblem();
+            mathQuestion.textContent = currentMathProblem.question;
+            mathAnswer.value = '';
+            mathFeedback.classList.add('hidden');
+        }
+        
+        function updateMathProgress() {
+            const progress = (mathStarsCollected / 3) * 100;
+            mathProgress.querySelector('div').style.width = `${progress}%`;
+            
+            const stars = document.querySelectorAll('.progress-stars .star');
+            stars.forEach((star, index) => {
+                if (index < mathStarsCollected) {
+                    star.classList.add('collected');
+                } else {
+                    star.classList.remove('collected');
+                }
+            });
+        }
+        
+        mathSubmit.addEventListener('click', () => {
+            const userAnswer = parseInt(mathAnswer.value);
+            
+            if (isNaN(userAnswer)) {
+                mathFeedback.querySelector('.feedback-title').textContent = 'Oops!';
+                mathFeedback.querySelector('.feedback-text').textContent = 'Please enter a number';
+                mathFeedback.classList.remove('hidden');
+                return;
+            }
+            
+            if (userAnswer === currentMathProblem.answer) {
+                mathStarsCollected = Math.min(mathStarsCollected + 1, 3);
+                updateMathProgress();
+                
+                mathFeedback.querySelector('.feedback-title').textContent = 'Correct!';
+                mathFeedback.querySelector('.feedback-text').textContent = `Great job! ${currentMathProblem.question} = ${currentMathProblem.answer}`;
+                mathFeedback.classList.remove('hidden');
+                
+                if (mathStarsCollected >= 3) {
+                    mathFeedback.querySelector('.feedback-text').textContent += ' You collected all stars!';
+                }
+                
+                // Celebrate if all stars collected
+                if (mathStarsCollected >= 3) {
+                    createConfetti();
+                }
+            } else {
+                mathFeedback.querySelector('.feedback-title').textContent = 'Try Again';
+                mathFeedback.querySelector('.feedback-text').textContent = `${currentMathProblem.question} is not ${userAnswer}. Keep trying!`;
+                mathFeedback.classList.remove('hidden');
+            }
+        });
+        
+        nextMath.addEventListener('click', updateMathProblem);
+        
+        // Initialize math game
+        updateMathProblem();
+        updateMathProgress();
+        
+        // Word Game Logic
+        const letterTiles = document.getElementById('letter-tiles');
+        const wordDisplay = document.getElementById('word-display');
+        const shuffleLetters = document.getElementById('shuffle-letters');
+        const submitWord = document.getElementById('submit-word');
+        const wordFeedback = document.getElementById('word-feedback');
+        const nextWord = document.getElementById('next-word');
+        const wordScoreElement = document.getElementById('word-score');
+        const wordTargetElement = document.getElementById('word-target');
+        
+        let currentLetters = [];
+        let currentWord = [];
+        let wordScore = 0;
+        let wordTarget = 5;
+        
+        function generateLetters() {
+            const vowels = ['A', 'E', 'I', 'O', 'U'];
+            const consonants = ['B', 'C', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'V', 'W', 'X', 'Y', 'Z'];
+            
+            // Clear previous letters
+            letterTiles.innerHTML = '';
+            currentLetters = [];
+            currentWord = [];
+            wordDisplay.textContent = '';
+            
+            // Add 2 vowels
+            for (let i = 0; i < 2; i++) {
+                const vowel = vowels[Math.floor(Math.random() * vowels.length)];
+                currentLetters.push(vowel);
+            }
+            
+            // Add 5 consonants
+            for (let i = 0; i < 5; i++) {
+                const consonant = consonants[Math.floor(Math.random() * consonants.length)];
+                currentLetters.push(consonant);
+            }
+            
+            // Shuffle letters
+            currentLetters = shuffleArray(currentLetters);
+            
+            // Create letter tiles
+            currentLetters.forEach(letter => {
+                const tile = document.createElement('div');
+                tile.className = 'letter-tile';
+                tile.textContent = letter;
+                tile.addEventListener('click', () => {
+                    if (!tile.classList.contains('used')) {
+                        tile.classList.add('used');
+                        currentWord.push(letter);
+                        wordDisplay.textContent = currentWord.join('');
+                    }
+                });
+                letterTiles.appendChild(tile);
+            });
+        }
+        
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+        
+        shuffleLetters.addEventListener('click', () => {
+            currentLetters = shuffleArray(currentLetters);
+            letterTiles.innerHTML = '';
+            
+            currentLetters.forEach(letter => {
+                const tile = document.createElement('div');
+                tile.className = 'letter-tile';
+                tile.textContent = letter;
+                if (currentWord.includes(letter)) {
+                    tile.classList.add('used');
+                }
+                tile.addEventListener('click', () => {
+                    if (!tile.classList.contains('used')) {
+                        tile.classList.add('used');
+                        currentWord.push(letter);
+                        wordDisplay.textContent = currentWord.join('');
+                    }
+                });
+                letterTiles.appendChild(tile);
+            });
+        });
+        
+        submitWord.addEventListener('click', () => {
+            const word = currentWord.join('');
+            
+            if (word.length < 2) {
+                wordFeedback.querySelector('.feedback-title').textContent = 'Too Short';
+                wordFeedback.querySelector('.feedback-text').textContent = 'Your word needs at least 2 letters';
+                wordFeedback.classList.remove('hidden');
+                return;
+            }
+            
+            // In a real app, we'd check against a dictionary API
+            // For demo purposes, we'll assume any word with vowels is valid
+            const hasVowel = /[AEIOU]/i.test(word);
+            
+            if (hasVowel) {
+                const points = word.length;
+                wordScore += points;
+                wordScoreElement.textContent = wordScore;
+                
+                wordFeedback.querySelector('.feedback-title').textContent = 'Good Job!';
+                wordFeedback.querySelector('.feedback-text').textContent = `"${word}" is worth ${points} points!`;
+                wordFeedback.classList.remove('hidden');
+                
+                if (wordScore >= wordTarget) {
+                    wordFeedback.querySelector('.feedback-text').textContent += ` You reached the target of ${wordTarget} points!`;
+                    createConfetti();
+                    wordTarget += 5;
+                    wordTargetElement.textContent = wordTarget;
+                }
+            } else {
+                wordFeedback.querySelector('.feedback-title').textContent = 'Not a Word';
+                wordFeedback.querySelector('.feedback-text').textContent = 'Words need at least one vowel (A, E, I, O, U)';
+                wordFeedback.classList.remove('hidden');
+            }
+        });
+        
+        nextWord.addEventListener('click', () => {
+            generateLetters();
+            wordFeedback.classList.add('hidden');
+        });
+        
+        // Initialize word game
+        generateLetters();
+        
+        // Memory Game Logic
+        const memoryBoard = document.getElementById('memory-board');
+        const memoryMoves = document.getElementById('memory-moves');
+        const memoryPairs = document.getElementById('memory-pairs');
+        const memoryRestart = document.getElementById('memory-restart');
+        const memoryFeedback = document.getElementById('memory-feedback');
+        const playAgain = document.getElementById('play-again');
+        
+        const symbols = ['🐶', '🐱', '🐭', '🐹', '🐰', '🦊', '🐻', '🐼'];
+        let cards = [];
+        let flippedCards = [];
+        let matchedPairs = 0;
+        let moves = 0;
+        
+        function initializeMemoryGame() {
+            // Create pairs of cards
+            let cardValues = [...symbols, ...symbols];
+            cardValues = shuffleArray(cardValues);
+            
+            // Clear the board
+            memoryBoard.innerHTML = '';
+            flippedCards = [];
+            matchedPairs = 0;
+            moves = 0;
+            memoryMoves.textContent = moves;
+            memoryPairs.textContent = `${matchedPairs}/${symbols.length}`;
+            memoryFeedback.classList.add('hidden');
+            
+            // Create cards
+            cards = cardValues.map((value, index) => {
+                const card = document.createElement('div');
+                card.className = 'memory-card';
+                card.dataset.index = index;
+                card.dataset.value = value;
+                
+                const front = document.createElement('div');
+                front.className = 'front';
+                front.textContent = value;
+                
+                const back = document.createElement('div');
+                back.className = 'back';
+                
+                card.appendChild(front);
+                card.appendChild(back);
+                
+                card.addEventListener('click', flipCard);
+                
+                memoryBoard.appendChild(card);
+                return card;
+            });
+        }
+        
+        function flipCard() {
+            // Don't allow flipping if already flipped or matched
+            if (flippedCards.length >= 2 || this.classList.contains('flipped') || this.classList.contains('matched')) {
+                return;
+            }
+            
+            this.classList.add('flipped');
+            flippedCards.push(this);
+            
+            // Check for match when two cards are flipped
+            if (flippedCards.length === 2) {
+                moves++;
+                memoryMoves.textContent = moves;
+                
+                const [card1, card2] = flippedCards;
+                
+                if (card1.dataset.value === card2.dataset.value) {
+                    // Match found
+                    card1.classList.add('matched');
+                    card2.classList.add('matched');
+                    flippedCards = [];
+                    matchedPairs++;
+                    memoryPairs.textContent = `${matchedPairs}/${symbols.length}`;
+                    
+                    // Check if all pairs are matched
+                    if (matchedPairs === symbols.length) {
+                        memoryFeedback.querySelector('.feedback-title').textContent = 'You Won!';
+                        memoryFeedback.querySelector('.feedback-text').textContent = `You matched all pairs in ${moves} moves!`;
+                        memoryFeedback.classList.remove('hidden');
+                        createConfetti();
+                    }
+                } else {
+                    // No match, flip back after delay
+                    setTimeout(() => {
+                        card1.classList.remove('flipped');
+                        card2.classList.remove('flipped');
+                        flippedCards = [];
+                    }, 1000);
+                }
+            }
+        }
+        
+        memoryRestart.addEventListener('click', initializeMemoryGame);
+        playAgain.addEventListener('click', initializeMemoryGame);
+        
+        // Initialize memory game
+        initializeMemoryGame();
+        
+        // Color Mix Game Logic
+        const redSlider = document.getElementById('red-slider');
+        const greenSlider = document.getElementById('green-slider');
+        const blueSlider = document.getElementById('blue-slider');
+        const resultSwatch = document.querySelector('.result-swatch');
+        const targetSwatch = document.querySelector('.target-swatch');
+        const checkColor = document.getElementById('check-color');
+        const newColor = document.getElementById('new-color');
+        const colorFeedback = document.getElementById('color-feedback');
+        const nextColor = document.getElementById('next-color');
+        
+        let targetColor = generateRandomColor();
+        
+        function generateRandomColor() {
+            const r = Math.floor(Math.random() * 256);
+            const g = Math.floor(Math.random() * 256);
+            const b = Math.floor(Math.random() * 256);
+            return { r, g, b };
+        }
+        
+        function updateColor() {
+            const r = redSlider.value;
+            const g = greenSlider.value;
+            const b = blueSlider.value;
+            
+            resultSwatch.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+            resultSwatch.nextElementSibling.textContent = `RGB(${r}, ${g}, ${b})`;
+        }
+        
+        function newTargetColor() {
+            targetColor = generateRandomColor();
+            targetSwatch.style.backgroundColor = `rgb(${targetColor.r}, ${targetColor.g}, ${targetColor.b})`;
+            colorFeedback.classList.add('hidden');
+            
+            // Reset sliders
+            redSlider.value = 0;
+            greenSlider.value = 0;
+            blueSlider.value = 0;
+            updateColor();
+        }
+        
+        function colorDistance(color1, color2) {
+            const dr = color1.r - color2.r;
+            const dg = color1.g - color2.g;
+            const db = color1.b - color2.b;
+            return Math.sqrt(dr * dr + dg * dg + db * db);
+        }
+        
+        redSlider.addEventListener('input', updateColor);
+        greenSlider.addEventListener('input', updateColor);
+        blueSlider.addEventListener('input', updateColor);
+        
+        checkColor.addEventListener('click', () => {
+            const userColor = {
+                r: parseInt(redSlider.value),
+                g: parseInt(greenSlider.value),
+                b: parseInt(blueSlider.value)
+            };
+            
+            const distance = colorDistance(userColor, targetColor);
+            const maxDistance = colorDistance({r:0,g:0,b:0}, {r:255,g:255,b:255});
+            const similarity = 100 - (distance / maxDistance * 100);
+            
+            if (similarity > 90) {
+                colorFeedback.querySelector('.feedback-title').textContent = 'Perfect Match!';
+                colorFeedback.querySelector('.feedback-text').textContent = `Your color is ${similarity.toFixed(1)}% similar to the target!`;
+                colorFeedback.classList.remove('hidden');
+                colorFeedback.querySelector('.feedback-content').className = 'feedback-content feedback-success';
+                createConfetti();
+            } else if (similarity > 70) {
+                colorFeedback.querySelector('.feedback-title').textContent = 'Close!';
+                colorFeedback.querySelector('.feedback-text').textContent = `Your color is ${similarity.toFixed(1)}% similar to the target. Try adjusting the sliders.`;
+                colorFeedback.classList.remove('hidden');
+                colorFeedback.querySelector('.feedback-content').className = 'feedback-content feedback-info';
+            } else {
+                colorFeedback.querySelector('.feedback-title').textContent = 'Keep Trying';
+                colorFeedback.querySelector('.feedback-text').textContent = `Your color is only ${similarity.toFixed(1)}% similar to the target.`;
+                colorFeedback.classList.remove('hidden');
+                colorFeedback.querySelector('.feedback-content').className = 'feedback-content feedback-error';
+            }
+        });
+        
+        newColor.addEventListener('click', newTargetColor);
+        nextColor.addEventListener('click', newTargetColor);
+        
+        // Initialize color game
+        newTargetColor();
+        
+        // Pattern Match Game Logic
+        const patternTarget = document.getElementById('pattern-target');
+        const patternOptions = document.getElementById('pattern-options');
+        const patternLevel = document.getElementById('pattern-level');
+        const patternScore = document.getElementById('pattern-score');
+        const newPattern = document.getElementById('new-pattern');
+        const patternFeedback = document.getElementById('pattern-feedback');
+        const nextPattern = document.getElementById('next-pattern');
+        
+        const patternItems = ['🔴', '🔵', '🟢', '🟡', '🟠', '🟣'];
+        let currentPattern = [];
+        let currentLevel = 1;
+        let score = 0;
+        
+        function generatePattern() {
+            // Clear previous
+            patternTarget.innerHTML = '';
+            patternOptions.innerHTML = '';
+            currentPattern = [];
+            
+            // Generate target pattern (length based on level)
+            const patternLength = Math.min(3 + Math.floor(currentLevel / 2), 6);
+            for (let i = 0; i < patternLength; i++) {
+                const randomItem = patternItems[Math.floor(Math.random() * patternItems.length)];
+                currentPattern.push(randomItem);
+                
+                const patternElement = document.createElement('div');
+                patternElement.className = 'pattern-item';
+                patternElement.textContent = randomItem;
+                patternTarget.appendChild(patternElement);
+            }
+            
+            // Generate options (one correct, others random)
+            const options = [];
+            
+            // Correct option
+            options.push([...currentPattern]);
+            
+            // Incorrect options
+            while (options.length < 4) {
+                const option = [];
+                for (let i = 0; i < currentPattern.length; i++) {
+                    const randomItem = patternItems[Math.floor(Math.random() * patternItems.length)];
+                    option.push(randomItem);
+                }
+                
+                // Make sure it's not the same as the correct pattern
+                if (JSON.stringify(option) !== JSON.stringify(currentPattern)) {
+                    options.push(option);
+                }
+            }
+            
+            // Shuffle options
+            shuffleArray(options);
+            
+            // Create option elements
+            options.forEach((option, index) => {
+                const optionElement = document.createElement('div');
+                optionElement.className = 'pattern-option';
+                
+                option.forEach(item => {
+                    const itemElement = document.createElement('div');
+                    itemElement.className = 'pattern-item';
+                    itemElement.textContent = item;
+                    optionElement.appendChild(itemElement);
+                });
+                
+                optionElement.addEventListener('click', () => {
+                    if (optionElement.classList.contains('selected') || optionElement.classList.contains('correct') || optionElement.classList.contains('incorrect')) {
+                        return;
+                    }
+                    
+                    const isCorrect = JSON.stringify(option) === JSON.stringify(currentPattern);
+                    
+                    if (isCorrect) {
+                        optionElement.classList.add('correct');
+                        score += currentLevel * 10;
+                        patternScore.textContent = score;
+                        
+                        patternFeedback.querySelector('.feedback-title').textContent = 'Correct!';
+                        patternFeedback.querySelector('.feedback-text').textContent = `You matched the pattern! +${currentLevel * 10} points`;
+                        patternFeedback.classList.remove('hidden');
+                        patternFeedback.querySelector('.feedback-content').className = 'feedback-content feedback-success';
+                        
+                        currentLevel++;
+                        patternLevel.textContent = currentLevel;
+                        
+                        createConfetti();
+                    } else {
+                        optionElement.classList.add('incorrect');
+                        
+                        patternFeedback.querySelector('.feedback-title').textContent = 'Try Again';
+                        patternFeedback.querySelector('.feedback-text').textContent = 'That pattern doesn\'t match the target';
+                        patternFeedback.classList.remove('hidden');
+                        patternFeedback.querySelector('.feedback-content').className = 'feedback-content feedback-error';
+                    }
+                });
+                
+                patternOptions.appendChild(optionElement);
+            });
+            
+            patternFeedback.classList.add('hidden');
+        }
+        
+        newPattern.addEventListener('click', generatePattern);
+        nextPattern.addEventListener('click', generatePattern);
+        
+        // Initialize pattern game
+        generatePattern();
+        
+        // Confetti Effect
+        function createConfetti() {
+            const container = document.getElementById('confetti-container');
+            container.innerHTML = '';
+            
+            for (let i = 0; i < 100; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                
+                // Random color
+                const hue = Math.floor(Math.random() * 360);
+                confetti.style.backgroundColor = `hsl(${hue}, 100%, 50%)`;
+                
+                // Random position
+                confetti.style.left = `${Math.random() * 100}%`;
+                
+                // Random size
+                const size = Math.random() * 10 + 5;
+                confetti.style.width = `${size}px`;
+                confetti.style.height = `${size}px`;
+                
+                // Random shape
+                confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+                
+                // Random animation
+                const animationDuration = Math.random() * 3 + 2;
+                const animationDelay = Math.random() * 5;
+                
+                confetti.style.animation = `confetti-fall ${animationDuration}s linear ${animationDelay}s forwards`;
+                
+                container.appendChild(confetti);
+            }
+        }
+        
+        // Character Companion Interaction
+        const companionAvatar = document.getElementById('companion-avatar');
+        const companionTalk = document.getElementById('companion-talk');
+        const companionCelebrate = document.getElementById('companion-celebrate');
+        
+        const companionMessages = [
+            "Great job on that math problem!",
+            "You're getting better every day!",
+            "Let's try another challenge!",
+            "Learning is fun when we do it together!",
+            "I knew you could do it!",
+            "That was amazing!",
+            "You're a superstar learner!"
+        ];
+        
+        companionTalk.addEventListener('click', () => {
+            const randomMessage = companionMessages[Math.floor(Math.random() * companionMessages.length)];
+            
+            // Create speech bubble
+            const bubble = document.createElement('div');
+            bubble.className = 'speech-bubble';
+            bubble.textContent = randomMessage;
+            
+            companionAvatar.parentNode.insertBefore(bubble, companionAvatar.nextSibling);
+            
+            // Remove after delay
+            setTimeout(() => {
+                bubble.remove();
+            }, 3000);
+        });
+        
+        companionCelebrate.addEventListener('click', () => {
+            companionAvatar.style.animation = 'bounce 0.5s infinite';
+            createConfetti();
+            
+            setTimeout(() => {
+                companionAvatar.style.animation = '';
+            }, 2000);
+        });
+        
+        // Voice Instructions Test
+        const testVoice = document.getElementById('test-voice');
+        const voiceSpeed = document.getElementById('voice-speed');
+        const speedValue = document.getElementById('speed-value');
+        const voiceCharacter = document.getElementById('voice-character');
+        
+        if ('speechSynthesis' in window) {
+            testVoice.addEventListener('click', () => {
+                const utterance = new SpeechSynthesisUtterance("Great job! You're doing amazing!");
+                utterance.rate = parseFloat(voiceSpeed.value);
+                
+                // Try to set voice based on selection
+                const voices = speechSynthesis.getVoices();
+                if (voices.length > 0) {
+                    const selectedVoice = voiceCharacter.value;
+                    let voice;
+                    
+                    if (selectedVoice === 'robot') {
+                        // Try to find a robotic voice
+                        voice = voices.find(v => v.name.includes('Zira') || v.name.includes('David'));
+                    } else {
+                        // Try to find a male/female voice
+                        voice = voices.find(v => 
+                            (selectedVoice === 'male' && v.name.includes('Male')) || 
+                            (selectedVoice === 'female' && v.name.includes('Female'))
+                        );
+                    }
+                    
+                    if (voice) {
+                        utterance.voice = voice;
+                    }
+                }
+                
+                speechSynthesis.speak(utterance);
+            });
+            
+            // Update speed value display
+            voiceSpeed.addEventListener('input', () => {
+                const speed = parseFloat(voiceSpeed.value);
+                let speedText;
+                
+                if (speed < 0.8) {
+                    speedText = 'Slow';
+                } else if (speed > 1.2) {
+                    speedText = 'Fast';
+                } else {
+                    speedText = 'Normal';
+                }
+                
+                speedValue.textContent = speedText;
+            });
+        } else {
+            testVoice.disabled = true;
+            testVoice.textContent = 'Voice Not Supported';
+        }
+        
+        // Parent-Child Challenge
+        const startCoopGame = document.getElementById('start-coop-game');
+        
+        startCoopGame.addEventListener('click', () => {
+            // In a real app, this would start a cooperative game
+            alert("Starting a family challenge! Work together to solve problems and earn rewards!");
+        });
+        
+        // Classroom Mode
+        const learnClassroomMode = document.getElementById('learn-classroom-mode');
+        
+        learnClassroomMode.addEventListener('click', () => {
+            // In a real app, this would show info about classroom features
+            alert("Classroom Mode allows teachers to track student progress, assign lessons, and manage classes while maintaining student privacy.");
+        });
+        
+        // Custom Learning Plans
+        const savePlan = document.getElementById('save-plan');
+        const aiSuggest = document.getElementById('ai-suggest');
+        
+        savePlan.addEventListener('click', () => {
+            alert("Learning plan saved! Your child's activities will focus on the selected subjects.");
+        });
+        
+        aiSuggest.addEventListener('click', () => {
+            alert("AI suggestions generated! Based on your child's progress, we recommend focusing on math and problem-solving this week.");
+        });
+        
+        // Story-Based Learning
+        const continueStory = document.getElementById('continue-story');
+        
+        continueStory.addEventListener('click', () => {
+            // In a real app, this would continue the story adventure
+            alert("Continuing the story! Solve the next challenge to unlock the next chapter.");
+        });
+        
+        // Science Experiments
+        const startExperiment = document.getElementById('start-experiment');
+        
+        startExperiment.addEventListener('click', () => {
+            // In a real app, this would start a science experiment
+            alert("Starting chemistry experiment! Mix elements to discover new compounds.");
+        });
+        
+        // Coding Basics
+        const runCode = document.getElementById('run-code');
+        
+        runCode.addEventListener('click', () => {
+            // In a real app, this would execute the drag-and-drop code
+            alert("Running your code! The robot will follow your instructions.");
+        });
+        
+        // Font Toggle
+        const toggleFont = document.getElementById('toggle-font');
+        
+        toggleFont.addEventListener('click', () => {
+            document.body.classList.toggle('dyslexia-friendly');
+            dyslexiaToggle.checked = document.body.classList.contains('dyslexia-friendly');
+            localStorage.setItem('dyslexiaMode', dyslexiaToggle.checked);
+        });
+        
+        // Color Mode Toggle
+        const toggleColors = document.getElementById('toggle-colors');
+        
+        toggleColors.addEventListener('click', () => {
+            document.body.classList.toggle('colorblind-mode');
+            colorBlindToggle.checked = document.body.classList.contains('colorblind-mode');
+            localStorage.setItem('colorBlindMode', colorBlindToggle.checked);
+        });
+        
+        // Keyboard Help
+        const keyboardHelp = document.getElementById('keyboard-help');
+        
+        keyboardHelp.addEventListener('click', () => {
+            alert("Keyboard Navigation Help:\n\n- Tab/Shift+Tab: Move between interactive elements\n- Enter/Space: Activate buttons and controls\n- Arrow keys: Navigate menus and options\n- Escape: Close dialogs and menus");
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Responsive navigation
+        const navToggle = document.createElement('button');
+        navToggle.className = 'nav-toggle';
+        navToggle.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>';
+        
+        const navContainer = document.querySelector('.nav-container');
+        navContainer.appendChild(navToggle);
+        
+        const navLinks = document.querySelector('.nav-links');
+        navToggle.addEventListener('click', () => {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth < 768) {
+                    navLinks.style.display = 'none';
+                }
+            });
+        });
+        
+        // Update progress bars on scroll (for demo purposes)
+        window.addEventListener('scroll', () => {
+            const progressBars = document.querySelectorAll('.progress-bar:not(.glowing)');
+            const windowHeight = window.innerHeight;
+            
+            progressBars.forEach(bar => {
+                const rect = bar.getBoundingClientRect();
+                const isVisible = (rect.top <= windowHeight) && (rect.bottom >= 0);
+                
+                if (isVisible && !bar.hasAttribute('data-animated')) {
+                    bar.setAttribute('data-animated', 'true');
+                    const targetWidth = bar.parentElement.getAttribute('data-percent') || bar.style.width;
+                    bar.style.width = targetWidth;
+                }
+            });
+        });
+        
+        // Trigger initial animation for elements in view
+        window.dispatchEvent(new Event('scroll'));
+    </script>
+</body>
+</html>
