@@ -14,7 +14,7 @@
     <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
     
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Fredoka+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Fredoka+One&family=OpenDyslexic:wght@400;700&display=swap" rel="stylesheet">
     
     <!-- Structured data -->
     <script type="application/ld+json">
@@ -45,8 +45,14 @@
             --dark: #2d3436;
             --light: #f7f7f7;
             --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
+            --neon-primary: #00f7ff;
+            --neon-secondary: #ff00f7;
+            --neon-accent: #f7ff00;
+            --hologram-bg: rgba(0, 247, 255, 0.1);
+            --futuristic-font: 'Orbitron', sans-serif;
         }
-        
+
+        /* Base Styles */
         * {
             margin: 0;
             padding: 0;
@@ -56,12 +62,146 @@
         body {
             min-height: 100vh;
             font-family: 'Poppins', sans-serif;
-            background-color: var(--light);
-            color: var(--dark);
+            background-color: var(--dark);
+            color: var(--light);
             line-height: 1.6;
             overflow-x: hidden;
             perspective: 1px;
             transform-style: preserve-3d;
+            transition: all 0.3s ease;
+        }
+
+        /* Accessibility Modes */
+        body.dyslexia-friendly {
+            font-family: 'OpenDyslexic', sans-serif;
+            letter-spacing: 0.1em;
+            line-height: 1.8;
+        }
+
+        body.colorblind-mode {
+            --primary: #0072B2;
+            --secondary: #D55E00;
+            --accent: #009E73;
+            --neon-primary: #56B4E9;
+            --neon-secondary: #E69F00;
+            --neon-accent: #009E73;
+        }
+
+        body.dark-mode {
+            --dark: #f7f7f7;
+            --light: #2d3436;
+            background-color: #121212;
+        }
+
+        /* Futuristic UI Elements */
+        .holographic {
+            background: var(--hologram-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 247, 255, 0.3);
+            box-shadow: 0 0 20px rgba(0, 247, 255, 0.2),
+                        inset 0 0 20px rgba(0, 247, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .holographic::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                transparent,
+                transparent,
+                transparent,
+                rgba(0, 247, 255, 0.1),
+                transparent,
+                transparent,
+                transparent
+            );
+            animation: hologram 6s linear infinite;
+            z-index: -1;
+        }
+
+        .neon-text {
+            text-shadow: 0 0 5px var(--neon-primary),
+                         0 0 10px var(--neon-primary),
+                         0 0 20px var(--neon-primary);
+            color: var(--neon-primary);
+        }
+
+        .neon-border {
+            box-shadow: 0 0 10px var(--neon-primary),
+                        inset 0 0 10px var(--neon-primary);
+            border: 1px solid var(--neon-primary);
+        }
+
+        .neon-button {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .neon-button::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                transparent,
+                transparent,
+                transparent,
+                var(--neon-primary),
+                transparent,
+                transparent,
+                transparent
+            );
+            animation: rotate 4s linear infinite;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .neon-button:hover::before {
+            opacity: 0.3;
+        }
+
+        /* Animations */
+        @keyframes hologram {
+            0% { transform: rotate(0deg) translate(0, 0); }
+            100% { transform: rotate(360deg) translate(0, 0); }
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        @keyframes neon-pulse {
+            0%, 100% { 
+                text-shadow: 0 0 5px var(--neon-primary),
+                             0 0 10px var(--neon-primary);
+            }
+            50% { 
+                text-shadow: 0 0 10px var(--neon-primary),
+                             0 0 20px var(--neon-primary),
+                             0 0 30px var(--neon-secondary);
+            }
         }
 
         /* Utility Classes */
@@ -76,11 +216,20 @@
             letter-spacing: -0.03em;
         }
 
+        .futuristic-heading {
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            font-weight: 700;
+        }
+
         /* Layout */
         .section-container {
             max-width: 1280px;
             margin: 0 auto;
             padding: 0 24px;
+            position: relative;
+            z-index: 10;
         }
 
         .section-header {
@@ -93,15 +242,16 @@
         .section-header h2 {
             font-size: 3rem;
             margin-bottom: 16px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            background: linear-gradient(90deg, var(--neon-primary), var(--neon-secondary));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
+            animation: neon-pulse 2s infinite alternate;
         }
 
         .section-subtitle {
             font-size: 1.25rem;
-            color: #636e72;
+            color: #b2bec3;
             max-width: 800px;
             margin: 0 auto;
         }
@@ -112,11 +262,12 @@
             width: 100%;
             top: 0;
             left: 0;
-            z-index: 100;
-            background-color: rgba(255, 255, 255, 0.95);
+            z-index: 1000;
+            background-color: rgba(45, 52, 54, 0.95);
             backdrop-filter: blur(12px);
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
             transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(0, 247, 255, 0.2);
         }
 
         .nav-container {
@@ -138,15 +289,16 @@
         .logo-icon {
             width: 40px;
             height: 40px;
-            background-color: #e0e7ff;
+            background-color: rgba(0, 247, 255, 0.2);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 20px;
-            color: var(--primary);
+            color: var(--neon-primary);
             transition: all 0.3s ease;
             overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 247, 255, 0.3);
         }
 
         .logo-icon:hover {
@@ -155,14 +307,15 @@
 
         .logo-text {
             font-size: 24px;
-            font-family: 'Fredoka One', display;
-            color: var(--primary);
+            font-family: 'Orbitron', sans-serif;
+            color: var(--neon-primary);
             font-weight: bold;
             transition: color 0.3s ease;
+            text-shadow: 0 0 5px rgba(0, 247, 255, 0.5);
         }
 
         .logo-text:hover {
-            color: var(--secondary);
+            color: var(--neon-secondary);
         }
 
         .nav-links {
@@ -173,25 +326,28 @@
 
         .nav-link {
             font-weight: 500;
-            color: var(--dark);
+            color: var(--light);
             text-decoration: none;
             position: relative;
             transition: all 0.3s ease;
             font-size: 1.1rem;
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
         }
 
         .nav-link:hover {
-            color: var(--primary);
+            color: var(--neon-primary);
         }
 
         .nav-link::after {
             content: '';
             position: absolute;
             width: 0;
-            height: 3px;
+            height: 2px;
             bottom: -4px;
             left: 0;
-            background: var(--gradient);
+            background: linear-gradient(90deg, var(--neon-primary), var(--neon-secondary));
             transition: width 0.3s ease;
             border-radius: 3px;
         }
@@ -213,17 +369,40 @@
             font-size: 1rem;
             border: none;
             cursor: pointer;
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
         }
 
         .btn-primary {
-            background: var(--gradient);
-            color: white;
-            box-shadow: 0 10px 20px rgba(108, 92, 231, 0.3);
+            background: linear-gradient(135deg, var(--neon-primary), var(--neon-secondary));
+            color: var(--dark);
+            box-shadow: 0 10px 20px rgba(0, 247, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--neon-secondary), var(--neon-primary));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
         }
 
         .btn-primary:hover {
             transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(108, 92, 231, 0.4);
+            box-shadow: 0 15px 30px rgba(0, 247, 255, 0.5);
+        }
+
+        .btn-primary:hover::before {
+            opacity: 1;
         }
 
         .btn-primary:active {
@@ -231,14 +410,16 @@
         }
 
         .btn-secondary {
-            background: white;
-            color: var(--primary);
-            border: 2px solid var(--primary);
+            background: transparent;
+            color: var(--neon-primary);
+            border: 2px solid var(--neon-primary);
+            box-shadow: 0 0 10px rgba(0, 247, 255, 0.3);
         }
 
         .btn-secondary:hover {
-            background: var(--primary);
-            color: white;
+            background: rgba(0, 247, 255, 0.1);
+            color: var(--neon-secondary);
+            border-color: var(--neon-secondary);
         }
 
         /* Hero Section */
@@ -250,6 +431,7 @@
             min-height: 100vh;
             display: flex;
             align-items: center;
+            background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
         }
 
         .hero-bg {
@@ -269,7 +451,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, rgba(108, 92, 231, 0.1) 0%, rgba(253, 121, 168, 0.1) 100%);
+            background: linear-gradient(135deg, rgba(0, 247, 255, 0.1) 0%, rgba(255, 0, 247, 0.1) 100%);
             z-index: 1;
         }
 
@@ -282,8 +464,8 @@
             background-position: center;
             transform: translateZ(-1px) scale(2);
             z-index: -1;
-            filter: blur(2px);
-            opacity: 0.15;
+            filter: blur(2px) brightness(0.5) hue-rotate(180deg);
+            opacity: 0.3;
         }
 
         .floating-shapes {
@@ -309,7 +491,7 @@
             left: 10%;
             width: 300px;
             height: 300px;
-            background-color: #a29bfe;
+            background-color: var(--neon-primary);
             animation-delay: 0s;
         }
 
@@ -318,7 +500,7 @@
             right: 10%;
             width: 400px;
             height: 400px;
-            background-color: #74b9ff;
+            background-color: var(--neon-secondary);
             animation-delay: 3s;
         }
 
@@ -327,7 +509,7 @@
             right: 20%;
             width: 200px;
             height: 200px;
-            background-color: #fd79a8;
+            background-color: var(--neon-accent);
             animation-delay: 6s;
         }
 
@@ -336,7 +518,7 @@
             left: 20%;
             width: 250px;
             height: 250px;
-            background-color: #00cec9;
+            background-color: var(--primary);
             animation-delay: 9s;
         }
 
@@ -361,29 +543,33 @@
             font-size: 3.5rem;
             margin-bottom: 24px;
             line-height: 1.1;
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
         }
 
         .hero-highlight {
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            background: linear-gradient(90deg, var(--neon-primary), var(--neon-secondary));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
             display: inline-block;
+            animation: neon-pulse 2s infinite alternate;
         }
 
         .hero-subtitle {
             font-size: 1.25rem;
-            color: #636e72;
+            color: #b2bec3;
             max-width: 600px;
         }
 
         .hero-subtitle strong {
-            color: var(--primary);
+            color: var(--neon-primary);
             font-weight: 600;
         }
 
         .hero-subtitle strong:nth-child(2) {
-            color: var(--secondary);
+            color: var(--neon-secondary);
         }
 
         .hero-buttons {
@@ -403,11 +589,13 @@
             display: flex;
             align-items: center;
             gap: 16px;
-            background: white;
+            background: rgba(45, 52, 54, 0.8);
             padding: 16px;
             border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             max-width: 500px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 247, 255, 0.2);
         }
 
         .user-avatars {
@@ -418,8 +606,8 @@
             width: 40px;
             height: 40px;
             border-radius: 50%;
-            border: 2px solid white;
-            background-color: #f3e8ff;
+            border: 2px solid rgba(45, 52, 54, 0.8);
+            background-color: rgba(0, 247, 255, 0.2);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -432,18 +620,18 @@
         }
 
         .user-avatar:nth-child(1) {
-            background-color: #f3e8ff;
+            background-color: rgba(0, 247, 255, 0.2);
             z-index: 3;
         }
 
         .user-avatar:nth-child(2) {
-            background-color: #dbeafe;
+            background-color: rgba(255, 0, 247, 0.2);
             margin-left: -8px;
             z-index: 2;
         }
 
         .user-avatar:nth-child(3) {
-            background-color: #fce7f3;
+            background-color: rgba(247, 255, 0, 0.2);
             margin-left: -8px;
             z-index: 1;
         }
@@ -451,7 +639,7 @@
         .testimonial-text {
             text-align: left;
             font-size: 0.875rem;
-            color: #636e72;
+            color: #b2bec3;
         }
 
         .rating {
@@ -476,15 +664,16 @@
         .hero-animation-container {
             width: 100%;
             height: 400px;
-            background: white;
+            background: rgba(45, 52, 54, 0.8);
             border-radius: 24px;
-            box-shadow: 0 30px 50px rgba(0, 0, 0, 0.1);
-            border: 4px solid white;
+            box-shadow: 0 30px 50px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(0, 247, 255, 0.3);
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
             position: relative;
+            backdrop-filter: blur(10px);
         }
 
         .hero-animation-container::before {
@@ -495,9 +684,9 @@
             width: 200%;
             height: 200%;
             background: linear-gradient(135deg, 
-                rgba(108, 92, 231, 0.1) 0%, 
-                rgba(253, 121, 168, 0.1) 50%, 
-                rgba(0, 206, 201, 0.1) 100%);
+                rgba(0, 247, 255, 0.1) 0%, 
+                rgba(255, 0, 247, 0.1) 50%, 
+                rgba(247, 255, 0, 0.1) 100%);
             animation: rotate-gradient 20s linear infinite;
             z-index: 1;
         }
@@ -525,9 +714,11 @@
         /* Features Section */
         .features-section {
             padding: 120px 24px;
-            background-color: white;
+            background-color: rgba(45, 52, 54, 0.9);
             position: relative;
             overflow: hidden;
+            border-top: 1px solid rgba(0, 247, 255, 0.2);
+            border-bottom: 1px solid rgba(0, 247, 255, 0.2);
         }
 
         .features-bg {
@@ -551,7 +742,7 @@
             left: -100px;
             width: 400px;
             height: 400px;
-            background-color: var(--primary);
+            background-color: var(--neon-primary);
         }
 
         .features-bg-shape-2 {
@@ -559,7 +750,7 @@
             right: -150px;
             width: 500px;
             height: 500px;
-            background-color: var(--secondary);
+            background-color: var(--neon-secondary);
         }
 
         .features-grid {
@@ -572,12 +763,13 @@
         .feature-card {
             border-radius: 24px;
             padding: 40px;
-            background: white;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+            background: rgba(45, 52, 54, 0.8);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
             transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
             position: relative;
             overflow: hidden;
-            border: 1px solid rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(0, 247, 255, 0.2);
+            backdrop-filter: blur(10px);
         }
 
         .feature-card::before {
@@ -587,42 +779,64 @@
             left: 0;
             width: 100%;
             height: 5px;
-            background: var(--gradient);
+            background: linear-gradient(90deg, var(--neon-primary), var(--neon-secondary));
         }
 
         .feature-card:hover {
             transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 30px 60px rgba(0, 247, 255, 0.3);
         }
 
         .feature-card-1 {
-            border-top: 5px solid var(--primary);
+            border-top: 5px solid var(--neon-primary);
         }
 
         .feature-card-2 {
-            border-top: 5px solid var(--secondary);
+            border-top: 5px solid var(--neon-secondary);
         }
 
         .feature-card-3 {
-            border-top: 5px solid var(--accent);
+            border-top: 5px solid var(--neon-accent);
         }
 
         .feature-icon-container {
             width: 80px;
             height: 80px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background: linear-gradient(135deg, var(--neon-primary), var(--neon-secondary));
             border-radius: 20px;
             margin: 0 auto 24px auto;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 10px 20px rgba(108, 92, 231, 0.3);
+            box-shadow: 0 10px 20px rgba(0, 247, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-icon-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                transparent,
+                transparent,
+                transparent,
+                rgba(255, 255, 255, 0.3),
+                transparent,
+                transparent,
+                transparent
+            );
+            animation: rotate 6s linear infinite;
         }
 
         .feature-icon {
             width: 40px;
             height: 40px;
-            color: white;
+            color: var(--dark);
             transition: all 0.3s ease;
         }
 
@@ -635,11 +849,11 @@
             font-weight: bold;
             margin-bottom: 16px;
             text-align: center;
-            color: var(--dark);
+            color: var(--light);
         }
 
         .feature-description {
-            color: #636e72;
+            color: #b2bec3;
             margin-bottom: 24px;
             text-align: center;
         }
@@ -668,9 +882,11 @@
         /* Demo Section */
         .demo-section {
             padding: 120px 24px;
-            background: linear-gradient(135deg, #f1f2f6, #dfe6e9);
+            background: linear-gradient(135deg, #1B2735, #090A0F);
             position: relative;
             overflow: hidden;
+            border-top: 1px solid rgba(0, 247, 255, 0.2);
+            border-bottom: 1px solid rgba(0, 247, 255, 0.2);
         }
 
         .demo-section::before {
@@ -680,7 +896,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="rgba(108, 92, 231, 0.05)" d="M0,0 L100,0 L100,100 L0,100 Z" /></svg>');
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="rgba(0, 247, 255, 0.05)" d="M0,0 L100,0 L100,100 L0,100 Z" /></svg>');
             background-size: cover;
             opacity: 0.1;
             z-index: 0;
@@ -705,13 +921,15 @@
         }
 
         .demo-card {
-            background-color: white;
+            background-color: rgba(45, 52, 54, 0.8);
             padding: 32px;
             border-radius: 24px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 247, 255, 0.2);
         }
 
         .demo-card::before {
@@ -725,34 +943,35 @@
 
         .demo-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 30px 60px rgba(0, 247, 255, 0.3);
         }
 
         .demo-card-math::before {
-            background: var(--primary);
+            background: var(--neon-primary);
         }
 
         .demo-card-word::before {
-            background: var(--secondary);
+            background: var(--neon-secondary);
         }
 
         .demo-card-title {
             font-size: 1.5rem;
             font-weight: bold;
             margin-bottom: 16px;
-            color: var(--dark);
+            color: var(--light);
         }
 
         .demo-card-description {
-            color: #636e72;
+            color: #b2bec3;
             margin-bottom: 24px;
         }
 
         .demo-game-container {
-            background-color: #f8f9fa;
+            background-color: rgba(45, 52, 54, 0.6);
             padding: 24px;
             border-radius: 16px;
             margin-bottom: 24px;
+            border: 1px solid rgba(0, 247, 255, 0.2);
         }
 
         .demo-game-question {
@@ -763,14 +982,14 @@
         .game-instruction {
             font-weight: 500;
             margin-bottom: 8px;
-            color: var(--dark);
+            color: var(--light);
         }
 
         .game-question {
             font-size: 2rem;
             font-weight: bold;
             margin: 16px 0;
-            color: var(--primary);
+            color: var(--neon-primary);
         }
 
         .math-options-grid {
@@ -780,8 +999,8 @@
         }
 
         .math-option {
-            background-color: white;
-            border: 2px solid #dfe6e9;
+            background-color: rgba(45, 52, 54, 0.8);
+            border: 2px solid rgba(0, 247, 255, 0.3);
             border-radius: 12px;
             padding: 16px;
             font-weight: bold;
@@ -789,12 +1008,13 @@
             cursor: pointer;
             transition: all 0.2s ease;
             text-align: center;
+            color: var(--light);
         }
 
         .math-option:hover {
-            background-color: #e3f2fd;
+            background-color: rgba(0, 247, 255, 0.2);
             transform: scale(1.05);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 8px rgba(0, 247, 255, 0.2);
         }
 
         .letter-tiles-container {
@@ -806,8 +1026,8 @@
         }
 
         .letter-tile {
-            background-color: white;
-            border: 2px solid #b2bec3;
+            background-color: rgba(45, 52, 54, 0.8);
+            border: 2px solid rgba(0, 247, 255, 0.3);
             border-radius: 8px;
             width: 48px;
             height: 48px;
@@ -818,12 +1038,13 @@
             font-size: 1.5rem;
             cursor: pointer;
             transition: all 0.2s ease;
+            color: var(--light);
         }
 
         .letter-tile:hover {
             transform: translateY(-5px) rotate(5deg);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            background-color: #e3f2fd;
+            box-shadow: 0 5px 15px rgba(0, 247, 255, 0.2);
+            background-color: rgba(0, 247, 255, 0.2);
         }
 
         .word-game-controls {
@@ -841,8 +1062,8 @@
         }
 
         .word-slot {
-            background-color: white;
-            border: 2px solid #dfe6e9;
+            background-color: rgba(45, 52, 54, 0.8);
+            border: 2px solid rgba(0, 247, 255, 0.3);
             border-radius: 8px;
             width: 48px;
             height: 48px;
@@ -851,11 +1072,12 @@
             justify-content: center;
             font-weight: bold;
             font-size: 1.5rem;
+            color: var(--light);
         }
 
         .game-button {
-            background: var(--gradient);
-            color: white;
+            background: linear-gradient(135deg, var(--neon-primary), var(--neon-secondary));
+            color: var(--dark);
             padding: 12px 24px;
             border-radius: 50px;
             font-weight: 500;
@@ -863,12 +1085,12 @@
             border: none;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 10px rgba(108, 92, 231, 0.3);
+            box-shadow: 0 4px 10px rgba(0, 247, 255, 0.3);
         }
 
         .game-button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(108, 92, 231, 0.4);
+            box-shadow: 0 8px 20px rgba(0, 247, 255, 0.5);
         }
 
         .feedback-message {
@@ -883,14 +1105,14 @@
         }
 
         .feedback-success {
-            background-color: #d1fae5;
-            border: 1px solid #a7f3d0;
-            color: #065f46;
+            background-color: rgba(0, 184, 148, 0.2);
+            border: 1px solid rgba(0, 184, 148, 0.3);
+            color: #a7f3d0;
         }
 
         .feedback-button {
-            background: var(--gradient);
-            color: white;
+            background: linear-gradient(135deg, var(--neon-primary), var(--neon-secondary));
+            color: var(--dark);
             padding: 12px 24px;
             border-radius: 50px;
             font-weight: 500;
@@ -899,12 +1121,12 @@
             cursor: pointer;
             transition: all 0.3s ease;
             width: 100%;
-            box-shadow: 0 4px 10px rgba(108, 92, 231, 0.3);
+            box-shadow: 0 4px 10px rgba(0, 247, 255, 0.3);
         }
 
         .feedback-button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(108, 92, 231, 0.4);
+            box-shadow: 0 8px 20px rgba(0, 247, 255, 0.5);
         }
 
         .demo-animation {
@@ -915,15 +1137,16 @@
         .animation-container {
             width: 100%;
             height: 300px;
-            background: white;
+            background: rgba(45, 52, 54, 0.8);
             border-radius: 24px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            border: 4px solid white;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(0, 247, 255, 0.3);
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
             position: relative;
+            backdrop-filter: blur(10px);
         }
 
         .animation-container::before {
@@ -934,9 +1157,9 @@
             width: 200%;
             height: 200%;
             background: linear-gradient(135deg, 
-                rgba(108, 92, 231, 0.1) 0%, 
-                rgba(253, 121, 168, 0.1) 50%, 
-                rgba(0, 206, 201, 0.1) 100%);
+                rgba(0, 247, 255, 0.1) 0%, 
+                rgba(255, 0, 247, 0.1) 50%, 
+                rgba(247, 255, 0, 0.1) 100%);
             animation: rotate-gradient 20s linear infinite;
             z-index: 1;
         }
@@ -980,9 +1203,11 @@
         /* Rewards Section */
         .rewards-section {
             padding: 120px 24px;
-            background-color: white;
+            background-color: rgba(45, 52, 54, 0.9);
             position: relative;
             overflow: hidden;
+            border-top: 1px solid rgba(0, 247, 255, 0.2);
+            border-bottom: 1px solid rgba(0, 247, 255, 0.2);
         }
 
         .rewards-bg {
@@ -1006,7 +1231,7 @@
             left: -150px;
             width: 500px;
             height: 500px;
-            background-color: var(--secondary);
+            background-color: var(--neon-secondary);
         }
 
         .rewards-bg-shape-2 {
@@ -1014,7 +1239,7 @@
             right: -100px;
             width: 400px;
             height: 400px;
-            background-color: var(--accent);
+            background-color: var(--neon-accent);
         }
 
         .rewards-grid {
@@ -1032,12 +1257,14 @@
         .rewards-card-inner {
             border-radius: 24px;
             padding: 40px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
             transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
             transform-style: preserve-3d;
-            background: white;
+            background: rgba(45, 52, 54, 0.8);
             position: relative;
             overflow: hidden;
+            border: 1px solid rgba(0, 247, 255, 0.2);
+            backdrop-filter: blur(10px);
         }
 
         .rewards-card-inner::before {
@@ -1047,23 +1274,23 @@
             left: 0;
             width: 100%;
             height: 5px;
-            background: var(--gradient);
+            background: linear-gradient(90deg, var(--neon-primary), var(--neon-secondary));
         }
 
         .rewards-card:hover .rewards-card-inner {
             transform: translateY(-10px) rotateY(5deg);
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 30px 60px rgba(0, 247, 255, 0.3);
         }
 
         .rewards-card-title {
             font-size: 1.5rem;
             font-weight: bold;
             margin-bottom: 16px;
-            color: var(--dark);
+            color: var(--light);
         }
 
         .rewards-card-description {
-            color: #636e72;
+            color: #b2bec3;
             margin-bottom: 24px;
         }
 
@@ -1075,24 +1302,24 @@
         }
 
         .reward-day {
-            background-color: white;
+            background-color: rgba(45, 52, 54, 0.8);
             padding: 12px;
             border-radius: 12px;
             text-align: center;
             transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            border: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(0, 247, 255, 0.2);
         }
 
         .reward-day:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 20px rgba(0, 247, 255, 0.3);
         }
 
         .reward-day-special {
-            border: 2px solid #fdcb6e;
+            border: 2px solid var(--neon-accent);
             animation: pulse-slow 2s infinite;
-            background: linear-gradient(135deg, #fff8e1, #fff);
+            background: linear-gradient(135deg, rgba(247, 255, 0, 0.1), rgba(45, 52, 54, 0.8));
         }
 
         .reward-day-special:hover {
@@ -1103,14 +1330,14 @@
             font-size: 0.75rem;
             font-weight: 500;
             margin-bottom: 4px;
-            color: #636e72;
+            color: #b2bec3;
         }
 
         .day-reward {
             width: 40px;
             height: 40px;
             margin: 0 auto;
-            background: linear-gradient(135deg, #ffeaa7, #fdcb6e);
+            background: linear-gradient(135deg, rgba(247, 255, 0, 0.3), rgba(247, 255, 0, 0.6));
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -1119,7 +1346,7 @@
             font-weight: bold;
             font-size: 1.2rem;
             transition: all 0.3s ease;
-            box-shadow: 0 5px 10px rgba(253, 203, 110, 0.3);
+            box-shadow: 0 5px 10px rgba(247, 255, 0, 0.3);
         }
 
         .day-reward:hover {
@@ -1132,36 +1359,36 @@
             align-items: center;
             gap: 16px;
             padding-top: 16px;
-            border-top: 1px solid #dfe6e9;
+            border-top: 1px solid rgba(0, 247, 255, 0.2);
         }
 
         .feature-icon-container-small {
             width: 50px;
             height: 50px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background: linear-gradient(135deg, var(--neon-primary), var(--neon-secondary));
             border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
-            box-shadow: 0 5px 15px rgba(108, 92, 231, 0.2);
+            box-shadow: 0 5px 15px rgba(0, 247, 255, 0.2);
         }
 
         .feature-icon-small {
             width: 24px;
             height: 24px;
-            color: white;
+            color: var(--dark);
         }
 
         .feature-title-small {
             font-weight: bold;
             margin-bottom: 4px;
-            color: var(--dark);
+            color: var(--light);
         }
 
         .feature-description-small {
             font-size: 0.875rem;
-            color: #636e72;
+            color: #b2bec3;
         }
 
         .avatar-showcase {
@@ -1178,16 +1405,16 @@
         .avatar-preview {
             width: 120px;
             height: 120px;
-            background-color: white;
+            background-color: rgba(45, 52, 54, 0.8);
             border-radius: 50%;
-            border: 4px solid var(--primary);
+            border: 4px solid var(--neon-primary);
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 60px;
             overflow: hidden;
             transition: all 0.3s ease;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 20px rgba(0, 247, 255, 0.3);
         }
 
         .avatar-preview:hover {
@@ -1202,7 +1429,7 @@
         .avatar-title {
             font-weight: bold;
             margin-bottom: 8px;
-            color: var(--dark);
+            color: var(--light);
             font-size: 1.2rem;
         }
 
@@ -1213,18 +1440,18 @@
         }
 
         .avatar-badge {
-            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
-            color: #0d47a1;
+            background: linear-gradient(135deg, rgba(0, 247, 255, 0.2), rgba(0, 247, 255, 0.4));
+            color: var(--light);
             padding: 6px 12px;
             border-radius: 50px;
             font-size: 0.75rem;
             transition: all 0.3s ease;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 2px 5px rgba(0, 247, 255, 0.1);
         }
 
         .avatar-badge:hover {
             transform: scale(1.05);
-            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 5px 10px rgba(0, 247, 255, 0.2);
         }
 
         .avatar-customization {
@@ -1244,24 +1471,24 @@
             align-items: center;
             justify-content: center;
             padding: 16px;
-            background-color: white;
+            background-color: rgba(45, 52, 54, 0.8);
             border-radius: 12px;
             border: 3px solid transparent;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
 
         .avatar-option:hover {
             transform: scale(1.1);
-            border-color: var(--primary);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            border-color: var(--neon-primary);
+            box-shadow: 0 10px 20px rgba(0, 247, 255, 0.3);
         }
 
         .avatar-option.selected {
-            border-color: #00b894;
+            border-color: var(--neon-accent);
             transform: scale(1.05);
-            box-shadow: 0 0 0 3px rgba(0, 184, 148, 0.3);
+            box-shadow: 0 0 0 3px rgba(247, 255, 0, 0.3);
             animation: bounce-in 0.6s;
         }
 
@@ -1274,9 +1501,11 @@
         /* Parents Section */
         .parents-section {
             padding: 120px 24px;
-            background: linear-gradient(135deg, #f1f2f6, #dfe6e9);
+            background: linear-gradient(135deg, #1B2735, #090A0F);
             position: relative;
             overflow: hidden;
+            border-top: 1px solid rgba(0, 247, 255, 0.2);
+            border-bottom: 1px solid rgba(0, 247, 255, 0.2);
         }
 
         .parents-section::before {
@@ -1286,7 +1515,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="rgba(0, 206, 201, 0.05)" d="M0,0 L100,0 L100,100 L0,100 Z" /></svg>');
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="rgba(0, 247, 255, 0.05)" d="M0,0 L100,0 L100,100 L0,100 Z" /></svg>');
             background-size: cover;
             opacity: 0.1;
             z-index: 0;
@@ -1300,13 +1529,15 @@
         }
 
         .parents-card {
-            background-color: white;
+            background-color: rgba(45, 52, 54, 0.8);
             padding: 40px;
             border-radius: 24px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 247, 255, 0.2);
         }
 
         .parents-card::before {
@@ -1316,23 +1547,23 @@
             left: 0;
             width: 100%;
             height: 5px;
-            background: var(--accent);
+            background: var(--neon-accent);
         }
 
         .parents-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 30px 60px rgba(0, 247, 255, 0.3);
         }
 
         .parents-card-title {
             font-size: 1.5rem;
             font-weight: bold;
             margin-bottom: 16px;
-            color: var(--dark);
+            color: var(--light);
         }
 
         .parents-card-description {
-            color: #636e72;
+            color: #b2bec3;
             margin-bottom: 24px;
         }
 
@@ -1355,27 +1586,32 @@
 
         .progress-label {
             font-weight: 500;
-            color: var(--dark);
+            color: var(--light);
         }
 
         .progress-value {
             font-weight: bold;
-            color: var(--accent);
+            color: var(--neon-accent);
         }
 
         .progress-bar-container {
             width: 100%;
             height: 10px;
-            background-color: #dfe6e9;
+            background-color: rgba(45, 52, 54, 0.6);
             border-radius: 5px;
             overflow: hidden;
         }
 
         .progress-bar {
             height: 100%;
-            background: linear-gradient(90deg, var(--accent), #55efc4);
+            background: linear-gradient(90deg, var(--neon-accent), #55efc4);
             border-radius: 5px;
             transition: width 1.5s ease-in-out;
+            position: relative;
+        }
+
+        .progress-bar.glowing {
+            box-shadow: 0 0 10px var(--neon-accent);
         }
 
         .progress-notification {
@@ -1383,36 +1619,36 @@
             align-items: center;
             gap: 16px;
             padding-top: 16px;
-            border-top: 1px solid #dfe6e9;
+            border-top: 1px solid rgba(0, 247, 255, 0.2);
         }
 
         .notification-icon-container {
             width: 50px;
             height: 50px;
-            background: linear-gradient(135deg, #55efc4, var(--accent));
+            background: linear-gradient(135deg, #55efc4, var(--neon-accent));
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
-            box-shadow: 0 5px 15px rgba(0, 206, 201, 0.3);
+            box-shadow: 0 5px 15px rgba(0, 247, 255, 0.3);
         }
 
         .notification-icon {
             width: 24px;
             height: 24px;
-            color: white;
+            color: var(--dark);
         }
 
         .notification-title {
             font-weight: bold;
             margin-bottom: 4px;
-            color: var(--dark);
+            color: var(--light);
         }
 
         .notification-text {
             font-size: 0.875rem;
-            color: #636e72;
+            color: #b2bec3;
         }
 
         .parents-animation {
@@ -1423,15 +1659,16 @@
         .parents-animation-container {
             width: 100%;
             height: 300px;
-            background: white;
+            background: rgba(45, 52, 54, 0.8);
             border-radius: 24px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            border: 4px solid white;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(0, 247, 255, 0.3);
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
             position: relative;
+            backdrop-filter: blur(10px);
         }
 
         .parents-animation-container::before {
@@ -1442,7 +1679,7 @@
             width: 200%;
             height: 200%;
             background: linear-gradient(135deg, 
-                rgba(0, 206, 201, 0.1) 0%, 
+                rgba(0, 247, 255, 0.1) 0%, 
                 rgba(108, 92, 231, 0.1) 50%, 
                 rgba(253, 121, 168, 0.1) 100%);
             animation: rotate-gradient 20s linear infinite;
@@ -1478,8 +1715,8 @@
         /* CTA Section */
         .cta-section {
             padding: 120px 24px;
-            background: var(--gradient);
-            color: white;
+            background: linear-gradient(135deg, var(--neon-primary), var(--neon-secondary));
+            color: var(--dark);
             text-align: center;
             position: relative;
             overflow: hidden;
@@ -1515,7 +1752,7 @@
             right: -100px;
             width: 400px;
             height: 400px;
-            background-color: var(--accent);
+            background-color: var(--neon-accent);
         }
 
         .cta-container {
@@ -1529,6 +1766,10 @@
             font-size: 3rem;
             margin-bottom: 24px;
             line-height: 1.2;
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
         }
 
         .cta-subtitle {
@@ -1538,6 +1779,7 @@
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
+            color: var(--dark);
         }
 
         .cta-buttons {
@@ -1549,8 +1791,8 @@
         }
 
         .cta-button {
-            background-color: white;
-            color: var(--primary);
+            background-color: var(--dark);
+            color: var(--neon-primary);
             padding: 20px 24px;
             border-radius: 16px;
             font-weight: 600;
@@ -1560,13 +1802,18 @@
             justify-content: center;
             gap: 12px;
             transition: all 0.3s ease;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            border: 1px solid rgba(0, 247, 255, 0.3);
         }
 
         .cta-button:hover {
-            background-color: #f8f9fa;
+            background-color: rgba(45, 52, 54, 0.9);
             transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 15px 30px rgba(0, 247, 255, 0.5);
+            color: var(--neon-secondary);
         }
 
         .cta-button-emoji {
@@ -1581,21 +1828,24 @@
         .security-badge {
             display: inline-flex;
             align-items: center;
-            background-color: rgba(255, 255, 255, 0.2);
+            background-color: rgba(45, 52, 54, 0.5);
             padding: 12px 24px;
             border-radius: 50px;
             backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(0, 247, 255, 0.3);
         }
 
         .security-icon {
             width: 20px;
             height: 20px;
             margin-right: 8px;
+            color: var(--neon-primary);
         }
 
         .security-text {
             font-size: 0.875rem;
+            color: var(--dark);
+            font-weight: 500;
         }
 
         .confetti-container {
@@ -1612,16 +1862,17 @@
             position: absolute;
             width: 10px;
             height: 10px;
-            background-color: #f00;
+            background-color: var(--neon-primary);
             opacity: 0;
         }
 
         /* Footer */
         .footer {
-            background-color: var(--dark);
+            background-color: rgba(45, 52, 54, 0.95);
             color: white;
             padding: 80px 24px 40px;
             position: relative;
+            border-top: 1px solid rgba(0, 247, 255, 0.2);
         }
 
         .footer::before {
@@ -1631,7 +1882,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="rgba(255, 255, 255, 0.03)" d="M0,0 L100,0 L100,100 L0,100 Z" /></svg>');
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="rgba(0, 247, 255, 0.05)" d="M0,0 L100,0 L100,100 L0,100 Z" /></svg>');
             background-size: cover;
             opacity: 0.1;
             z-index: 0;
@@ -1661,13 +1912,13 @@
         .footer-logo-icon {
             width: 40px;
             height: 40px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background: linear-gradient(135deg, var(--neon-primary), var(--neon-secondary));
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 20px;
-            color: white;
+            color: var(--dark);
             transition: all 0.3s ease;
         }
 
@@ -1677,13 +1928,13 @@
 
         .footer-logo-text {
             font-size: 24px;
-            font-family: 'Fredoka One', display;
-            color: white;
+            font-family: 'Orbitron', sans-serif;
+            color: var(--neon-primary);
             transition: color 0.3s ease;
         }
 
         .footer-logo-text:hover {
-            color: var(--primary);
+            color: var(--neon-secondary);
         }
 
         .footer-description {
@@ -1705,13 +1956,13 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(0, 247, 255, 0.1);
         }
 
         .social-link:hover {
-            color: white;
+            color: var(--neon-primary);
             transform: scale(1.1);
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(0, 247, 255, 0.2);
         }
 
         .social-icon {
@@ -1723,7 +1974,7 @@
             font-size: 1.125rem;
             font-weight: bold;
             margin-bottom: 16px;
-            color: white;
+            color: var(--neon-primary);
         }
 
         .footer-links {
@@ -1742,14 +1993,14 @@
         }
 
         .footer-link:hover {
-            color: white;
+            color: var(--neon-primary);
             padding-left: 8px;
         }
 
         .footer-bottom {
             padding-top: 48px;
             margin-top: 32px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid rgba(0, 247, 255, 0.2);
             text-align: center;
             color: #b2bec3;
             font-size: 0.875rem;
@@ -1757,74 +2008,60 @@
 
         /* Animations */
         @keyframes float {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-20px);
-            }
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
         }
 
         @keyframes wiggle {
-            0%, 100% {
-                transform: rotate(-3deg);
-            }
-            50% {
-                transform: rotate(3deg);
-            }
+            0%, 100% { transform: rotate(-3deg); }
+            50% { transform: rotate(3deg); }
         }
 
         @keyframes bounce {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
 
         @keyframes pulse-slow {
-            0%, 100% {
-                transform: scale(1);
-                box-shadow: 0 5px 15px rgba(253, 203, 110, 0.3);
-            }
-            50% {
-                transform: scale(1.05);
-                box-shadow: 0 10px 25px rgba(253, 203, 110, 0.4);
-            }
+            0%, 100% { transform: scale(1); box-shadow: 0 5px 15px rgba(247, 255, 0, 0.3); }
+            50% { transform: scale(1.05); box-shadow: 0 10px 25px rgba(247, 255, 0, 0.5); }
         }
 
         @keyframes bounce-in {
-            0% {
-                transform: scale(0.5);
-                opacity: 0;
-            }
-            60% {
-                transform: scale(1.2);
-                opacity: 1;
-            }
-            100% {
-                transform: scale(1);
-            }
+            0% { transform: scale(0.5); opacity: 0; }
+            60% { transform: scale(1.2); opacity: 1; }
+            100% { transform: scale(1); }
         }
 
         @keyframes rotate-gradient {
-            0% {
-                transform: rotate(0deg);
-            }
-            100% {
-                transform: rotate(360deg);
-            }
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         @keyframes confetti-fall {
-            0% {
-                transform: translateY(-100px) rotate(0deg);
-                opacity: 1;
+            0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+
+        @keyframes hologram {
+            0% { transform: rotate(0deg) translate(0, 0); }
+            100% { transform: rotate(360deg) translate(0, 0); }
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes neon-pulse {
+            0%, 100% { 
+                text-shadow: 0 0 5px var(--neon-primary),
+                             0 0 10px var(--neon-primary);
             }
-            100% {
-                transform: translateY(100vh) rotate(360deg);
-                opacity: 0;
+            50% { 
+                text-shadow: 0 0 10px var(--neon-primary),
+                             0 0 20px var(--neon-primary),
+                             0 0 30px var(--neon-secondary);
             }
         }
 
@@ -1832,24 +2069,513 @@
             animation: confetti-fall 3s linear forwards;
         }
 
-        /* Parallax effect for sections */
-        .parallax-section {
-            position: relative;
+        /* Game Character Styles */
+        .game-character {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .character-avatar {
+            font-size: 48px;
+            animation: bounce 2s infinite;
+        }
+
+        .character-progress {
+            flex-grow: 1;
+        }
+
+        .progress-stars {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .star {
+            font-size: 24px;
+            opacity: 0.3;
+        }
+
+        .star.collected {
+            opacity: 1;
+            animation: pulse 1s infinite;
+            color: var(--neon-accent);
+        }
+
+        .progress-bar-game {
+            height: 10px;
+            background-color: rgba(45, 52, 54, 0.6);
+            border-radius: 5px;
             overflow: hidden;
         }
 
-        .parallax-bg-element {
+        .progress-bar-game>div {
+            height: 100%;
+            background: linear-gradient(90deg, var(--neon-primary), var(--neon-secondary));
+            border-radius: 5px;
+            transition: width 0.5s ease;
+        }
+
+        /* Game Input Styles */
+        .game-input-container {
+            display: flex;
+            gap: 8px;
+            margin-top: 16px;
+        }
+
+        .game-input {
+            flex-grow: 1;
+            padding: 12px 16px;
+            border: 2px solid rgba(0, 247, 255, 0.3);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background-color: rgba(45, 52, 54, 0.8);
+            color: var(--light);
+        }
+
+        .game-input:focus {
+            outline: none;
+            border-color: var(--neon-primary);
+            box-shadow: 0 0 0 3px rgba(0, 247, 255, 0.2);
+        }
+
+        /* Word Game Styles */
+        .word-game-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid rgba(0, 247, 255, 0.2);
+        }
+
+        .word-score, .word-target {
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            color: var(--light);
+        }
+
+        .word-game-board {
+            margin-bottom: 16px;
+        }
+
+        .word-display {
+            min-height: 60px;
+            background-color: rgba(45, 52, 54, 0.6);
+            border-radius: 8px;
+            padding: 12px;
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            letter-spacing: 8px;
+            border: 2px dashed rgba(0, 247, 255, 0.3);
+            color: var(--light);
+        }
+
+        /* Memory Game Styles */
+        .memory-game-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .memory-stats {
+            display: flex;
+            gap: 16px;
+        }
+
+        .stat {
+            font-weight: 500;
+            color: var(--light);
+        }
+
+        .memory-game-board {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .memory-card {
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, var(--neon-primary), var(--neon-secondary));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: var(--dark);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            transform-style: preserve-3d;
+            position: relative;
+        }
+
+        .memory-card .front,
+        .memory-card .back {
             position: absolute;
             width: 100%;
             height: 100%;
-            background-size: cover;
-            background-position: center;
-            transform: translateZ(-1px) scale(2);
-            z-index: -1;
-            opacity: 0.1;
+            backface-visibility: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
         }
 
-        /* Responsive Styles */
+        .memory-card .front {
+            background-color: rgba(45, 52, 54, 0.8);
+            color: var(--light);
+            transform: rotateY(180deg);
+        }
+
+        .memory-card .back {
+            background: linear-gradient(135deg, var(--neon-primary), var(--neon-secondary));
+            color: var(--dark);
+        }
+
+        .memory-card.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .memory-card.matched {
+            opacity: 0.5;
+            cursor: default;
+        }
+
+        /* Color Mix Lab Game Styles */
+        .color-game-area {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .color-target,
+        .color-result {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .color-swatch {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 3px solid rgba(45, 52, 54, 0.8);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s ease;
+        }
+
+        .target-swatch {
+            border: 3px dashed rgba(0, 247, 255, 0.5);
+        }
+
+        .color-value {
+            font-weight: 500;
+            color: #b2bec3;
+        }
+
+        .color-mixer {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            background-color: rgba(45, 52, 54, 0.6);
+            padding: 16px;
+            border-radius: 12px;
+            border: 1px solid rgba(0, 247, 255, 0.2);
+        }
+
+        .color-pickers {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .color-picker {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .color-slider {
+            flex-grow: 1;
+            height: 30px;
+            -webkit-appearance: none;
+            appearance: none;
+            background: transparent;
+        }
+
+        .color-slider::-webkit-slider-runnable-track {
+            height: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .color-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            margin-top: -5px;
+            cursor: pointer;
+            border: 2px solid var(--dark);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .red::-webkit-slider-runnable-track {
+            background: linear-gradient(to right, #000, #f00);
+        }
+
+        .red::-webkit-slider-thumb {
+            background: #f00;
+        }
+
+        .green::-webkit-slider-runnable-track {
+            background: linear-gradient(to right, #000, #0f0);
+        }
+
+        .green::-webkit-slider-thumb {
+            background: #0f0;
+        }
+
+        .blue::-webkit-slider-runnable-track {
+            background: linear-gradient(to right, #000, #00f);
+        }
+
+        .blue::-webkit-slider-thumb {
+            background: #00f;
+        }
+
+        .color-controls {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        /* Pattern Match Game Styles */
+        .pattern-game-area {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .pattern-target {
+            background-color: rgba(45, 52, 54, 0.6);
+            border-radius: 12px;
+            padding: 16px;
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 16px;
+            min-height: 80px;
+            align-items: center;
+            border: 2px dashed rgba(0, 247, 255, 0.3);
+        }
+
+        .pattern-options {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .pattern-option {
+            background-color: rgba(45, 52, 54, 0.8);
+            border: 2px solid rgba(0, 247, 255, 0.3);
+            border-radius: 12px;
+            padding: 12px;
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-height: 60px;
+            align-items: center;
+        }
+
+        .pattern-option:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 247, 255, 0.2);
+        }
+
+        .pattern-option.selected {
+            border-color: var(--neon-primary);
+            background-color: rgba(0, 247, 255, 0.1);
+        }
+
+        .pattern-option.correct {
+            border-color: var(--neon-accent);
+            background-color: rgba(247, 255, 0, 0.1);
+        }
+
+        .pattern-option.incorrect {
+            border-color: #d63031;
+            background-color: rgba(214, 48, 49, 0.1);
+        }
+
+        .pattern-item {
+            font-size: 24px;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            background-color: rgba(45, 52, 54, 0.6);
+        }
+
+        .pattern-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .pattern-stats {
+            display: flex;
+            gap: 16px;
+        }
+
+        .pattern-stats .stat {
+            font-weight: 500;
+            color: #b2bec3;
+        }
+
+        .pattern-stats .stat span {
+            font-weight: bold;
+            color: var(--neon-primary);
+        }
+
+        /* Feedback Messages */
+        .feedback-content {
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 16px;
+        }
+
+        .feedback-success {
+            background-color: rgba(0, 184, 148, 0.2);
+            border: 1px solid rgba(0, 184, 148, 0.3);
+            color: #a7f3d0;
+        }
+
+        .feedback-error {
+            background-color: rgba(214, 48, 49, 0.2);
+            border: 1px solid rgba(214, 48, 49, 0.3);
+            color: #fecaca;
+        }
+
+        .feedback-info {
+            background-color: rgba(30, 64, 175, 0.2);
+            border: 1px solid rgba(30, 64, 175, 0.3);
+            color: #dbeafe;
+        }
+
+        /* Accessibility Controls */
+        .accessibility-panel {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(45, 52, 54, 0.9);
+            border-radius: 16px;
+            padding: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(0, 247, 255, 0.3);
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .accessibility-panel.visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .accessibility-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--neon-primary), var(--neon-secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(0, 247, 255, 0.3);
+            z-index: 1001;
+            transition: all 0.3s ease;
+        }
+
+        .accessibility-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .accessibility-toggle-icon {
+            width: 30px;
+            height: 30px;
+            color: var(--dark);
+        }
+
+        .accessibility-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .accessibility-option:last-child {
+            margin-bottom: 0;
+        }
+
+        .accessibility-option label {
+            color: var(--light);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .memory-game-board {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .section-header h2 {
+                font-size: 2.2rem;
+            }
+            
+            .cta-title {
+                font-size: 2.5rem;
+            }
+            
+            .cta-buttons {
+                grid-template-columns: 1fr;
+            }
+
+            .features-grid,
+            .demo-grid,
+            .demo-grid-reverse,
+            .rewards-grid,
+            .parents-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+
         @media (min-width: 768px) {
             .hero-container {
                 grid-template-columns: repeat(2, 1fr);
@@ -1897,433 +2623,6 @@
                 font-size: 3.5rem;
             }
         }
-
-        /* Game Character Styles */
-        .game-character {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            margin-bottom: 24px;
-        }
-
-        .character-avatar {
-            font-size: 48px;
-            animation: bounce 2s infinite;
-        }
-
-        .character-progress {
-            flex-grow: 1;
-        }
-
-        .progress-stars {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 8px;
-        }
-
-        .star {
-            font-size: 24px;
-            opacity: 0.3;
-        }
-
-        .star.collected {
-            opacity: 1;
-            animation: pulse 1s infinite;
-            color: #fdcb6e;
-        }
-
-        .progress-bar-game {
-            height: 10px;
-            background-color: #dfe6e9;
-            border-radius: 5px;
-            overflow: hidden;
-        }
-
-        .progress-bar-game>div {
-            height: 100%;
-            background: var(--gradient);
-            border-radius: 5px;
-            transition: width 0.5s ease;
-        }
-
-        /* Game Input Styles */
-        .game-input-container {
-            display: flex;
-            gap: 8px;
-            margin-top: 16px;
-        }
-
-        .game-input {
-            flex-grow: 1;
-            padding: 12px 16px;
-            border: 2px solid #dfe6e9;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .game-input:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.2);
-        }
-
-        /* Word Game Styles */
-        .word-game-header {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 16px;
-            padding-bottom: 8px;
-            border-bottom: 1px solid #dfe6e9;
-        }
-
-        .word-score, .word-target {
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            color: var(--dark);
-        }
-
-        .word-game-board {
-            margin-bottom: 16px;
-        }
-
-        .word-display {
-            min-height: 60px;
-            background-color: #f8f9fa;
-            border-radius: 8px;
-            padding: 12px;
-            font-size: 24px;
-            font-weight: bold;
-            text-align: center;
-            letter-spacing: 8px;
-            border: 2px dashed #dfe6e9;
-            color: var(--dark);
-        }
-
-        /* Memory Game Styles */
-        .memory-game-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 16px;
-        }
-
-        .memory-stats {
-            display: flex;
-            gap: 16px;
-        }
-
-        .stat {
-            font-weight: 500;
-            color: var(--dark);
-        }
-
-        .memory-game-board {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 8px;
-            margin-bottom: 16px;
-        }
-
-        .memory-card {
-            aspect-ratio: 1;
-            background: var(--gradient);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            color: white;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            transform-style: preserve-3d;
-            position: relative;
-        }
-
-        .memory-card .front,
-        .memory-card .back {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            backface-visibility: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 8px;
-        }
-
-        .memory-card .front {
-            background-color: white;
-            color: var(--dark);
-            transform: rotateY(180deg);
-        }
-
-        .memory-card .back {
-            background: var(--gradient);
-            color: white;
-        }
-
-        .memory-card.flipped {
-            transform: rotateY(180deg);
-        }
-
-        .memory-card.matched {
-            opacity: 0.5;
-            cursor: default;
-        }
-
-        /* Color Mix Lab Game Styles */
-        .color-game-area {
-            display: flex;
-            flex-direction: column;
-            gap: 24px;
-        }
-
-        .color-target,
-        .color-result {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 16px;
-        }
-
-        .color-swatch {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            border: 3px solid white;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-            transition: background-color 0.3s ease;
-        }
-
-        .target-swatch {
-            border: 3px dashed #636e72;
-        }
-
-        .color-value {
-            font-weight: 500;
-            color: #636e72;
-        }
-
-        .color-mixer {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-            background-color: #f8f9fa;
-            padding: 16px;
-            border-radius: 12px;
-        }
-
-        .color-pickers {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .color-picker {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .color-slider {
-            flex-grow: 1;
-            height: 30px;
-            -webkit-appearance: none;
-            appearance: none;
-            background: transparent;
-        }
-
-        .color-slider::-webkit-slider-runnable-track {
-            height: 10px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .color-slider::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            margin-top: -5px;
-            cursor: pointer;
-            border: 2px solid white;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-        }
-
-        .red::-webkit-slider-runnable-track {
-            background: linear-gradient(to right, #000, #f00);
-        }
-
-        .red::-webkit-slider-thumb {
-            background: #f00;
-        }
-
-        .green::-webkit-slider-runnable-track {
-            background: linear-gradient(to right, #000, #0f0);
-        }
-
-        .green::-webkit-slider-thumb {
-            background: #0f0;
-        }
-
-        .blue::-webkit-slider-runnable-track {
-            background: linear-gradient(to right, #000, #00f);
-        }
-
-        .blue::-webkit-slider-thumb {
-            background: #00f;
-        }
-
-        .color-controls {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-        }
-
-        /* Pattern Match Game Styles */
-        .pattern-game-area {
-            display: flex;
-            flex-direction: column;
-            gap: 24px;
-        }
-
-        .pattern-target {
-            background-color: #f8f9fa;
-            border-radius: 12px;
-            padding: 16px;
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            margin-bottom: 16px;
-            min-height: 80px;
-            align-items: center;
-            border: 2px dashed #dfe6e9;
-        }
-
-        .pattern-options {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-            margin-bottom: 16px;
-        }
-
-        .pattern-option {
-            background-color: white;
-            border: 2px solid #dfe6e9;
-            border-radius: 12px;
-            padding: 12px;
-            display: flex;
-            justify-content: center;
-            gap: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            min-height: 60px;
-            align-items: center;
-        }
-
-        .pattern-option:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .pattern-option.selected {
-            border-color: var(--primary);
-            background-color: rgba(108, 92, 231, 0.1);
-        }
-
-        .pattern-option.correct {
-            border-color: #00b894;
-            background-color: rgba(0, 184, 148, 0.1);
-        }
-
-        .pattern-option.incorrect {
-            border-color: #d63031;
-            background-color: rgba(214, 48, 49, 0.1);
-        }
-
-        .pattern-item {
-            font-size: 24px;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 8px;
-            background-color: #f1f5f9;
-        }
-
-        .pattern-controls {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .pattern-stats {
-            display: flex;
-            gap: 16px;
-        }
-
-        .pattern-stats .stat {
-            font-weight: 500;
-            color: #636e72;
-        }
-
-        .pattern-stats .stat span {
-            font-weight: bold;
-            color: var(--primary);
-        }
-
-        /* Feedback Messages */
-        .feedback-content {
-            padding: 16px;
-            border-radius: 8px;
-            margin-bottom: 16px;
-        }
-
-        .feedback-success {
-            background-color: #d1fae5;
-            border: 1px solid #a7f3d0;
-            color: #065f46;
-        }
-
-        .feedback-error {
-            background-color: #fee2e2;
-            border: 1px solid #fecaca;
-            color: #991b1b;
-        }
-
-        .feedback-info {
-            background-color: #dbeafe;
-            border: 1px solid #bfdbfe;
-            color: #1e40af;
-        }
-
-        /* Responsive Adjustments */
-        @media (max-width: 768px) {
-            .memory-game-board {
-                grid-template-columns: repeat(4, 1fr);
-            }
-            
-            .hero-title {
-                font-size: 2.5rem;
-            }
-            
-            .section-header h2 {
-                font-size: 2.2rem;
-            }
-            
-            .cta-title {
-                font-size: 2.5rem;
-            }
-            
-            .cta-buttons {
-                grid-template-columns: 1fr;
-            }
-        }
     </style>
 </head>
 <body class="body">
@@ -2362,7 +2661,7 @@
         
         <div class="hero-container">
             <div class="hero-content">
-                <h1 id="main-heading" class="hero-title">
+                <h1 id="main-heading" class="hero-title futuristic-heading">
                     Where Learning Becomes an <span class="hero-highlight">Epic Adventure</span>
                 </h1>
                 <p class="hero-subtitle">
@@ -2396,7 +2695,7 @@
             </div>
             
             <div class="hero-image">
-                <div class="hero-animation-container">
+                <div class="hero-animation-container holographic">
                     <div class="hero-animation-content">
                         <div class="gif-container">
                             <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExY3BlZzQ1ajIxc2NwNjdzb2wzbDV3d3doZXFodDJlbHZ3cTZuYjRyMiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/9D7dMTEskdstXHUOK2/giphy.gif" alt="Kids playing educational games">
@@ -2553,7 +2852,7 @@
                 </div>
                 
                 <div class="demo-animation">
-                    <div class="animation-container">
+                    <div class="animation-container holographic">
                         <div class="animation-content">
                             <div class="gif-container">
                                 <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExYW82bmVkOWkzeTJiNHdqeTNpazUyeXhmNjE2dGIwNnp6czRoZDA1aCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/cRHgphdnVZMtRLZlT1/giphy.gif" alt="Math Adventure GIF">
@@ -2571,7 +2870,7 @@
             <!-- Game 2: Word Explorer -->
             <div class="demo-grid demo-grid-reverse">
                 <div class="demo-animation">
-                    <div class="animation-container">
+                    <div class="animation-container holographic">
                         <div class="animation-content">
                             <div class="gif-container">
                                 <img src="https://media.giphy.com/media/ZJwK58IS5Te6Wj9JdL/giphy.gif?cid=ecf05e47az1pfe4mijo7sx202pnexz8s5owve4hmkcenlgn4&ep=v1_gifs_search&rid=giphy.gif&ct=g" alt="Word Explorer GIF">
@@ -2660,7 +2959,7 @@
                 </div>
                 
                 <div class="demo-animation">
-                    <div class="animation-container">
+                    <div class="animation-container holographic">
                         <div class="animation-content">
                             <div class="gif-container">
                                 <img src="https://media.giphy.com/media/oNRluiVoSyIF1VCAEP/giphy.gif?cid=ecf05e47iqk7b4xrg24onyuudkfeqvt54khqzm16qffdxiu4&ep=v1_gifs_search&rid=giphy.gif&ct=g" alt="Memory Match GIF">
@@ -2673,7 +2972,7 @@
             <!-- Game 4: Color Mix Lab -->
             <div class="demo-grid demo-grid-reverse">
                 <div class="demo-animation">
-                    <div class="animation-container">
+                    <div class="animation-container holographic">
                         <div class="animation-content">
                             <div class="gif-container">
                                 <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbmw4MHo3NWM3Mnp3ZzFvMjM0bmw5MWI4a2R1bDhxNzl3NXV5aGt5MiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/M5Ct4d2fXEA0hmKIpA/giphy.gif" alt="Color Mix Lab GIF">
@@ -2776,7 +3075,7 @@
                 </div>
                 
                 <div class="demo-animation">
-                    <div class="animation-container">
+                    <div class="animation-container holographic">
                         <div class="animation-content">
                             <div class="gif-container">
                                 <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExY3BlZzQ1ajIxc2NwNjdzb2wzbDV3d3doZXFodDJlbHZ3cTZuYjRyMiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/9D7dMTEskdstXHUOK2/giphy.gif" alt="Pattern Match GIF">
@@ -2796,988 +3095,4 @@
         </div>
         
         <div class="section-container">
-            <div class="section-header">
-                <h2>Earn <span class="section-highlight">Rewards</span> & Customize</h2>
-                <p class="section-subtitle">Daily challenges unlock awesome prizes and avatar items</p>
-            </div>
-            
-            <div class="rewards-grid">
-                <div class="rewards-card">
-                    <div class="rewards-card-inner rewards-card-1">
-                        <h3 class="rewards-card-title">Daily Reward System</h3>
-                        <p class="rewards-card-description">Kids earn stars for daily learning, unlocking special rewards:</p>
-                        
-                        <div class="rewards-calendar">
-                            <div class="reward-day">
-                                <div class="day-label">Day 1</div>
-                                <div class="day-reward">★</div>
-                            </div>
-                            <div class="reward-day">
-                                <div class="day-label">Day 2</div>
-                                <div class="day-reward">5★</div>
-                            </div>
-                            <div class="reward-day">
-                                <div class="day-label">Day 3</div>
-                                <div class="day-reward">10★</div>
-                            </div>
-                            <div class="reward-day">
-                                <div class="day-label">Day 4</div>
-                                <div class="day-reward">15★</div>
-                            </div>
-                            <div class="reward-day">
-                                <div class="day-label">Day 5</div>
-                                <div class="day-reward">20★</div>
-                            </div>
-                            <div class="reward-day">
-                                <div class="day-label">Day 6</div>
-                                <div class="day-reward">25★</div>
-                            </div>
-                            <div class="reward-day reward-day-special">
-                                <div class="day-label">Day 7</div>
-                                <div class="day-reward">🎁</div>
-                            </div>
-                        </div>
-                        
-                        <div class="rewards-feature">
-                            <div class="feature-icon-container-small">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="feature-icon-small" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                </svg>
-                            </div>
-                            <div>
-                                <h4 class="feature-title-small">Daily Streak</h4>
-                                <p class="feature-description-small">Login daily to keep your streak alive!</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="rewards-card">
-                    <div class="rewards-card-inner rewards-card-2">
-                        <h3 class="rewards-card-title">Avatar Customization</h3>
-                        <p class="rewards-card-description">Personalize your avatar with items earned through learning:</p>
-                        
-                        <div class="avatar-showcase">
-                            <div class="avatar-preview-container">
-                                <div class="avatar-preview">
-                                    👧
-                                </div>
-                            </div>
-                            <div class="avatar-details">
-                                <h4 class="avatar-title">Your Avatar</h4>
-                                <div class="avatar-badges">
-                                    <span class="avatar-badge">Explorer Hat</span>
-                                    <span class="avatar-badge">Math Wizard Robe</span>
-                                    <span class="avatar-badge">Star Glasses</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="avatar-customization">
-                            <h4 class="avatar-title">Unlock New Items</h4>
-                            <div class="avatar-grid">
-                                <div class="avatar-option">🎩</div>
-                                <div class="avatar-option">🧢</div>
-                                <div class="avatar-option selected">👑</div>
-                                <div class="avatar-option">👓</div>
-                                <div class="avatar-option">🕶️</div>
-                                <div class="avatar-option">🥽</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="section-cta">
-                <a href="#cta" class="btn btn-primary">
-                    <span class="btn-emoji">🎁</span> Start Earning Rewards Today!
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Parent Dashboard Section -->
-    <section id="parents" class="parents-section parallax-section">
-        <div class="section-container">
-            <div class="section-header">
-                <h2>For <span class="section-highlight">Parents</span></h2>
-                <p class="section-subtitle">Powerful insights into your child's learning journey</p>
-            </div>
-            
-            <div class="parents-grid">
-                <div class="parents-content">
-                    <div class="parents-card">
-                        <h3 class="parents-card-title">Learning Progress Dashboard</h3>
-                        <p class="parents-card-description">See exactly how your child is developing key skills:</p>
-                        
-                        <div class="progress-container">
-                            <div class="progress-item">
-                                <div class="progress-header">
-                                    <span class="progress-label">Math Skills</span>
-                                    <span class="progress-value">85%</span>
-                                </div>
-                                <div class="progress-bar-container">
-                                    <div class="progress-bar" style="width: 85%"></div>
-                                </div>
-                            </div>
-                            
-                            <div class="progress-item">
-                                <div class="progress-header">
-                                    <span class="progress-label">Reading</span>
-                                    <span class="progress-value">72%</span>
-                                </div>
-                                <div class="progress-bar-container">
-                                    <div class="progress-bar" style="width: 72%"></div>
-                                </div>
-                            </div>
-                            
-                            <div class="progress-item">
-                                <div class="progress-header">
-                                    <span class="progress-label">Problem Solving</span>
-                                    <span class="progress-value">91%</span>
-                                </div>
-                                <div class="progress-bar-container">
-                                    <div class="progress-bar" style="width: 91%"></div>
-                                </div>
-                            </div>
-                            
-                            <div class="progress-notification">
-                                <div class="notification-icon-container">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="notification-icon" viewBox="0 0 20 20" fill="currentColor">
-                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                                    </svg>
-                                </div>
-                                <div>
-                                    <h4 class="notification-title">Weekly Report Ready</h4>
-                                    <p class="notification-text">Your child completed 12 activities this week!</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="parents-animation">
-                    <div class="parents-animation-container">
-                        <div class="parents-animation-content">
-                            <div class="gif-container">
-                                <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZzZ5cGJtZ3V0d3J2b2c0eGd0Z3J1aGJjZjZ3eHZ6b3VlZ2R0dXJ1eSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o7TKz2eMXxr5jYh5e/giphy.gif" alt="Parent Dashboard GIF">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Final CTA -->
-    <section id="cta" class="cta-section">
-        <div class="cta-bg">
-            <div class="cta-bg-shape cta-bg-shape-1"></div>
-            <div class="cta-bg-shape cta-bg-shape-2"></div>
-        </div>
-        
-        <div class="cta-container">
-            <h2 class="cta-title">Start Your Learning Adventure Today!</h2>
-            <p class="cta-subtitle">7-day free trial • No credit card required</p>
-            
-            <div class="cta-buttons">
-                <a href="#" class="cta-button">
-                    <span class="cta-button-emoji">📱</span>
-                    <span>App Store</span>
-                </a>
-                <a href="#" class="cta-button">
-                    <span class="cta-button-emoji">🤖</span>
-                    <span>Google Play</span>
-                </a>
-            </div>
-            
-            <div class="cta-security">
-                <div class="security-badge">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="security-icon" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
-                    </svg>
-                    <span class="security-text">Safe & secure • Privacy protected</span>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Confetti elements -->
-        <div id="confetti-container" class="confetti-container"></div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-column">
-                <div class="footer-logo-container">
-                    <div class="footer-logo-icon">🧠</div>
-                    <span class="footer-logo-text">Chizel</span>
-                </div>
-                <p class="footer-description">Making learning magical for kids everywhere.</p>
-                <div class="footer-social">
-                    <a href="#" class="social-link">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="social-icon" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
-                        </svg>
-                    </a>
-                    <a href="#" class="social-link">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="social-icon" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-4.847-.2-6.78-2.618-6.98-6.98-.059-1.281-.073-1.689-.073-4.948 0-3.259.014-3.668.072-4.948.2-4.354 2.618-6.78 6.979-6.98 1.281-.059 1.69-.073 4.949-.073zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.196 4.354 2.618 6.78 6.979 6.98 1.281.059 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.196 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
-                        </svg>
-                    </a>
-                    <a href="#" class="social-link">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="social-icon" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-                        </svg>
-                    </a>
-                </div>
-            </div>
-            
-            <div class="footer-column">
-                <h3 class="footer-column-title">Product</h3>
-                <ul class="footer-links">
-                    <li><a href="#" class="footer-link">Features</a></li>
-                    <li><a href="#" class="footer-link">Games</a></li>
-                    <li><a href="#" class="footer-link">Rewards</a></li>
-                    <li><a href="#" class="footer-link">Pricing</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-column">
-                <h3 class="footer-column-title">For Parents</h3>
-                <ul class="footer-links">
-                    <li><a href="#" class="footer-link">Dashboard</a></li>
-                    <li><a href="#" class="footer-link">Progress Reports</a></li>
-                    <li><a href="#" class="footer-link">Safety</a></li>
-                    <li><a href="#" class="footer-link">FAQ</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-column">
-                <h3 class="footer-column-title">Company</h3>
-                <ul class="footer-links">
-                    <li><a href="#" class="footer-link">About Us</a></li>
-                    <li><a href="#" class="footer-link">Careers</a></li>
-                    <li><a href="#" class="footer-link">Privacy</a></li>
-                    <li><a href="#" class="footer-link">Terms</a></li>
-                </ul>
-            </div>
-        </div>
-        
-        <div class="footer-bottom">
-            <p>&copy; 2025 Chizel. All rights reserved.</p>
-        </div>
-    </footer>
-
-    <script>
-        // Initialize all games
-        document.addEventListener('DOMContentLoaded', function() {
-            // Initialize all games
-            setupMathGame();
-            setupWordGame();
-            setupMemoryGame();
-            setupColorGame();
-            setupPatternGame();
-            
-            // Add parallax effect to sections
-            setupParallax();
-            
-            // Add scroll animations
-            setupScrollAnimations();
-        });
-
-        // Game 1: Math Adventure
-        const mathQuestions = [
-            { question: "5 × 4 = ?", answer: 20 },
-            { question: "12 - 7 = ?", answer: 5 },
-            { question: "8 + 9 = ?", answer: 17 },
-            { question: "15 ÷ 3 = ?", answer: 5 },
-            { question: "7 × 6 = ?", answer: 42 }
-        ];
-
-        let currentMathQuestion = 0;
-        let starsCollected = 0;
-
-        const mathQuestionEl = document.getElementById('math-question');
-        const mathAnswerEl = document.getElementById('math-answer');
-        const mathSubmitBtn = document.getElementById('math-submit');
-        const mathFeedbackEl = document.getElementById('math-feedback');
-        const nextMathBtn = document.getElementById('next-math');
-        const progressStars = document.querySelectorAll('.progress-stars .star');
-        const mathProgressBar = document.getElementById('math-progress');
-
-        function setupMathGame() {
-            mathQuestionEl.textContent = mathQuestions[currentMathQuestion].question;
-            mathAnswerEl.value = '';
-            mathAnswerEl.focus();
-            mathFeedbackEl.classList.add('hidden');
-
-            // Update progress
-            const progress = (currentMathQuestion / mathQuestions.length) * 100;
-            mathProgressBar.innerHTML = `<div style="width: ${progress}%"></div>`;
-        }
-
-        mathSubmitBtn.addEventListener('click', checkMathAnswer);
-        mathAnswerEl.addEventListener('keypress', function (e) {
-            if (e.key === 'Enter') checkMathAnswer();
-        });
-
-        function checkMathAnswer() {
-            const userAnswer = parseInt(mathAnswerEl.value);
-            const correctAnswer = mathQuestions[currentMathQuestion].answer;
-
-            if (userAnswer === correctAnswer) {
-                starsCollected++;
-                if (starsCollected <= 3) {
-                    progressStars[starsCollected - 1].classList.add('collected');
-                }
-
-                mathFeedbackEl.querySelector('.feedback-content').className = 'feedback-content feedback-success';
-                mathFeedbackEl.querySelector('.feedback-title').textContent = 'Correct! ';
-                mathFeedbackEl.querySelector('.feedback-text').textContent = `The answer is ${correctAnswer}. You've collected ${starsCollected} stars!`;
-                createConfetti();
-            } else {
-                mathFeedbackEl.querySelector('.feedback-content').className = 'feedback-content feedback-error';
-                mathFeedbackEl.querySelector('.feedback-title').textContent = 'Oops! ';
-                mathFeedbackEl.querySelector('.feedback-text').textContent = `The correct answer is ${correctAnswer}. Try again!`;
-            }
-
-            mathFeedbackEl.classList.remove('hidden');
-        }
-
-        nextMathBtn.addEventListener('click', function () {
-            currentMathQuestion = (currentMathQuestion + 1) % mathQuestions.length;
-            setupMathGame();
-        });
-
-        // Game 2: Word Explorer
-        const wordLists = {
-            3: ['cat', 'dog', 'sun', 'hat', 'pen'],
-            4: ['fish', 'bird', 'cake', 'rain', 'book'],
-            5: ['apple', 'tiger', 'house', 'water', 'smile']
-        };
-
-        let currentWordLength = 3;
-        let currentWord = '';
-        let currentLetters = [];
-        let wordScore = 0;
-        let wordRound = 1;
-
-        const letterTilesContainer = document.getElementById('letter-tiles');
-        const wordDisplayEl = document.getElementById('word-display');
-        const wordScoreEl = document.getElementById('word-score');
-        const wordTargetEl = document.getElementById('word-target');
-        const submitWordBtn = document.getElementById('submit-word');
-        const shuffleLettersBtn = document.getElementById('shuffle-letters');
-        const wordFeedbackEl = document.getElementById('word-feedback');
-        const nextWordBtn = document.getElementById('next-word');
-
-        function setupWordGame() {
-            // Select a random word of current length
-            const words = wordLists[currentWordLength];
-            currentWord = words[Math.floor(Math.random() * words.length)];
-
-            // Create letter tiles
-            currentLetters = shuffleArray([...currentWord.toUpperCase()]);
-            renderLetterTiles();
-
-            // Clear word display
-            wordDisplayEl.textContent = '';
-
-            // Update UI
-            wordTargetEl.textContent = currentWordLength;
-            wordFeedbackEl.classList.add('hidden');
-        }
-
-        function renderLetterTiles() {
-            letterTilesContainer.innerHTML = '';
-            currentLetters.forEach(letter => {
-                const tile = document.createElement('div');
-                tile.className = 'letter-tile';
-                tile.textContent = letter;
-                tile.addEventListener('click', selectLetter);
-                letterTilesContainer.appendChild(tile);
-            });
-        }
-
-        function selectLetter(e) {
-            const letter = e.target.textContent;
-            wordDisplayEl.textContent += letter;
-            e.target.classList.add('selected');
-            e.target.removeEventListener('click', selectLetter);
-        }
-
-        function shuffleArray(array) {
-            for (let i = array.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [array[i], array[j]] = [array[j], array[i]];
-            }
-            return array;
-        }
-
-        shuffleLettersBtn.addEventListener('click', function () {
-            currentLetters = shuffleArray(currentLetters);
-            renderLetterTiles();
-            wordDisplayEl.textContent = '';
-        });
-
-        submitWordBtn.addEventListener('click', function () {
-            const userWord = wordDisplayEl.textContent.toLowerCase();
-
-            if (userWord === currentWord) {
-                wordScore += currentWordLength * 10;
-                wordScoreEl.textContent = wordScore;
-
-                wordFeedbackEl.querySelector('.feedback-content').className = 'feedback-content feedback-success';
-                wordFeedbackEl.querySelector('.feedback-title').textContent = 'Great job! ';
-                wordFeedbackEl.querySelector('.feedback-text').textContent = `"${currentWord}" is correct! You earned ${currentWordLength * 10} points!`;
-                createConfetti();
-
-                // Increase difficulty every 3 rounds
-                wordRound++;
-                if (wordRound % 3 === 0 && currentWordLength < 5) {
-                    currentWordLength++;
-                }
-            } else {
-                wordFeedbackEl.querySelector('.feedback-content').className = 'feedback-content feedback-error';
-                wordFeedbackEl.querySelector('.feedback-title').textContent = 'Try again! ';
-                wordFeedbackEl.querySelector('.feedback-text').textContent = `"${userWord}" is not the correct word. Keep trying!`;
-            }
-
-            wordFeedbackEl.classList.remove('hidden');
-        });
-
-        nextWordBtn.addEventListener('click', function () {
-            setupWordGame();
-        });
-
-        // Game 3: Memory Match
-        const memoryIcons = ['🐶', '🐱', '🐭', '🐹', '🐰', '🦊'];
-        let memoryCards = [];
-        let flippedCards = [];
-        let matchedPairs = 0;
-        let memoryMoves = 0;
-
-        const memoryBoardEl = document.getElementById('memory-board');
-        const memoryMovesEl = document.getElementById('memory-moves');
-        const memoryPairsEl = document.getElementById('memory-pairs');
-        const memoryRestartBtn = document.getElementById('memory-restart');
-        const memoryFeedbackEl = document.getElementById('memory-feedback');
-        const playAgainBtn = document.getElementById('play-again');
-
-        function setupMemoryGame() {
-            // Create pairs of cards
-            memoryCards = [...memoryIcons, ...memoryIcons];
-            memoryCards = shuffleArray(memoryCards);
-
-            // Reset game state
-            flippedCards = [];
-            matchedPairs = 0;
-            memoryMoves = 0;
-            memoryMovesEl.textContent = memoryMoves;
-            memoryPairsEl.textContent = matchedPairs;
-
-            // Create card elements
-            memoryBoardEl.innerHTML = '';
-            memoryCards.forEach((icon, index) => {
-                const card = document.createElement('div');
-                card.className = 'memory-card';
-                card.dataset.index = index;
-                card.innerHTML = `
-                    <div class="front">${icon}</div>
-                    <div class="back">?</div>
-                `;
-                card.addEventListener('click', flipCard);
-                memoryBoardEl.appendChild(card);
-            });
-
-            memoryFeedbackEl.classList.add('hidden');
-        }
-
-        function flipCard() {
-            // Don't allow flipping if already flipped or matched
-            if (flippedCards.length >= 2 || this.classList.contains('flipped') || this.classList.contains('matched')) {
-                return;
-            }
-
-            // Flip the card
-            this.classList.add('flipped');
-            flippedCards.push(this);
-
-            // Check for match if two cards are flipped
-            if (flippedCards.length === 2) {
-                memoryMoves++;
-                memoryMovesEl.textContent = memoryMoves;
-
-                const card1 = flippedCards[0].querySelector('.front').textContent;
-                const card2 = flippedCards[1].querySelector('.front').textContent;
-
-                if (card1 === card2) {
-                    // Match found
-                    flippedCards.forEach(card => {
-                        card.classList.add('matched');
-                    });
-                    flippedCards = [];
-                    matchedPairs++;
-                    memoryPairsEl.textContent = matchedPairs;
-
-                    // Check if game is complete
-                    if (matchedPairs === memoryIcons.length) {
-                        setTimeout(() => {
-                            memoryFeedbackEl.querySelector('.feedback-content').className = 'feedback-content feedback-success';
-                            memoryFeedbackEl.querySelector('.feedback-title').textContent = 'Congratulations! ';
-                            memoryFeedbackEl.querySelector('.feedback-text').textContent = `You completed the game in ${memoryMoves} moves!`;
-                            memoryFeedbackEl.classList.remove('hidden');
-                            createConfetti();
-                        }, 500);
-                    }
-                } else {
-                    // No match - flip back after delay
-                    setTimeout(() => {
-                        flippedCards.forEach(card => {
-                            card.classList.remove('flipped');
-                        });
-                        flippedCards = [];
-                    }, 1000);
-                }
-            }
-        }
-
-        memoryRestartBtn.addEventListener('click', setupMemoryGame);
-        playAgainBtn.addEventListener('click', setupMemoryGame);
-
-        // Game 4: Color Mix Lab
-        let targetColor = { r: 0, g: 0, b: 0 };
-        let currentLevel = 1;
-        let colorScore = 0;
-
-        const redSlider = document.getElementById('red-slider');
-        const greenSlider = document.getElementById('green-slider');
-        const blueSlider = document.getElementById('blue-slider');
-        const targetSwatch = document.querySelector('.target-swatch');
-        const resultSwatch = document.querySelector('.result-swatch');
-        const checkColorBtn = document.getElementById('check-color');
-        const newColorBtn = document.getElementById('new-color');
-        const colorFeedbackEl = document.getElementById('color-feedback');
-        const nextColorBtn = document.getElementById('next-color');
-
-        function setupColorGame() {
-            // Generate random target color based on level difficulty
-            const difficulty = Math.min(Math.floor(currentLevel / 3) + 1, 3);
-            targetColor = generateTargetColor(difficulty);
-
-            // Reset sliders
-            redSlider.value = 0;
-            greenSlider.value = 0;
-            blueSlider.value = 0;
-
-            // Update UI
-            updateColorDisplays();
-            colorFeedbackEl.classList.add('hidden');
-
-            // Add event listeners to sliders
-            redSlider.addEventListener('input', updateColorDisplays);
-            greenSlider.addEventListener('input', updateColorDisplays);
-            blueSlider.addEventListener('input', updateColorDisplays);
-        }
-
-        function generateTargetColor(difficulty) {
-            // Difficulty levels:
-            // 1: Primary colors (easy)
-            // 2: Secondary colors (medium)
-            // 3: Complex colors (hard)
-
-            if (difficulty === 1) {
-                // Primary colors or simple mixes
-                const options = [
-                    { r: 255, g: 0, b: 0 },    // Red
-                    { r: 0, g: 255, b: 0 },    // Green
-                    { r: 0, g: 0, b: 255 },    // Blue
-                    { r: 255, g: 255, b: 0 },  // Yellow
-                    { r: 255, g: 0, b: 255 },  // Magenta
-                    { r: 0, g: 255, b: 255 }   // Cyan
-                ];
-                return options[Math.floor(Math.random() * options.length)];
-            } else if (difficulty === 2) {
-                // More complex mixes
-                return {
-                    r: Math.floor(Math.random() * 256),
-                    g: Math.floor(Math.random() * 256),
-                    b: Math.floor(Math.random() * 256)
-                };
-            } else {
-                // Very specific shades
-                const baseColor = Math.floor(Math.random() * 3);
-                if (baseColor === 0) {
-                    return { // Reds
-                        r: 150 + Math.floor(Math.random() * 106),
-                        g: Math.floor(Math.random() * 100),
-                        b: Math.floor(Math.random() * 100)
-                    };
-                } else if (baseColor === 1) {
-                    return { // Greens
-                        r: Math.floor(Math.random() * 100),
-                        g: 150 + Math.floor(Math.random() * 106),
-                        b: Math.floor(Math.random() * 100)
-                    };
-                } else {
-                    return { // Blues
-                        r: Math.floor(Math.random() * 100),
-                        g: Math.floor(Math.random() * 100),
-                        b: 150 + Math.floor(Math.random() * 106)
-                    };
-                }
-            }
-        }
-
-        function updateColorDisplays() {
-            // Update target color display
-            targetSwatch.style.backgroundColor = `rgb(${targetColor.r}, ${targetColor.g}, ${targetColor.b})`;
-
-            // Update result color display
-            const currentColor = {
-                r: parseInt(redSlider.value),
-                g: parseInt(greenSlider.value),
-                b: parseInt(blueSlider.value)
-            };
-            resultSwatch.style.backgroundColor = `rgb(${currentColor.r}, ${currentColor.g}, ${currentColor.b})`;
-        }
-
-        function checkColorMatch() {
-            const userColor = {
-                r: parseInt(redSlider.value),
-                g: parseInt(greenSlider.value),
-                b: parseInt(blueSlider.value)
-            };
-
-            // Calculate color difference (simple Euclidean distance)
-            const diff = Math.sqrt(
-                Math.pow(targetColor.r - userColor.r, 2) +
-                Math.pow(targetColor.g - userColor.g, 2) +
-                Math.pow(targetColor.b - userColor.b, 2)
-            );
-
-            // Max possible difference is ~441 (black to white)
-            const matchPercentage = Math.max(0, 100 - Math.floor((diff / 441) * 100));
-
-            if (matchPercentage >= 90) {
-                colorScore += currentLevel * 10;
-                colorFeedbackEl.querySelector('.feedback-content').className = 'feedback-content feedback-success';
-                colorFeedbackEl.querySelector('.feedback-title').textContent = 'Perfect Match! ';
-                colorFeedbackEl.querySelector('.feedback-text').textContent = `You got ${matchPercentage}% match! +${currentLevel * 10} points`;
-
-                // Level up every 3 perfect matches
-                if (colorScore >= currentLevel * 30) {
-                    currentLevel++;
-                    colorFeedbackEl.querySelector('.feedback-text').textContent += ` Level up!`;
-                }
-
-                createConfetti();
-            } else if (matchPercentage >= 70) {
-                colorScore += currentLevel * 5;
-                colorFeedbackEl.querySelector('.feedback-content').className = 'feedback-content feedback-success';
-                colorFeedbackEl.querySelector('.feedback-title').textContent = 'Good Job! ';
-                colorFeedbackEl.querySelector('.feedback-text').textContent = `You got ${matchPercentage}% match! +${currentLevel * 5} points`;
-            } else {
-                colorFeedbackEl.querySelector('.feedback-content').className = 'feedback-content feedback-error';
-                colorFeedbackEl.querySelector('.feedback-title').textContent = 'Keep Trying! ';
-                colorFeedbackEl.querySelector('.feedback-text').textContent = `You got ${matchPercentage}% match. Adjust the sliders carefully!`;
-            }
-
-            colorFeedbackEl.classList.remove('hidden');
-        }
-
-        checkColorBtn.addEventListener('click', checkColorMatch);
-        newColorBtn.addEventListener('click', setupColorGame);
-        nextColorBtn.addEventListener('click', setupColorGame);
-
-        // Game 5: Pattern Match
-        const patternItems = ['🔴', '🔵', '🟡', '🟢', '⭐', '❤️', '▲', '●', '■'];
-        const patternTypes = [
-            'simple-repeat',
-            'alternating',
-            'growing',
-            'pyramid',
-            'random-with-rule'
-        ];
-
-        let currentPattern = [];
-        let correctOptionIndex = 0;
-        let patternScore = 0;
-        let  = 1;
-
-        const patternTargetEl = document.getElementById('pattern-target');
-        const patternOptionsEl = document.getElementById('pattern-options');
-        const patternLevelEl = document.getElementById('pattern-level');
-        const patternScoreEl = document.getElementById('pattern-score');
-        const newPatternBtn = document.getElementById('new-pattern');
-        const patternFeedbackEl = document.getElementById('pattern-feedback');
-        const nextPatternBtn = document.getElementById('next-pattern');
-
-        function setupPatternGame() {
-            // Clear previous selections
-            patternTargetEl.innerHTML = '';
-            patternOptionsEl.innerHTML = '';
-            patternFeedbackEl.classList.add('hidden');
-
-            // Generate target pattern
-            generatePattern();
-
-            // Generate options (one correct, others incorrect)
-            generateOptions();
-
-            // Update UI
-            patternLevelEl.textContent = currentLevel;
-            patternScoreEl.textContent = patternScore;
-        }
-
-        function generatePattern() {
-            const patternLength = Math.min(3 + Math.floor(currentLevel / 2), 6);
-            const patternType = patternTypes[Math.min(Math.floor(currentLevel / 3), patternTypes.length - 1)];
-
-            currentPattern = [];
-
-            switch (patternType) {
-                case 'simple-repeat':
-                    // Simple repeating pattern (AABB)
-                    const item1 = getRandomItem();
-                    const item2 = getRandomItem();
-                    for (let i = 0; i < patternLength; i++) {
-                        currentPattern.push(i % 2 === 0 ? item1 : item2);
-                    }
-                    break;
-
-                case 'alternating':
-                    // Alternating between two items (ABAB)
-                    const items = [getRandomItem(), getRandomItem()];
-                    for (let i = 0; i < patternLength; i++) {
-                        currentPattern.push(items[i % 2]);
-                    }
-                    break;
-
-                case 'growing':
-                    // Growing pattern (A, AB, ABC)
-                    for (let i = 0; i < patternLength; i++) {
-                        currentPattern.push(patternItems[i % patternItems.length]);
-                    }
-                    break;
-
-                case 'pyramid':
-                    // Pyramid pattern (A, BB, CCC)
-                    for (let i = 0; i < patternLength; i++) {
-                        currentPattern.push(...Array(i + 1).fill(patternItems[i % patternItems.length]));
-                    }
-                    break;
-
-                case 'random-with-rule':
-                    // Random pattern with simple rule (all same color/shape type)
-                    const type = Math.random() > 0.5 ? 'color' : 'shape';
-                    const matchingItems = patternItems.filter(item =>
-                        type === 'color' ? item.match(/[🔴🔵🟡🟢❤️]/) : item.match(/[▲●■⭐]/)
-                    );
-                    for (let i = 0; i < patternLength; i++) {
-                        currentPattern.push(matchingItems[Math.floor(Math.random() * matchingItems.length)]);
-                    }
-                    break;
-            }
-
-            // Display target pattern
-            currentPattern.forEach(item => {
-                const patternItem = document.createElement('div');
-                patternItem.className = 'pattern-item';
-                patternItem.textContent = item;
-                patternTargetEl.appendChild(patternItem);
-            });
-        }
-
-        function generateOptions() {
-            // Create 4 options (1 correct, 3 incorrect)
-            const options = [];
-            correctOptionIndex = Math.floor(Math.random() * 4);
-
-            // Generate correct option (same pattern type)
-            options[correctOptionIndex] = [...currentPattern];
-
-            // Generate incorrect options
-            for (let i = 0; i < 4; i++) {
-                if (i === correctOptionIndex) continue;
-
-                // Create variations that are similar but wrong
-                const variationType = Math.floor(Math.random() * 3);
-                let wrongPattern;
-
-                switch (variationType) {
-                    case 0: // Wrong order
-                        wrongPattern = shuffleArray([...currentPattern]);
-                        break;
-                    case 1: // Wrong items
-                        wrongPattern = currentPattern.map(item =>
-                            Math.random() > 0.5 ? item : getRandomItem()
-                        );
-                        break;
-                    case 2: // Completely different
-                        wrongPattern = Array(currentPattern.length).fill().map(() => getRandomItem());
-                        break;
-                }
-
-                // Ensure the wrong pattern isn't accidentally correct
-                if (JSON.stringify(wrongPattern) === JSON.stringify(currentPattern)) {
-                    wrongPattern[0] = getRandomItem([wrongPattern[0]]);
-                }
-
-                options[i] = wrongPattern;
-            }
-
-            // Display options
-            options.forEach((pattern, index) => {
-                const option = document.createElement('div');
-                option.className = 'pattern-option';
-                option.dataset.index = index;
-
-                pattern.forEach(item => {
-                    const patternItem = document.createElement('div');
-                    patternItem.className = 'pattern-item';
-                    patternItem.textContent = item;
-                    option.appendChild(patternItem);
-                });
-
-                option.addEventListener('click', () => selectPatternOption(index));
-                patternOptionsEl.appendChild(option);
-            });
-        }
-
-        function selectPatternOption(selectedIndex) {
-            const options = document.querySelectorAll('.pattern-option');
-
-            // Mark selected option
-            options.forEach(option => option.classList.remove('selected'));
-            options[selectedIndex].classList.add('selected');
-
-            // Check if correct
-            if (selectedIndex === correctOptionIndex) {
-                options[selectedIndex].classList.add('correct');
-                patternScore += currentLevel * 5;
-
-                patternFeedbackEl.querySelector('.feedback-content').className = 'feedback-content feedback-success';
-                patternFeedbackEl.querySelector('.feedback-title').textContent = 'Correct! ';
-                patternFeedbackEl.querySelector('.feedback-text').textContent = `Great pattern recognition! +${currentLevel * 5} points`;
-
-                // Level up every 3 correct answers
-                if (patternScore >= currentLevel * 15) {
-                    currentLevel++;
-                    patternFeedbackEl.querySelector('.feedback-text').textContent += ` Level up!`;
-                }
-
-                createConfetti();
-            } else {
-                options[selectedIndex].classList.add('incorrect');
-                options[correctOptionIndex].classList.add('correct');
-
-                patternFeedbackEl.querySelector('.feedback-content').className = 'feedback-content feedback-error';
-                patternFeedbackEl.querySelector('.feedback-title').textContent = 'Oops! ';
-                patternFeedbackEl.querySelector('.feedback-text').textContent = 'Look carefully at the pattern rules';
-            }
-
-            patternFeedbackEl.classList.remove('hidden');
-            patternScoreEl.textContent = patternScore;
-        }
-
-        function getRandomItem(exclude = []) {
-            const availableItems = patternItems.filter(item => !exclude.includes(item));
-            return availableItems[Math.floor(Math.random() * availableItems.length)];
-        }
-
-        newPatternBtn.addEventListener('click', setupPatternGame);
-        nextPatternBtn.addEventListener('click', setupPatternGame);
-
-        // Common functions
-        function createConfetti() {
-            const colors = ['#f44336', '#e91e63', '#9c27b0', '#673ab7', '#3f51b5', '#2196f3', '#03a9f4', '#00bcd4', '#009688', '#4CAF50', '#8BC34A', '#CDDC39', '#FFEB3B', '#FFC107', '#FF9800', '#FF5722'];
-
-            for (let i = 0; i < 50; i++) {
-                const confetti = document.createElement('div');
-                confetti.className = 'confetti';
-                confetti.style.left = Math.random() * 100 + 'vw';
-                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                confetti.style.width = Math.random() * 10 + 5 + 'px';
-                confetti.style.height = Math.random() * 10 + 5 + 'px';
-                confetti.style.animationDuration = Math.random() * 3 + 2 + 's';
-                confetti.style.animationDelay = Math.random() * 2 + 's';
-                document.getElementById('confetti-container').appendChild(confetti);
-
-                setTimeout(() => {
-                    confetti.classList.add('animate-confetti');
-                }, 10);
-
-                setTimeout(() => {
-                    confetti.remove();
-                }, 5000);
-            }
-        }
-
-        // Parallax effects
-        function setupParallax() {
-            const parallaxElements = document.querySelectorAll('.parallax-section');
-            
-            window.addEventListener('scroll', function() {
-                const scrollPosition = window.pageYOffset;
-                
-                parallaxElements.forEach(element => {
-                    const elementPosition = element.offsetTop;
-                    const elementHeight = element.offsetHeight;
-                    
-                    // Only apply parallax when element is in view
-                    if (scrollPosition > elementPosition - window.innerHeight && 
-                        scrollPosition < elementPosition + elementHeight) {
-                        
-                        const bgElements = element.querySelectorAll('.parallax-bg-element');
-                        bgElements.forEach((bg, index) => {
-                            const speed = 0.2 + (index * 0.1);
-                            const yPos = -(scrollPosition - elementPosition) * speed;
-                            bg.style.transform = `translate3d(0, ${yPos}px, 0)`;
-                        });
-                    }
-                });
-            });
-        }
-
-        // Scroll animations
-        function setupScrollAnimations() {
-            const animateElements = document.querySelectorAll('.feature-card, .rewards-card, .demo-card, .parents-card');
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            }, { threshold: 0.1 });
-            
-            animateElements.forEach(el => {
-                el.style.opacity = '0';
-                el.style.transform = 'translateY(20px)';
-                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-                observer.observe(el);
-            });
-        }
-
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-    </script>
-</body>
-</html>
+           
