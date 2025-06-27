@@ -2114,6 +2114,46 @@
             overflow: hidden;
         }
 
+        /* Rotating Logo Styles */
+.rotating-logo-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.rotating-logo {
+    width: 80%;
+    max-width: 300px;
+    height: auto;
+    animation: rotate 20s linear infinite;
+    transition: transform 0.3s ease;
+    filter: drop-shadow(0 0 10px rgba(0, 247, 255, 0.5));
+}
+
+.rotating-logo:hover {
+    animation: rotate 5s linear infinite;
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 20px rgba(0, 247, 255, 0.8));
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Maintain existing holographic effects */
+.hero-animation-container.holographic {
+    /* Your existing holographic styles */
+    background: rgba(0, 247, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 247, 255, 0.3);
+    box-shadow: 0 0 20px rgba(0, 247, 255, 0.2),
+                inset 0 0 20px rgba(0, 247, 255, 0.1);
+}
+
         .progress-bar-game>div {
             height: 100%;
             background: linear-gradient(90deg, var(--neon-primary), var(--neon-secondary));
@@ -2698,16 +2738,16 @@
                 </div>
             </div>
             
-            <div class="hero-image">
-                <div class="hero-animation-container holographic">
-                    <div class="hero-animation-content">
-                        <div class="gif-container">
-                            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExY3BlZzQ1ajIxc2NwNjdzb2wzbDV3d3doZXFodDJlbHZ3cTZuYjRyMiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/9D7dMTEskdstXHUOK2/giphy.gif" alt="Kids playing educational games">
-                        </div>
-                    </div>
-                </div>
-                
+<div class="hero-image">
+    <div class="hero-animation-container holographic">
+        <div class="hero-animation-content">
+            <div class="rotating-logo-container">
+                <img src="assets/logo.png" alt="Chizel Logo" class="rotating-logo">
             </div>
+        </div>
+    </div>
+</div>
+
         </div>
     </section>
 
@@ -3603,7 +3643,7 @@
                                     <svg xmlns="http://www.w3.org/2000/svg" class="list-icon" viewBox="0 0 20 20" fill="currentColor">
                                         <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
                                     </svg>
-                                    <span>COPPA-compliant privacy</span>
+                                    
                                 </li>
                             </ul>
                         </div>
@@ -3988,7 +4028,7 @@
                     <svg xmlns="http://www.w3.org/2000/svg" class="security-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                     </svg>
-                    <span class="security-text">COPPA Certified & 100% Kid-Safe</span>
+                    <span class="security-text">100% Kid-Safe</span>
                 </div>
             </div>
         </div>
@@ -4054,7 +4094,6 @@
                     <li><a href="#" class="footer-link">About Us</a></li>
                     <li><a href="#" class="footer-link">Privacy Policy</a></li>
                     <li><a href="#" class="footer-link">Terms of Service</a></li>
-                    <li><a href="#" class="footer-link">COPPA Compliance</a></li>
                     <li><a href="#" class="footer-link">Contact Us</a></li>
                 </ul>
             </div>
